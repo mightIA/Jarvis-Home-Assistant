@@ -1,0 +1,143 @@
+{
+  "_description": "Expediteurs a supprimer automatiquement pour might@live.fr",
+  "_updated": "2026-04-18",
+  "expediteurs": [
+    {
+      "email_pattern": "*@binance*",
+      "nom": "Binance",
+      "categorie": "promo_crypto",
+      "frequence": "quasi-quotidienne",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — 2 promos en 2 jours"
+    },
+    {
+      "email_pattern": "*instagram*",
+      "nom": "Instagram / CHOWH1 on Instagram",
+      "categorie": "notification_reseau_social",
+      "frequence": "quasi-quotidienne",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — multiples notifications stories/suggestions"
+    },
+    {
+      "email_pattern": "*facebook*",
+      "nom": "Facebook / Marion sur Facebook",
+      "categorie": "notification_reseau_social",
+      "frequence": "reguliere",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — notifications statuts"
+    },
+    {
+      "email_pattern": "noreply@email.openai.com",
+      "nom": "OpenAI / ChatGPT",
+      "categorie": "newsletter",
+      "frequence": "ponctuelle",
+      "confiance": 80,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — newsletter non sollicitee"
+    },
+    {
+      "email_pattern": "*@ecoflow*",
+      "nom": "EcoFlow France",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promos repetitives"
+    },
+    {
+      "email_pattern": "*@deezer*",
+      "nom": "Deezer",
+      "categorie": "notification_app",
+      "frequence": "hebdomadaire",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — recap semaine + promos concerts"
+    },
+    {
+      "email_pattern": "*@corsair*",
+      "nom": "CORSAIR",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promos hardware"
+    },
+    {
+      "email_pattern": "*@fanatec*",
+      "nom": "FANATEC",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promos sim racing"
+    },
+    {
+      "email_pattern": "*@saily*",
+      "nom": "Saily",
+      "categorie": "newsletter_promo",
+      "frequence": "ponctuelle",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promo eSIM"
+    },
+    {
+      "email_pattern": "*dyson*",
+      "nom": "Dyson",
+      "categorie": "code_expire",
+      "frequence": "ponctuelle",
+      "confiance": 100,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — codes connexion expires"
+    },
+    {
+      "email_pattern": "*cloudflare*access*",
+      "nom": "Cloudflare Access",
+      "categorie": "code_expire",
+      "frequence": "ponctuelle",
+      "confiance": 100,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — codes login expires apres 10 min"
+    },
+    {
+      "email_pattern": "*austrian*airlines*",
+      "nom": "Austrian Airlines",
+      "categorie": "newsletter_promo",
+      "frequence": "ponctuelle",
+      "confiance": 80,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promo voyage"
+    },
+    {
+      "email_pattern": "*lufthansa*",
+      "nom": "Lufthansa",
+      "categorie": "newsletter_promo",
+      "frequence": "ponctuelle",
+      "confiance": 80,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promo voyage"
+    },
+    {
+      "email_pattern": "*boutique*courrier*international*",
+      "nom": "La Boutique Courrier International",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 85,
+      "date_ajout": "2026-04-18",
+      "source": "scan initial — promos produits (different des alertes Courrier International)"
+    }
+  ],
+  "_regles_confiance": {
+    "100": "Suppression sans inclure dans le rapport (spam evident)",
+    "90-99": "Suppression auto, mentionner dans le rapport journalier",
+    "70-89": "Proposer dans le rapport pour validation Mickael",
+    "moins_de_70": "Ne pas supprimer, inclure dans le rapport pour decision"
+  },
+  "_cas_particuliers": {
+    "AliExpress": "Garder les confirmations de commande recentes (< 30 jours), supprimer les demandes d'avis et notifications anciennes",
+    "Orange": "Garder les factures, supprimer les promos VOD",
+    "Courrier_International": "Garder les alertes editoriales, supprimer les promos boutique"
+  }
+}

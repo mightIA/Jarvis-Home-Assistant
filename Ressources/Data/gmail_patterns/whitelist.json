@@ -1,0 +1,52 @@
+{
+  "_description": "Expediteurs proteges - NE JAMAIS supprimer automatiquement",
+  "_updated": "2026-04-18",
+  "expediteurs": [
+    {
+      "email_pattern": "*@impots.gouv.fr",
+      "nom": "Impots / Tresor Public",
+      "raison": "Administration fiscale"
+    },
+    {
+      "email_pattern": "*@ameli.fr",
+      "nom": "Assurance Maladie",
+      "raison": "Sante / remboursements"
+    },
+    {
+      "email_pattern": "*@caf.fr",
+      "nom": "CAF",
+      "raison": "Allocations"
+    },
+    {
+      "email_pattern": "*@banque*.fr",
+      "nom": "Banques",
+      "raison": "Operations bancaires"
+    },
+    {
+      "email_pattern": "*@frisquet*",
+      "nom": "Frisquet Connect",
+      "raison": "Alertes chauffage maison"
+    },
+    {
+      "email_pattern": "*@apple.com",
+      "nom": "Apple",
+      "raison": "Factures, alertes Find My"
+    },
+    {
+      "email_pattern": "no-reply@accounts.google.com",
+      "nom": "Google Securite",
+      "raison": "Alertes de securite compte"
+    },
+    {
+      "email_pattern": "*@restosducoeur*",
+      "nom": "Restos du Coeur",
+      "raison": "Recus de dons - deductibles impots"
+    },
+    {
+      "email_pattern": "*@msf*",
+      "nom": "Medecins Sans Frontieres",
+      "raison": "Recus de dons - deductibles impots"
+    }
+  ],
+  "_note": "Ajouter ici tout expediteur que Mickael souhaite proteger de la suppression auto"
+}

@@ -1,0 +1,35 @@
+{
+  "_comment": "TEMPLATE versionne du .mcp.json reel. Pour deployer ailleurs : copier ce fichier en `.mcp.json` puis remplir les <PLACEHOLDERS>. Le fichier .mcp.json reel est dans .gitignore (contient le path-token CF Tunnel).",
+  "_last_update": "2026-04-23",
+  "mcpServers": {
+    "gmail": {
+      "_description": "Gmail — connecteur OFFICIEL Anthropic (6 outils, lecture+drafts+labels, pas de gmail.modify). Fallback du gmail-mcp-local stdio.",
+      "type": "http",
+      "url": "https://mcp.gmail.cowork.anthropic.com/v1/sse",
+      "auth": "oauth"
+    },
+    "gmail-mcp-local": {
+      "_description": "Gmail MCP custom (GongRzhe/Gmail-MCP-Server) stdio LOCAL, scopes gmail.modify + gmail.settings.basic. AUCUNE exposition reseau. Token+OAuth dans C:\\Users\\<USER>\\.gmail-mcp\\ (hors repo, NTFS restreint).",
+      "type": "stdio",
+      "command": "node",
+      "args": ["<ABSOLUTE_PATH_TO_REPO>\\Runtime\\Gmail-MCP-Server\\dist\\index.js"],
+      "_audit_sha": "a890d19189bbc1325b8728fab830fc278cfd8804",
+      "_install": "git clone https://github.com/GongRzhe/Gmail-MCP-Server.git Runtime/Gmail-MCP-Server && cd Runtime/Gmail-MCP-Server && git checkout a890d19 && npm install && npm run build",
+      "_scopes": ["https://www.googleapis.com/auth/gmail.modify", "https://www.googleapis.com/auth/gmail.settings.basic"]
+    },
+    "home-assistant": {
+      "_description": "Add-on ha-mcp (FastMCP + DCR) expose via Cloudflare Tunnel. Transport MCP streamable HTTP sur URL base (pas de suffixe /sse ni /mcp). Auth OAuth DCR. NE PAS ajouter de slash final (renvoie 307).",
+      "type": "http",
+      "url": "https://<YOUR_HA_MCP_DOMAIN>/<YOUR_PRIVATE_TOKEN_PATH>",
+      "auth": "oauth",
+      "_warning_trailing_slash": "NE PAS ajouter de / final : base+/ renvoie 307 redirect vers http:// (bug tunnel CF)."
+    },
+    "google-calendar": {
+      "_description": "Google Calendar — optionnel. Active uniquement si gestion d'agenda souhaitee.",
+      "_disabled": true,
+      "type": "http",
+      "url": "https://mcp.calendar.cowork.anthropic.com/v1/sse",
+      "auth": "oauth"
+    }
+  }
+}

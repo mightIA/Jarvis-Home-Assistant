@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-16"?>
+<Task version="1.4" xmlns="http://schemas.microsoft.com/windows/2004/02/mit/task">
+    <RegistrationInfo>
+        <Author>MIGHT-1000D\Might</Author>
+        <Description>Mode Reactif Jarvis - traite les alertes [JARVIS-ALERT] en attente dans Gmail label Jarvis-Alert toutes les 30 minutes via Claude CLI (skill check-jarvis-alert). Bascule Option A session 31 (22/04/2026) apres boucle infinie identifiee cote scheduled tasks Cowork.</Description>
+        <URI>\Jarvis-CheckAlert</URI>
+    </RegistrationInfo>
+    <Triggers>
+        <CalendarTrigger>
+            <StartBoundary>2026-04-23T04:00:00</StartBoundary>
+            <Enabled>true</Enabled>
+            <ScheduleByDay>
+                <DaysInterval>1</DaysInterval>
+            </ScheduleByDay>
+        </CalendarTrigger>
+    </Triggers>
+    <Principals>
+        <Principal id="Author">
+            <UserId>MIGHT-1000D\Might</UserId>
+            <LogonType>InteractiveToken</LogonType>
+            <RunLevel>LeastPrivilege</RunLevel>
+        </Principal>
+    </Principals>
+    <Settings>
+        <MultipleInstancesPolicy>IgnoreNew</MultipleInstancesPolicy>
+        <DisallowStartIfOnBatteries>false</DisallowStartIfOnBatteries>
+        <StopIfGoingOnBatteries>false</StopIfGoingOnBatteries>
+        <AllowHardTerminate>true</AllowHardTerminate>
+        <StartWhenAvailable>true</StartWhenAvailable>
+        <RunOnlyIfNetworkAvailable>false</RunOnlyIfNetworkAvailable>
+        <IdleSettings>
+            <StopOnIdleEnd>false</StopOnIdleEnd>
+            <RestartOnIdle>false</RestartOnIdle>
+        </IdleSettings>
+        <AllowStartOnDemand>true</AllowStartOnDemand>
+        <Enabled>true</Enabled>
+        <Hidden>false</Hidden>
+        <RunOnlyIfIdle>false</RunOnlyIfIdle>
+        <WakeToRun>false</WakeToRun>
+        <ExecutionTimeLimit>PT30M</ExecutionTimeLimit>
+        <Priority>7</Priority>
+        <RestartOnFailure>
+            <Interval>PT1M</Interval>
+            <Count>3</Count>
+        </RestartOnFailure>
+    </Settings>
+    <Actions Context="Author">
+        <Exec>
+            <Command>powershell.exe</Command>
+            <Arguments>-NoProfile -ExecutionPolicy Bypass -File "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\scripts\check-jarvis-alert-launcher.ps1"</Arguments>
+            <WorkingDirectory>D:\Might\IA\Projets Cowork\Jarvis - Home Assistant</WorkingDirectory>
+        </Exec>
+    </Actions>
+</Task>

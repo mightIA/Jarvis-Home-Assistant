@@ -1,0 +1,139 @@
+{
+  "_description": "Expediteurs a supprimer automatiquement - enrichi par auto-apprentissage",
+  "_updated": "2026-04-21",
+  "expediteurs": [
+    {
+      "email_pattern": "*@creators.suno.com",
+      "nom": "Suno",
+      "categorie": "promo_repetitive",
+      "frequence": "quotidienne",
+      "confiance": 100,
+      "date_ajout": "2026-04-18",
+      "source": "tri session 18/04 - 8 emails spam identifies"
+    },
+    {
+      "email_pattern": "news@topazlabs.com",
+      "nom": "Topaz Labs",
+      "categorie": "newsletter_promo",
+      "frequence": "2-3x par semaine",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "tri session 18/04 - 2 promos en 2 jours"
+    },
+    {
+      "email_pattern": "noreply@email.openai.com",
+      "nom": "OpenAI / ChatGPT",
+      "categorie": "newsletter_onboarding",
+      "frequence": "ponctuelle",
+      "confiance": 80,
+      "date_ajout": "2026-04-18",
+      "source": "tri session 18/04 - newsletter non sollicitee"
+    },
+    {
+      "email_pattern": "no-reply@email.claude.com",
+      "nom": "Claude Team / Anthropic",
+      "categorie": "newsletter_onboarding",
+      "frequence": "serie 1/5 a 5/5",
+      "confiance": 80,
+      "date_ajout": "2026-04-18",
+      "source": "tri session 18/04 - onboarding non sollicite"
+    },
+    {
+      "email_pattern": "*@binance*",
+      "nom": "Binance",
+      "categorie": "promo_crypto",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@ecoflow*",
+      "nom": "EcoFlow",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@corsair*",
+      "nom": "CORSAIR",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@fanatec*",
+      "nom": "FANATEC",
+      "categorie": "newsletter_promo",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@facebookmail.com",
+      "nom": "Facebook",
+      "categorie": "notification_reseau_social",
+      "frequence": "reguliere",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@instagram*",
+      "nom": "Instagram",
+      "categorie": "notification_reseau_social",
+      "frequence": "reguliere",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@tinder*",
+      "nom": "Tinder",
+      "categorie": "notification_app",
+      "frequence": "reguliere",
+      "confiance": 95,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@deezer*",
+      "nom": "Deezer",
+      "categorie": "notification_app",
+      "frequence": "hebdomadaire",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@st.com",
+      "nom": "STMicroelectronics",
+      "categorie": "newsletter_tech",
+      "frequence": "reguliere",
+      "confiance": 90,
+      "date_ajout": "2026-04-18",
+      "source": "protocole general"
+    },
+    {
+      "email_pattern": "*@hellowatt.fr",
+      "nom": "HelloWatt",
+      "categorie": "newsletter_promo_energie",
+      "frequence": "reguliere",
+      "confiance": 90,
+      "date_ajout": "2026-04-21",
+      "source": "tri session 24 - validation Mickael 'supprime tout'"
+    }
+  ],
+  "_regles_confiance": {
+    "100": "Suppression sans inclure dans le rapport (spam evident)",
+    "90-99": "Suppression auto, mentionner dans le rapport journalier",
+    "70-89": "Proposer dans le rapport pour validation Mickael",
+    "moins_de_70": "Ne pas supprimer, inclure dans le rapport pour decision"
+  },
+  "_note": "Le score de confiance est mis a jour par l'auto-apprentissage. Si Mickael conteste une suppression, le score baisse."
+}

@@ -1,0 +1,71 @@
+{
+  "_description": "Expediteurs proteges pour might@live.fr — NE JAMAIS supprimer automatiquement",
+  "_updated": "2026-04-18",
+  "expediteurs": [
+    {
+      "email_pattern": "*@apple.com",
+      "nom": "Apple",
+      "raison": "Factures iCloud, recus Apple, alertes Find My"
+    },
+    {
+      "email_pattern": "*@find*my*",
+      "nom": "Find My",
+      "raison": "Alertes localisation iPhone"
+    },
+    {
+      "email_pattern": "*@orange.fr",
+      "nom": "Orange Service Clients",
+      "raison": "Factures Internet (sauf promos VOD)"
+    },
+    {
+      "email_pattern": "no-reply@accounts.google.com",
+      "nom": "Google Securite",
+      "raison": "Alertes de securite compte"
+    },
+    {
+      "email_pattern": "*@impots.gouv.fr",
+      "nom": "Impots / Tresor Public",
+      "raison": "Administration fiscale"
+    },
+    {
+      "email_pattern": "*@ameli.fr",
+      "nom": "Assurance Maladie",
+      "raison": "Sante / remboursements"
+    },
+    {
+      "email_pattern": "*@rubix.com",
+      "nom": "Rubix / Service Clients",
+      "raison": "Factures professionnelles"
+    },
+    {
+      "email_pattern": "*medico*",
+      "nom": "Angelique MEDICO",
+      "raison": "Factures professionnelles Rubix"
+    },
+    {
+      "email_pattern": "*@restosducoeur*",
+      "nom": "Restos du Coeur / Martine",
+      "raison": "Recus de dons — deductibles impots"
+    },
+    {
+      "email_pattern": "*biogroup*",
+      "nom": "Biogroup / Site Thionville",
+      "raison": "Sante / relances medicales"
+    },
+    {
+      "email_pattern": "*neida*martins*",
+      "nom": "Neida Martins",
+      "raison": "Complementaire sante solidaire"
+    },
+    {
+      "email_pattern": "*mickael*rubino*",
+      "nom": "Mickael RUBINO (auto-envoi)",
+      "raison": "Emails envoyes par Mickael a lui-meme"
+    },
+    {
+      "email_pattern": "*@frisquet*",
+      "nom": "Frisquet Connect",
+      "raison": "Alertes chauffage maison"
+    }
+  ]
+}

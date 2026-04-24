@@ -1,0 +1,159 @@
+{
+  "_description": "Journal d'apprentissage - trace chaque action de tri pour ameliorer les patterns",
+  "_updated": "2026-04-24",
+  "sessions": [
+    {
+      "date": "2026-04-18",
+      "actions": {
+        "spam_vides": 8,
+        "supprimes_auto": 4,
+        "supprimes_validation": 2,
+        "archives": 0,
+        "gardes": 0
+      },
+      "nouveaux_patterns": [
+        "Suno (quotidien) → blacklist confiance 100",
+        "Topaz Labs (2x/semaine) → blacklist confiance 95",
+        "OpenAI newsletter → blacklist confiance 80",
+        "Claude Team onboarding → blacklist confiance 80"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "tout en S - aucune contestation"
+    },
+    {
+      "date": "2026-04-22",
+      "mode": "V1 test — premier run réel post-refonte skill Phase 5",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 2,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 1,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 1
+      },
+      "details_actions": [
+        {
+          "messageId": "19db29171c3d2e03",
+          "from": "no-reply@email.claude.com",
+          "subject": "Get more from Claude with these power moves (5/5)",
+          "category_gmail": "CATEGORY_PROMOTIONS",
+          "match_pattern": "blacklist:no-reply@email.claude.com",
+          "score_brut": 80,
+          "ponderation": 30,
+          "score_final": 100,
+          "action": "TRASH",
+          "commentaire": "Pondération PROMOTIONS a basculé 80 → 100, suppression auto au lieu de validation"
+        },
+        {
+          "messageId": "19db1b960c989890",
+          "from": "no-reply@accounts.google.com",
+          "subject": "Alerte de sécurité",
+          "category_gmail": "CATEGORY_UPDATES",
+          "match_pattern": "whitelist:no-reply@accounts.google.com",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Whitelist protégé - alerte OAuth Claude confirmant autorisation du 21/04 20:26 GMT"
+        }
+      ],
+      "nouveaux_patterns": [],
+      "erreurs_signalees": [],
+      "feedback_mickael": "GO V1 après validation dry-run - confirmation 1 avant batch TRASH",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails — 2026-04-22 (V1 test)"
+      }
+    },
+    {
+      "date": "2026-04-23",
+      "mode": "headless CLI — run 14:00:02 manuel non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 2,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 1,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 1
+      },
+      "details_actions": [
+        {
+          "messageId": "19db66739af16f9d",
+          "from": "news@topazlabs.com",
+          "subject": "Limited Time | Save $120",
+          "category_gmail": "CATEGORY_PROMOTIONS",
+          "match_pattern": "blacklist:news@topazlabs.com",
+          "score_brut": 95,
+          "ponderation": 30,
+          "score_final": 100,
+          "action": "TRASH",
+          "commentaire": "Ponderation PROMOTIONS bascule 95 -> 100 cap, suppression auto sans validation"
+        },
+        {
+          "messageId": "19db1b960c989890",
+          "from": "no-reply@accounts.google.com",
+          "subject": "Alerte de sécurité",
+          "category_gmail": "CATEGORY_UPDATES",
+          "match_pattern": "whitelist:no-reply@accounts.google.com",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Whitelist permanent - alerte OAuth Google"
+        }
+      ],
+      "nouveaux_patterns": [],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-04-23_140002"
+      }
+    },
+    {
+      "date": "2026-04-24",
+      "mode": "headless CLI - run 17:22:39 non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 1,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 1
+      },
+      "details_actions": [
+        {
+          "messageId": "19db1b960c989890",
+          "from": "no-reply@accounts.google.com",
+          "subject": "Alerte de sécurité",
+          "category_gmail": "CATEGORY_UPDATES",
+          "match_pattern": "whitelist:no-reply@accounts.google.com",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Whitelist permanent - alerte OAuth Google (mail persistant depuis 21/04)"
+        }
+      ],
+      "nouveaux_patterns": [],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-04-24_172239"
+      }
+    }
+  ],
+  "stats_globales": {
+    "total_sessions": 4,
+    "total_emails_traites": 19,
+    "total_erreurs": 0,
+    "taux_satisfaction": "100%"
+  }
+}

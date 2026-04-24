@@ -1,0 +1,90 @@
+{
+  "_description": "Journal d'apprentissage pour might@live.fr",
+  "_updated": "2026-04-22",
+  "sessions": [
+    {
+      "date": "2026-04-22",
+      "heure": "05:00",
+      "mode": "tache_planifiee_cowork",
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 1
+      },
+      "nouveaux_patterns": [
+        "BATTLEFIELD (EA) : promo jeu video - Decouvrez ce que Battlefield vous reserve en 2026 - propose en blacklist newsletter_promo confiance 50 (a valider par Mickael, monter a 90 si confirme)"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "en attente - tache automatique 05:00",
+      "a_valider": [
+        "BATTLEFIELD 21/04 21:24 - promo jeu video (confiance 50, nouveau pattern)"
+      ],
+      "rapport_envoye": "might@live.fr - [Jarvis] Rapport tri Outlook - 22/04/2026",
+      "notes": "Boite quasi vide : 1 seul email en reception (BATTLEFIELD). Courrier indesirable deja vide. Dossiers Urgent (4) et Perso (2) non traites - reserves a validation manuelle Mickael."
+    },
+    {
+      "date": "2026-04-19",
+      "heure": "06:04",
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 0
+      },
+      "nouveaux_patterns": [],
+      "erreurs_signalees": [
+        "ECHEC EXECUTION : extension Claude in Chrome non connectee — impossible d'acceder a Outlook web",
+        "Tache automatique abandonnee a l'etape 1 (ouverture du navigateur)",
+        "Aucune action destructive effectuee (suppression, envoi, vidage spam)"
+      ],
+      "feedback_mickael": "tache automatique — aucun feedback (echec avant execution)",
+      "a_valider": [],
+      "rapport_envoye": "NON — rapport local genere dans outputs/"
+    },
+    {
+      "date": "2026-04-18",
+      "heure": "17:56",
+      "actions": {
+        "spam_vides": 28,
+        "supprimes_auto": 30,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 20
+      },
+      "nouveaux_patterns": [
+        "Scan initial : 14 patterns blacklist identifiés",
+        "13 expéditeurs whitelist configurés",
+        "Cas particuliers notés : AliExpress, Orange, Courrier International",
+        "AliExpress demandes d'avis supprimées (cas particulier reviews)",
+        "MSF Médecins Sans Frontières identifié comme reçu fiscal — à protéger",
+        "Biogroup SITE THIONVILLE VAL identifié (whitelist)",
+        "Courrier International : distinction alerte éditoriale (garder) vs promo boutique (supprimer)",
+        "FlixBus détecté — non classifié, proposé pour blacklist",
+        "Oney détecté — offres bancaires, non classifié, proposé pour blacklist"
+      ],
+      "erreurs_signalees": [
+        "Décalage coordonnées menu contextuel après suppression (résolu en vérifiant screenshot avant clic)",
+        "Apple reçu potentiellement supprimé accidentellement lors session précédente (à surveiller)"
+      ],
+      "feedback_mickael": "session automatique — aucun feedback reçu",
+      "a_valider": [
+        "Courrier international 22/03 — promo boutique (confiance 85)",
+        "Lufthansa 19/03 — promo voyage (confiance 80)"
+      ],
+      "rapport_envoye": "might@live.fr — [Jarvis] Rapport tri Outlook - 18/04/2026"
+    }
+  ],
+  "stats_globales": {
+    "total_sessions": 3,
+    "total_sessions_reussies": 2,
+    "total_sessions_echouees": 1,
+    "total_emails_traites": 79,
+    "total_suppression_auto": 30,
+    "total_spam_vides": 28,
+    "total_erreurs": 5,
+    "taux_satisfaction": "N/A — sessions automatiques"
+  }
+}

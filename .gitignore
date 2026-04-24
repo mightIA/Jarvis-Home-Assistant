@@ -1,0 +1,113 @@
+# =====================================================================
+# .gitignore — Jarvis Home Assistant project
+# Version : v1.0 — créé session 42 — 25/04/2026
+# Stratégie : repo PRIVÉ local uniquement (push GitHub mightIA reporté)
+# Décisions Q1-Q4 : memory/ partiel, Runtime/ exclu, .mcp.json exclu
+# =====================================================================
+
+
+# ─── Secrets et configuration locale ────────────────────────────────
+# .mcp.json contient l'URL CF Tunnel `mcp.might.ovh/private_<token>`.
+# Voir .mcp.json.template (versionné) pour la structure attendue.
+.mcp.json
+
+# Allowlist/denylist Cowork CLI propre à chaque poste
+.claude/settings.local.json
+
+# Config Jarvis personnelle (paths Windows, prefs Mickael)
+.claude/jarvis-config.json
+
+# Aucun credentials Google/OAuth ne doit JAMAIS entrer dans le repo.
+# Les credentials Gmail MCP sont stockés dans C:\Users\Might\.gmail-mcp\
+# (hors repo). Ces patterns sont des garde-fous au cas où.
+**/credentials.json
+**/gcp-oauth.keys.json
+**/.env
+**/.env.local
+**/.env.*.local
+**/secrets.yaml
+**/secrets.json
+
+
+# ─── Runtime/ : services permanents (MCP stdio, daemons) ───────────
+# Q2-S42 : tout exclure. Le SHA upstream est tracé dans .mcp.json
+# `_audit_sha` pour reproductibilité. Réinstall = git clone upstream.
+Runtime/
+
+
+# ─── memory/ : auto-memories partielles ─────────────────────────────
+# Q1-S42 : versionner `memory/MEMORY.md` + `memory/*.md` (auto-memories
+# Mickael, ~30 fichiers, structurelles).
+# EXCLURE : les 3 dossiers d'archives qui changent chaque session et
+# inonderaient le repo de fichiers verbeux.
+memory/historique/
+memory/historique_reactif/
+memory/historique_tri_gmail/
+
+
+# ─── Dossiers vides volontairement ignorés ──────────────────────────
+# Archives/, outputs/, rapports/ sont des dossiers de travail temporaire.
+# On exclut leur contenu mais on garde la structure via .gitkeep.
+Archives/*
+!Archives/.gitkeep
+
+outputs/*
+!outputs/.gitkeep
+
+rapports/*
+!rapports/.gitkeep
+
+
+# ─── Logs et artefacts générés ──────────────────────────────────────
+*.log
+launcher_logs/
+**/launcher_logs/
+run_*.json
+
+
+# ─── Caches et builds ──────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+.venv/
+venv/
+node_modules/
+dist/
+build/
+.cache/
+
+
+# ─── Éditeurs et IDE ────────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+
+# ─── Système ────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+
+
+# ─── Obsidian (vault Wiki/) ────────────────────────────────────────
+# `.obsidian/workspace.json` change à chaque ouverture de vault → bruit.
+# `.obsidian/workspace-mobile.json` idem.
+# On garde le reste de `.obsidian/` (config plugins, hotkeys, themes).
+Wiki/.obsidian/workspace.json
+Wiki/.obsidian/workspace-mobile.json
+Wiki/.obsidian/cache
+Wiki/.obsidian/hotkeys.json.bak
+
+
+# ─── Fichiers de session Cowork ────────────────────────────────────
+# Au cas où un fichier de session local-agent-mode glisserait dans le
+# repo.
+local-agent-mode-sessions/
+.cowork-session/

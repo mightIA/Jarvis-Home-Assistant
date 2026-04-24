@@ -1,0 +1,109 @@
+# ============================================================
+# Registre des événements captés — Mode Réactif Jarvis
+# ============================================================
+# Liste des événements HA que Jarvis peut traiter.
+# Chaque événement a un flag `enabled` qui permet de le désactiver
+# sans toucher aux autres (utile si un événement spam).
+#
+# Voir : Ressources/Competences/Mode_Reactif.md section 5
+# Statut Phase 1 — implémentée session 24 (21/04/2026)
+# ============================================================
+
+# ------------------------------------------------------------
+# PHASE 1 — événements safe (implémentés)
+# ------------------------------------------------------------
+# Flags côté HA :
+#   - input_boolean.jarvis_mode_reactif       (kill switch global)
+#   - input_boolean.jarvis_event_ban_ip       (flag ban_ip_detected)
+#   - input_boolean.jarvis_event_log_erreur_critique (flag log_erreur_critique)
+#
+# Canal d'envoi : notify.might57290_gmail_com
+# Destinataire  : might57290+jarvis@gmail.com (label Gmail "Jarvis-Alert")
+
+# PHASE 2 — événements de signalement (à implémenter)
+# - update_ha_dispo
+# - update_addon_dispo
+# - cameras_stockage_plein
+# - acces_ha_perdu
+
+# ------------------------------------------------------------
+# Événements actifs
+# ------------------------------------------------------------
+
+evenements:
+  - id: ban_ip_detected
+    enabled: true
+    description: >-
+      Détection d'un nouveau ban IP par HA (logger
+      `homeassistant.components.http.ban`). Source :
+      /config/ip_bans.yaml + log WARNING HA.
+    trigger_ha: |
+      event: system_log_event
+      filter: logger contient "ban" ET level in [WARNING, ERROR]
+    flag_ha: input_boolean.jarvis_event_ban_ip
+    sujet_mail_pattern: "[JARVIS-ALERT] ban_ip | high | {{ ip }}"
+    classification: safe
+    action_par_niveau:
+      5: debanish_auto
+      4: debanish_auto
+      3: debanish_auto      # exception règle 0 — validée session 15
+      2: signaler
+      1: ignorer
+    garde_fou: >-
+      max 3 debannissements / 24h. Au-delà : signaler uniquement
+      (override via template côté Cowork, pas côté automation HA).
+
+  - id: log_erreur_critique
+    enabled: true
+    description: >-
+      ERROR ou CRITICAL détecté dans les logs HA, hors logger "ban"
+      (déjà géré par ban_ip_detected) et hors logger "googleapiclient"
+      (déjà traité à la main, évite spam 403 pendant setup OAuth).
+    trigger_ha: |
+      event: system_log_event
+      filter: level in [ERROR, CRITICAL] ET logger ne contient pas "ban"
+    flag_ha: input_boolean.jarvis_event_log_erreur_critique
+    sujet_mail_pattern: "[JARVIS-ALERT] log_erreur | {{ gravite }} | {{ logger }}"
+    classification: safe
+    action_par_niveau:
+      5: creer_tache_et_analyser
+      4: creer_tache_et_analyser
+      3: creer_tache
+      2: signaler
+      1: ignorer
+    garde_fou: >-
+      max 1 alerte par logger / heure (throttle côté automation HA via
+      last_triggered + condition de 3600 s).
+
+# ------------------------------------------------------------
+# Exemple de structure (commenté) pour référence future
+# ------------------------------------------------------------
+#
+# evenements:
+#   - id: ban_ip_detected
+#     enabled: false
+#     description: "Détection d'un nouveau ban IP dans ip_bans.yaml"
+#     trigger_ha: "sensor.ha_ip_bans state changes"
+#     sujet_mail_pattern: "[JARVIS-ALERT] ban_ip"
+#     classification: safe
+#     action_par_niveau:
+#       5: debanish_auto
+#       4: debanish_auto
+#       3: debanish_auto    # exception règle 0 — validée S15
+#       2: signaler
+#       1: ignorer
+#     garde_fou: "max 3 debannissements / 24h, au-delà signaler uniquement"
+#
+#   - id: log_erreur_critique
+#     enabled: false
+#     description: "ERROR ou CRITICAL détecté dans les logs HA"
+#     trigger_ha: "sensor.ha_last_critical_log state changes"
+#     sujet_mail_pattern: "[JARVIS-ALERT] log_erreur"
+#     classification: safe
+#     action_par_niveau:
+#       5: creer_tache + analyser
+#       4: creer_tache + analyser
+#       3: creer_tache
+#       2: signaler
+#       1: ignorer
+#     garde_fou: "pas plus de 1 alerte par type d'erreur / heure"

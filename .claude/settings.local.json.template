@@ -1,0 +1,15 @@
+{
+  "_comment": "TEMPLATE — Renommer en settings.local.json apres avoir rempli les valeurs reelles. Ne JAMAIS versionner ce fichier rempli.",
+
+  "secrets": {
+    "HA_TOKEN_LOCAL": "<long_lived_token_from_HA_Profile>",
+    "HA_TOKEN_REMOTE": "<long_lived_token_from_HA_Profile>",
+    "GMAIL_CREDENTIALS": "<chemin_vers_credentials_json_si_utile>",
+    "_note_oauth": "La plupart des MCP utilisent OAuth via Cowork — pas besoin de tokens manuels. Les tokens HA ci-dessus sont des fallback si le MCP HA ne fonctionne pas."
+  },
+
+  "permissions": {
+    "_comment": "Restreindre certaines actions HA si besoin (ex: bloquer call_service sur certains domains).",
+    "ha_disallowed_domains": []
+  }
+}

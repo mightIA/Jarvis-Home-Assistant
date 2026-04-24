@@ -1,0 +1,44 @@
+# ============================================================
+# Configuration du niveau d'autonomie — Mode Réactif Jarvis
+# ============================================================
+# Ce fichier est lu par la skill check-jarvis-alert à chaque
+# exécution. Modifiable par Mickael, ou par Jarvis sur demande
+# explicite de Mickael.
+#
+# Voir : Ressources/Competences/Mode_Reactif.md section 3
+# ============================================================
+
+niveau_actif: 3
+niveau_par_defaut: 3
+
+# ------------------------------------------------------------
+# Définition des 5 niveaux
+# ------------------------------------------------------------
+
+niveaux:
+  1:
+    nom: "Off réactif"
+    comportement: "Mode réactif éteint. Seul le mode conversation reste actif."
+  2:
+    nom: "Signalement"
+    comportement: "Jarvis alerte uniquement, aucune action automatique prise."
+  3:
+    nom: "Prudent"
+    comportement: "Tout en mode propose, sauf debannissement IP (exception auto)."
+  4:
+    nom: "Équilibré"
+    comportement: "Actions classées safe en auto, le reste en mode propose."
+  5:
+    nom: "Max auto"
+    comportement: "Jarvis agit sur tous les événements safe, propose le reste."
+
+# ------------------------------------------------------------
+# Historique des changements de niveau
+# ------------------------------------------------------------
+
+historique:
+  - date: "2026-04-21"
+    de: null
+    vers: 3
+    par: "Mickael"
+    motif: "Initialisation Phase 0 Mode Réactif v1.1"
