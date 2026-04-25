@@ -49,7 +49,7 @@ Audit de la connexion distante à Home Assistant via **ha.might.ovh**. Infrastru
 
 **API protégée** : tous les endpoints testés retournent 403 Forbidden sans authentification valide (`/api/`, `/api/discovery_info`, `/auth/providers`, `/api/onboarding`). Un attaquant non authentifié ne peut pas découvrir la version HA, les providers, ni accéder à l'API.
 
-**MCP Server HA** : le `mcp_server` core HA a été supprimé S19 (bug DCR RFC 7591). Remplacé par l'add-on `ha-mcp` (FastMCP + DCR) exposé via Cloudflare Tunnel sur `https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g` (secret path auto-généré, bypass CF Access). Auth OAuth DCR compatible Claude.ai + Cowork.
+**MCP Server HA** : le `mcp_server` core HA a été supprimé S19 (bug DCR RFC 7591). Remplacé par l'add-on `ha-mcp` (FastMCP + DCR) exposé via Cloudflare Tunnel sur `https://mcp.might.ovh/private_ORXc7lHmYXqPpLCX9Nq1ehw9` (secret path auto-généré, bypass CF Access). Auth OAuth DCR compatible Claude.ai + Cowork.
 
 ### Vulnérabilités — statut S33
 
@@ -177,6 +177,7 @@ Liste des tâches à traiter, classées par priorité. Source complète : `TASKS
 
 | Tâche                                                                   | Date / Session         |
 |-------------------------------------------------------------------------|------------------------|
+| **Tâche #61 — Décongestion `CLAUDE.md` + `METRIQUES.md`** (-76,5 % poids combiné, ~42K tokens/tour libérés) | **25/04/2026 (S51)**   |
 | Création dossier racine `Runtime/` pour services permanents             | 23/04/2026 (S33)       |
 | Déplacement Gmail-MCP-Server `Projets/` → `Runtime/`                    | 23/04/2026 (S33)       |
 | Intégration Macros_Clavier + Vie_Perso dans `Ressources/Competences/`   | 23/04/2026 (S33)       |
@@ -192,4 +193,4 @@ Liste des tâches à traiter, classées par priorité. Source complète : `TASKS
 
 *Document consolidé généré par Jarvis — à relire en début de chaque session pour prioriser le travail. Régénéré en fin de session si nouvelles tâches ou audits.*
 
-*Jarvis_Audits_Todo.md — Version 2 — 23 avril 2026*
+*Jarvis_Audits_Todo.md — Version 2.1 — 25 avril 2026 (entrée #61 FAIT S51 ajoutée ; reste = snapshot S33, audit complet S34→S51 à faire en session dédiée si Mickael repart en mode chat fallback Claude.ai)*
