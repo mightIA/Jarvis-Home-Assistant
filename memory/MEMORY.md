@@ -36,6 +36,8 @@ Les deux scopes coexistent :
 - [Disclaimer YouTube "Contenu modifié ou synthétique"](feedback_video_disclaimer_voix_ia.md) — règle d'évaluation : voix probablement IA, recouper systématiquement avec source primaire avant de retenir le contenu pédagogique.
 - [Obsidian vault Wiki Jarvis](reference_obsidian_vault.md) — S41 25/04/2026 : chemin `Wiki/` dans projet Jarvis, structure PARA 5 dossiers, 4 plugins gratuits (Dataview/Templater/Excalidraw/Git), conventions nommage et tags
 - [Obsidian install Desktop](reference_obsidian_install.md) — S41 : procédure transposable réinstall (option "Juste pour moi", piège mode restreint formulation FR contre-intuitive, piège plugin "Git" pas "Obsidian Git" dans catalogue)
+- [Git Jarvis repo S42](reference_git_jarvis_repo.md) — *réplique CLI local* — repo Git racine projet créé S42, branche `main`, commit `3a63421` 130 fichiers, .gitignore strict Q1-Q4, .mcp.json.template versionné, push GitHub mightIA reporté. Stratégie + procédure clone ailleurs documentée
+- [Sandbox Cowork bash bloque Git](feedback_git_sandbox_cowork_bloque.md) — *réplique CLI local* — toutes les commandes git doivent passer par PowerShell côté Mickael (pattern brain+hands), pas par `mcp__workspace__bash`. Pièges encodage `.git/config` et permissions sandbox
 
 ---
 

@@ -12,14 +12,16 @@ domaines/projets/références sont ajoutés.
 
 ## Domaines actifs
 
-*(à remplir au fur et à mesure)*
-
-- [ ] Home Assistant — `[[10_Domaines/HomeAssistant/_Index]]`
-- [ ] Domotique appareils — `[[10_Domaines/Domotique/_Index]]`
-- [ ] Réseau & sécurité — `[[10_Domaines/Reseau/_Index]]`
-- [ ] Cloudflare — `[[10_Domaines/Cloudflare/_Index]]`
-- [ ] Frisquet (chaudière) — `[[10_Domaines/Frisquet/_Index]]`
-- [ ] Cameras Dahua — `[[10_Domaines/Cameras/_Index]]`
+- [x] **Home Assistant** — `[[10_Domaines/HomeAssistant/_Index]]` *(11 atomes — S42)*
+- [x] **Cloudflare** — `[[10_Domaines/Cloudflare/_Index]]` *(hub-atome — S42)*
+- [x] **Frisquet (chaudière)** — `[[10_Domaines/Frisquet/_Index]]` *(hub-atome — S42)*
+- [x] **Cameras Dahua** — `[[10_Domaines/Cameras/_Index]]` *(2 atomes — S42)*
+- [x] **Domotique appareils** — `[[10_Domaines/Domotique/_Index]]` *(2 atomes Dyson + Browser Mod — S42)*
+- [ ] Réseau & sécurité — `[[10_Domaines/Reseau/_Index]]` *(à créer plus tard)*
+- [ ] Email & MCP Gmail — `[[10_Domaines/Email/_Index]]` *(prévu hub suivant — voir TASKS #58)*
+- [ ] Outils & productivité (Claude Code + Macros + Obsidian) — *(prévu hub suivant)*
+- [ ] Traduction — *(prévu hub suivant)*
+- [ ] Vie perso — *(prévu hub suivant)*
 
 ## Projets en cours
 
