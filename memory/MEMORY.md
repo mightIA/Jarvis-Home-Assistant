@@ -59,6 +59,8 @@ Les deux scopes coexistent :
 - [Procédure init repo public mightIA](reference_github_repo_public_init.md) — S64 26/04/2026 : 4 étapes (web UI vide + git config no-reply + init/add/commit/remote + push -u OAuth GCM Browser). Réutilisable futurs repos
 - [Repo Cookbook Hermès RTX 3090 publié](reference_cookbook_hermes_repo.md) — S64 26/04/2026 : github.com/mightIA/hermes-agent-rtx3090-cookbook. Public, MIT, 7 fichiers, 1286 lignes, FR caviardé, commit de7e268
 - [Caviardage email no-reply commits publics](feedback_github_noreply_email.md) — S64 : user.email = no-reply 278813549+mightIA@... + toggle Block ON. Évite leak might57290@gmail.com
+- [Préférence "Ubuntu" plutôt que "WSL2"](feedback_terminologie_ubuntu.md) — S70 27/04/2026 : dire "Ubuntu (bash)" dans les blocs à coller, pas "WSL2". WSL2 = jargon infra, Ubuntu = ce que Mickael voit dans son terminal. Garder "WSL2" uniquement pour la couche infra (`.wslconfig`)
+- [Rotation secret = preuve curl OBLIGATOIRE](feedback_rotation_secret_curl_obligatoire.md) — S70 27/04/2026 : 3 fois la rotation ha-mcp documentée sans être appliquée (S48/S53/S69). Règle : curl HTTP 405 nouveau + 404 ancien AVANT propagation patches locaux. 5 pièges P1-P5 capitalisés
 
 ---
 
