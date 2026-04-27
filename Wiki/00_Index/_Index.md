@@ -18,10 +18,10 @@ domaines/projets/références sont ajoutés.
 - [x] **Cameras Dahua** — `[[10_Domaines/Cameras/_Index]]` *(2 atomes — S42)*
 - [x] **Domotique appareils** — `[[10_Domaines/Domotique/_Index]]` *(2 atomes Dyson + Browser Mod — S42)*
 - [ ] Réseau & sécurité — `[[10_Domaines/Reseau/_Index]]` *(à créer plus tard)*
-- [ ] Email & MCP Gmail — `[[10_Domaines/Email/_Index]]` *(prévu hub suivant — voir TASKS #58)*
-- [ ] Outils & productivité (Claude Code + Macros + Obsidian) — *(prévu hub suivant)*
-- [ ] Traduction — *(prévu hub suivant)*
-- [ ] Vie perso — *(prévu hub suivant)*
+- [x] **Email & MCP Gmail** — `[[10_Domaines/Email/_Index]]` *(1 hub + 6 atomes — S44)*
+- [x] **Outils & productivité** — `[[10_Domaines/Outils/_Index]]` *(1 hub + 6 atomes — S45)*
+- [x] **Traduction** — `[[10_Domaines/Traduction/_Index]]` *(1 hub + 4 atomes — S43)*
+- [x] **Vie perso** — `[[10_Domaines/ViePerso/_Index]]` *(1 hub + 4 atomes — S45)*
 
 ## Projets en cours
 

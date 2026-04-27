@@ -1,0 +1,357 @@
+
+=== A1.1 Identite OS ===
+
+
+Caption         : Microsoft Windows 11 Professionnel
+Version         : 10.0.26200
+BuildNumber     : 26200
+OSArchitecture  : 64 bits
+InstallDate     : 17/12/2024 10:19:33
+LastBootUpTime  : 24/04/2026 17:16:13
+RegisteredUser  : Might@live.fr
+SystemDirectory : C:\WINDOWS\system32
+
+
+
+
+=== A1.2 Hotfix installes (30 dernieres) ===
+
+HotFixID  Description     InstalledOn        
+--------  -----------     -----------        
+KB5083769 Security Update 19/04/2026 00:00:00
+KB5082417 Update          19/04/2026 00:00:00
+KB5088467 Security Update 18/04/2026 00:00:00
+KB5054156 Update          22/10/2025 00:00:00
+
+
+
+=== A1.3 Etat Windows Update (KB en attente) ===
+KB en attente : 3
+ - Intel - Other hardware - Intel(R) Xeon(R) E3 - 1200/1500 v5/6th Gen Intel(R) Core(TM) PCIe Controller (x16) - 1901
+ - Intel Corporation Driver Update (24.20.0.3)
+ - Intel net Driver Update (24.30.1.1)
+
+=== A1.4 BitLocker - chiffrement des volumes ===
+Get-CimInstance : AccŠs refus‚ 
+Au caractŠre C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\BitLocker\BitLocker.psm1:144 : 13
++             Get-CimInstance `
++             ~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : PermissionDenied: (root\cimv2\Secu...cryptableVolume:String) [Get-CimInstance], CimExcep 
+   tion
+    + FullyQualifiedErrorId : HRESULT 0x80041003,Microsoft.Management.Infrastructure.CimCmdlets.GetCimInstanceCommand
+ 
+Get-Win32EncryptableVolumeInternal :  n'est associ‚ … aucun volume BitLocker.
+Au caractŠre C:\WINDOWS\system32\WindowsPowerShell\v1.0\Modules\BitLocker\BitLocker.psm1:704 : 42
++ ...       $AllWin32EncryptableVolume = Get-Win32EncryptableVolumeInternal
++                                        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:) [Write-Error], COMException
+    + FullyQualifiedErrorId : System.Runtime.InteropServices.COMException,Get-Win32EncryptableVolumeInternal
+
+=== A1.5 Comptes locaux ===
+
+Name               Enabled LastLogon           PasswordRequired PasswordLastSet     AccountExpires Description         
+----               ------- ---------           ---------------- ---------------     -------------- -----------         
+Administrateur       False                                 True                                    Compte d'utilisat...
+DefaultAccount       False                                False                                    Compte utilisateu...
+Invit‚               False                                False                                    Compte d'utilisat...
+Might                 True 24/04/2026 17:17:03             True 04/05/2024 14:49:59                                    
+WDAGUtilityAccount   False                                 True 04/05/2024 14:38:14                Compte d'utilisat...
+
+
+
+=== A1.6 Membres du groupe Administrateurs ===
+Groupe trouve : Administrateurs
+
+ObjectClass Name                       PrincipalSource 
+----------- ----                       --------------- 
+Utilisateur Might-1000D\Administrateur Local           
+Utilisateur MIGHT-1000D\Might          MicrosoftAccount
+
+
+
+=== A1.7 Politique de mot de passe locale (net accounts) ===
+Fermeture forc‚e de la session aprŠs expirationÿ?ÿ:                    Jamais
+Dur‚e de vie minimale du mot de passe (jours)ÿ:                        0
+Dur‚e de vie maximale du mot de passe (jours)ÿ:                        42
+Longueur minimale du mot de passeÿ:                                    0
+Nombre de mots de passe ant‚rieurs … conserverÿ:                       Aucune
+Seuil de verrouillageÿ:                                                10
+Dur‚e du verrouillage (min)ÿ:                                          10
+Fenˆtre d'observation du verrouillage (min)ÿ:                          10
+R“le de l'ordinateurÿ:                                                 STATION
+La commande s'est termin‚e correctement.
+
+
+=== A1.8 UAC ===
+
+
+EnableLUA                  : 1
+ConsentPromptBehaviorAdmin : 5
+PromptOnSecureDesktop      : 1
+FilterAdministratorToken   : 
+
+
+
+
+=== A1.9 AzureAD / Domaine join ===
+
+
+Name         : MIGHT-1000D
+Domain       : WORKGROUP
+PartOfDomain : False
+Workgroup    : WORKGROUP
+UserName     : Might-1000D\Might
+
+
+
+AzureAdJoined : NO
+EnterpriseJoined : NO
+DomainJoined : NO
+WorkplaceJoined : NO
+
+=== A2.1 Etat Windows Defender (MpComputerStatus) ===
+
+
+AMServiceEnabled            : True
+AntispywareEnabled          : True
+AntivirusEnabled            : True
+RealTimeProtectionEnabled   : True
+BehaviorMonitorEnabled      : True
+IoavProtectionEnabled       : True
+OnAccessProtectionEnabled   : True
+NISEnabled                  : True
+AMEngineVersion             : 1.1.26030.3008
+AntispywareSignatureVersion : 1.449.325.0
+AntivirusSignatureVersion   : 1.449.325.0
+QuickScanEndTime            : 24/04/2026 17:29:50
+FullScanEndTime             : 
+TamperProtectionSource      : UI
+IsTamperProtected           : False
+DefenderSignaturesOutOfDate : False
+
+
+
+
+=== A2.2 Defender preferences (cle settings) ===
+
+
+DisableRealtimeMonitoring : False
+DisableBehaviorMonitoring : False
+DisableIOAVProtection     : False
+DisableScriptScanning     : False
+MAPSReporting             : 0
+SubmitSamplesConsent      : 0
+CloudBlockLevel           : 0
+CloudExtendedTimeout      : 0
+PUAProtection             : 2
+ExclusionPath             : {N/A: Must be an administrator to view exclusions}
+ExclusionExtension        : {N/A: Must be an administrator to view exclusions}
+ExclusionProcess          : {N/A: Must be an administrator to view exclusions}
+
+
+
+
+=== A2.3 Defender ASR (Attack Surface Reduction) rules ===
+(aucune regle ASR configuree)
+
+=== A2.4 Threats detectees recemment ===
+
+=== A2.5 Pare-feu Windows - profils ===
+
+Name    Enabled DefaultInboundAction DefaultOutboundAction AllowInboundRules NotifyOnListen LogAllowed LogBlocked LogFi
+                                                                                                                  leNam
+                                                                                                                  e    
+----    ------- -------------------- --------------------- ----------------- -------------- ---------- ---------- -----
+Domain     True        NotConfigured         NotConfigured     NotConfigured           True      False      False %s...
+Private    True        NotConfigured         NotConfigured     NotConfigured           True      False      False %s...
+Public     True        NotConfigured         NotConfigured     NotConfigured           True      False      False %s...
+
+
+
+=== A2.6 Pare-feu - regles entrantes ALLOW non-built-in (top 50) ===
+
+DisplayName                  DisplayGroup                 Profile Direction Action Enabled PolicyStoreSourceType
+-----------                  ------------                 ------- --------- ------ ------- ---------------------
+AacAmbientLighting                                            Any   Inbound  Allow    True                 Local
+AacAmbientLightingLowercase                                   Any   Inbound  Allow    True                 Local
+ACSETUP                                                    Public   Inbound  Allow    True                 Local
+ACSETUP                                                    Public   Inbound  Allow    True                 Local
+AirMouse                                                   Public   Inbound  Allow    True                 Local
+AirMouse                                                   Public   Inbound  Allow    True                 Local
+ARC Raiders                               Domain, Private, Public   Inbound  Allow    True                 Local
+ARC Raiders                               Domain, Private, Public   Inbound  Allow    True                 Local
+ARC Raiders                                                Public   Inbound  Allow    True                 Local
+ARC Raiders                                                Public   Inbound  Allow    True                 Local
+Arduino IDE                                                Public   Inbound  Allow    True                 Local
+Arduino IDE                                                Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+arduino ide.exe                                            Public   Inbound  Allow    True                 Local
+ArmouryHtmlDebugServer                                        Any   Inbound  Allow    True                 Local
+ArmourySocketServer                                           Any   Inbound  Allow    True                 Local
+asusgcdriverupdateclient.exe                                  Any   Inbound  Allow    True                 Local
+Audeze HQ                                                     Any   Inbound  Allow    True                 Local
+brave.exe                                                  Public   Inbound  Allow    True                 Local
+brave.exe                                                  Public   Inbound  Allow    True                 Local
+Call of Duty© HQ                                           Public   Inbound  Allow    True                 Local
+Call of Duty© HQ                                           Public   Inbound  Allow    True                 Local
+cer_service.exe                                            Public   Inbound  Allow    True                 Local
+cer_service.exe                                            Public   Inbound  Allow    True                 Local
+ConfigTool                                                 Public   Inbound  Allow    True                 Local
+ConfigTool                                                 Public   Inbound  Allow    True                 Local
+DaVinci Resolve                                            Public   Inbound  Allow    True                 Local
+DaVinci Resolve                                            Public   Inbound  Allow    True                 Local
+DaVinciResolve                                            Private   Inbound  Allow    True                 Local
+DaVinciResolveBmdpaneld                                   Private   Inbound  Allow    True                 Local
+DaVinciResolveElements                                    Private   Inbound  Allow    True                 Local
+DaVinciResolveEuphonix                                    Private   Inbound  Allow    True                 Local
+DaVinciResolveFuScript                                    Private   Inbound  Allow    True                 Local
+DaVinciResolveJLCooper                                    Private   Inbound  Allow    True                 Local
+DaVinciResolvePanel                                       Private   Inbound  Allow    True                 Local
+DaVinciResolveTangent                                     Private   Inbound  Allow    True                 Local
+djiservice                                                 Public   Inbound  Allow    True                 Local
+djiservice                                                 Public   Inbound  Allow    True                 Local
+djiservicecore                                             Public   Inbound  Allow    True                 Local
+djiservicecore                                             Public   Inbound  Allow    True                 Local
+ExpressLRS Configurator                                    Public   Inbound  Allow    True                 Local
+ExpressLRS Configurator                                    Public   Inbound  Allow    True                 Local
+Framework Service                                             Any   Inbound  Allow    True                 Local
+Free Download Manager                                     Private   Inbound  Allow    True                 Local
+Free Download Manager                                      Public   Inbound  Allow    True                 Local
+Free Download Manager                                     Private   Inbound  Allow    True                 Local
+
+
+
+=== A2.7 Ports en ecoute (TCP) - tous ===
+
+LocalAddress LocalPort OwningProcess Process                       
+------------ --------- ------------- -------                       
+::                 135          1832 svchost                       
+0.0.0.0            135          1832 svchost                       
+172.29.64.1        139             4 System                        
+192.168.1.39       139             4 System                        
+::                 445             4 System                        
+127.0.0.1         1042         14432 asus_framework                
+127.0.0.1         1043         14432 asus_framework                
+127.0.0.1         1337          5492 RzSDKServer                   
+0.0.0.0           5040         14476 svchost                       
+127.0.0.1         5354          5996 mDNSResponder                 
+::1               7679          3796 GoogleDriveFS                 
+::                7680          4552 svchost                       
+::                8070          6020 HapticService                 
+0.0.0.0           8090         27364 WsToastNotification           
+127.0.0.1         9010         26012 lghub_agent                   
+0.0.0.0           9012          4228 ArmourySocketServer           
+0.0.0.0           9013          4228 ArmourySocketServer           
+0.0.0.0           9099         30540 Mobile Mouse                  
+127.0.0.1         9180          6176 lghub_updater                 
+0.0.0.0           9999         30540 Mobile Mouse                  
+127.0.0.1        13010          6032 ArmouryCrate.Service          
+127.0.0.1        13030          6004 ROGLiveService                
+127.0.0.1        13031          7032 ArmouryCrate.UserSessionHelper
+127.0.0.1        13032          7032 ArmouryCrate.UserSessionHelper
+127.0.0.1        13331          7724 RzChromaConnectServer         
+::1              13337          5492 RzSDKServer                   
+127.0.0.1        13344         15428 RzChromaStreamServer          
+127.0.0.1        17532          6032 ArmouryCrate.Service          
+127.0.0.1        17945          7032 ArmouryCrate.UserSessionHelper
+127.0.0.1        22112          6004 ROGLiveService                
+127.0.0.1        23450          7592 WebSocketServer23450          
+0.0.0.0          27036         23192 steam                         
+127.0.0.1        27060         23192 steam                         
+127.0.0.1        27339             4 System                        
+0.0.0.0          35913         30540 Mobile Mouse                  
+::               38531         14664 EaseUSStartHelper             
+127.0.0.1        45654         26012 lghub_agent                   
+::               49664          1540 lsass                         
+0.0.0.0          49664          1540 lsass                         
+0.0.0.0          49665          1388 wininit                       
+::               49665          1388 wininit                       
+0.0.0.0          49666          2224 svchost                       
+::               49666          2224 svchost                       
+0.0.0.0          49667          2992 svchost                       
+::               49667          2992 svchost                       
+::               49668          5600 spoolsv                       
+0.0.0.0          49668          5600 spoolsv                       
+::1              49669          6116 jhi_service                   
+::               49737          6132 GameManagerService3           
+::               49754          1472 services                      
+0.0.0.0          49754          1472 services                      
+127.0.0.1        50123         22872 iCUE                          
+::               54235             4 System                        
+127.0.0.1        59824         23192 steam                         
+127.0.0.1        59825         23192 steam                         
+127.0.0.1        60083          7592 WebSocketServer23450          
+127.0.0.1        65444          6100 RzDiagnosticService           
+
+
+
+=== A2.8 Ports UDP en ecoute ===
+
+LocalAddress                           LocalPort OwningProcess Process       
+------------                           --------- ------------- -------       
+0.0.0.0                                       53          7688 svchost       
+::                                           123         23920 svchost       
+0.0.0.0                                      123         23920 svchost       
+172.29.64.1                                  137             4 System        
+192.168.1.39                                 137             4 System        
+192.168.1.39                                 138             4 System        
+172.29.64.1                                  138             4 System        
+fe80::78b:d479:a32a:477f%47                 1900         10336 svchost       
+fe80::5c49:42c6:c0f2:d7bb%12                1900         10336 svchost       
+::1                                         1900         10336 svchost       
+172.29.64.1                                 1900         10336 svchost       
+192.168.1.39                                1900         10336 svchost       
+127.0.0.1                                   1900         10336 svchost       
+fe80::78b:d479:a32a:477f%47                 2177         34400 svchost       
+2a01:cb11:506:9100:2c6e:a74f:db60:cb62      2177         34400 svchost       
+2a01:cb11:506:9100:5d33:3fe4:7989:afd2      2177         34400 svchost       
+192.168.1.39                                2177         34400 svchost       
+172.29.64.1                                 2177         34400 svchost       
+fe80::5c49:42c6:c0f2:d7bb%12                2177         34400 svchost       
+fdb2:5af3:35:f9aa:5d33:3fe4:7989:afd2       2177         34400 svchost       
+fdb2:5af3:35:f9aa:ac4f:5ba:9ab9:c39e        2177         34400 svchost       
+fdb2:5af3:35:f9aa:d459:f3d4:a52e:7c40       2177         34400 svchost       
+fdb2:5af3:35:f9aa:2c6e:a74f:db60:cb62       2177         34400 svchost       
+2a01:cb11:506:9100:c448:ed50:d7a7:549b      2177         34400 svchost       
+fdb2:5af3:35:f9aa:e8c:6fc5:ec07:641         2177         34400 svchost       
+2a01:cb11:506:9100:d459:f3d4:a52e:7c40      2177         34400 svchost       
+0.0.0.0                                     5050         14476 svchost       
+192.168.1.39                                5353          5996 mDNSResponder 
+172.29.64.1                                 5353          5996 mDNSResponder 
+0.0.0.0                                     5353         23328 steamwebhelper
+::                                          5353         23328 steamwebhelper
+::1                                         5353          5996 mDNSResponder 
+0.0.0.0                                     5355          2952 svchost       
+::                                          5355          2952 svchost       
+0.0.0.0                                     9100         30540 Mobile Mouse  
+127.0.0.1                                  10010         13944 nvcontainer   
+127.0.0.1                                  10011         16232 NVIDIA Overlay
+127.0.0.1                                  10012         14168 nvcontainer   
+172.29.64.1                                27036         23192 steam         
+0.0.0.0                                    27036         23192 steam         
+192.168.1.39                               27036         23192 steam         
+fe80::5c49:42c6:c0f2:d7bb%12               50852         10336 svchost       
+::1                                        50853         10336 svchost       
+fe80::78b:d479:a32a:477f%47                50854         10336 svchost       
+192.168.1.39                               50855         10336 svchost       
+127.0.0.1                                  50856         10336 svchost       
+172.29.64.1                                50857         10336 svchost       
+127.0.0.1                                  52294          4748 svchost       
+127.0.0.1                                  54546         13944 nvcontainer   
+127.0.0.1                                  56125          6012 ensserver     
+0.0.0.0                                    59044          5996 mDNSResponder 
+::                                         59045          5996 mDNSResponder 
+0.0.0.0                                    60312          7688 svchost       
+0.0.0.0                                    60313          7688 svchost       
+::                                         60314          7688 svchost       
+::                                         60316          2952 svchost       
+::                                         60599          2952 svchost       
+
+
+
+=== FIN BLOC A (systeme + Defender + firewall) ===
+Genere : 2026-04-27 18:41:12

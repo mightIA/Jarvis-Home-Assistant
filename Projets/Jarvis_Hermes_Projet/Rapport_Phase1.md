@@ -182,7 +182,7 @@ C'est le **besoin N°1 pour Jarvis** et l'axe sur lequel le pattern pourrait th�
 ### 2.2 Intégration avec le MCP Home Assistant existant
 
 **État actuel** :
-- MCP `ha-mcp` (add-on homeassistant-ai/ha-mcp, URL publique `https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g`) expose 80+ outils `ha_*`.
+- MCP `ha-mcp` (add-on homeassistant-ai/ha-mcp, URL publique `https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo`) expose 80+ outils `ha_*`.
 - C'est un MCP **métier Home Assistant** : entités, états, services, logs, automations, configuration.
 
 **Ce que l'écosystème LLM Wiki apporte côté MCP** :

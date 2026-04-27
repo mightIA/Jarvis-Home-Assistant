@@ -60,7 +60,7 @@ Document de référence — Projet PERSO Home Assistant. Version 7 — 23 avril 
 | URL locale (priorité)   | `http://192.168.1.11:2096/` — toujours privilégier             |
 | URL distante (fallback) | `https://ha.might.ovh/` — Cloudflare + OVH                     |
 | Add-on MCP ha-mcp       | Port 9583 local, exposé public `https://mcp.might.ovh/<secret>` |
-| MCP URL Cowork/CLI      | `https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g`         |
+| MCP URL Cowork/CLI      | `https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo`         |
 | mcp_server core HA      | **Supprimé S19** (bug DCR, remplacé par add-on ha-mcp)         |
 | Port SSH                | 22 — local uniquement, non exposé internet                     |
 | Auth SSH                | Mot de passe — à améliorer avec clés SSH (tâche #14)           |
@@ -231,7 +231,7 @@ Pipeline de réaction aux événements HA, 100% automatique. Déclenchement :
 | MFA TOTP          | Actif (S19) + secret base32 sauvegardé coffre Mickael               |
 | HSTS Cloudflare   | Actif (S19) — max-age 6 mois, TLS min 1.2                           |
 | CSP Cloudflare    | Mode report-only actif (S20) — phase 2 collecte en cours            |
-| MCP URL publique  | `https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g`              |
+| MCP URL publique  | `https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo`              |
 | Cowork + stdio MCP | **INCOMPATIBLE** — Gmail MCP custom = Claude Code CLI uniquement   |
 | Envoi mail CLI    | `ha_call_service notify.might57290_gmail_com` (`data.target` obligatoire) |
 | Plan Max + CLI    | `claude -p` headless inclus — planning heures creuses recommandé    |

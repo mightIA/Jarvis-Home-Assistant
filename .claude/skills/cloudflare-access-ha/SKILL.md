@@ -348,7 +348,7 @@ slash.
 - `additional_host` : `mcp.might.ovh` → `http://192.168.1.11:9583`
 - CNAME : `mcp.might.ovh` → `e37fbcdc-7943-4bdc-9990-36cce788fe20.cfargotunnel.com`
 - CF Access : aucune app sur `mcp.might.ovh` (secret path fait auth)
-- URL finale Cowork : `https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g`
+- URL finale Cowork : `https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo`
 - Duree totale : ~25 min (hors diagnostic initial tunnel local / piege stop+start)
 
 ---

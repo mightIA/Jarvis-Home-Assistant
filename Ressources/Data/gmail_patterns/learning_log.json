@@ -1,7 +1,58 @@
 {
   "_description": "Journal d'apprentissage - trace chaque action de tri pour ameliorer les patterns",
-  "_updated": "2026-04-24",
+  "_updated": "2026-04-27_140002",
   "sessions": [
+    {
+      "date": "2026-04-27_140002",
+      "mode": "headless non-interactif (Task Scheduler 14h)",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 11,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 8,
+        "label_ia_suppression_appliques": 3
+      },
+      "details_actions": [
+        {
+          "messageId": "19dce15bff8e1fc2",
+          "from": "welcome@openrouter.ai",
+          "subject": "Add fallback models in one line",
+          "match_pattern": "aucun_match_blacklist (newsletter_onboarding heuristique)",
+          "score_estime": 75,
+          "action": "label IA suppression",
+          "commentaire": "OpenRouter onboarding serie utm_campaign=Onboarding+Flow+v4, candidat blacklist apres validation"
+        },
+        {
+          "messageId": "19dc8ef648691591",
+          "from": "welcome@openrouter.ai",
+          "subject": "Welcome to OpenRouter",
+          "match_pattern": "aucun_match_blacklist",
+          "score_estime": 75,
+          "action": "label IA suppression",
+          "commentaire": "Meme expediteur, serie onboarding"
+        },
+        {
+          "messageId": "19dc3968843ecbda",
+          "from": "no-reply@emails.mistral.ai",
+          "subject": "Welcome to Le Chat!",
+          "match_pattern": "aucun_match_blacklist",
+          "score_estime": 70,
+          "action": "label IA suppression",
+          "commentaire": "Mistral newsletter onboarding (domaine emails.mistral.ai distinct de mistral.ai = factures)"
+        }
+      ],
+      "nouveaux_patterns_proposes": [
+        "welcome@openrouter.ai → blacklist newsletter_onboarding confiance 80 (en attente validation Mickael)",
+        "no-reply@emails.mistral.ai → blacklist newsletter_onboarding confiance 70 (en attente validation, distinguer du domaine no-reply@mistral.ai = factures officielles)"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "non-interactif: en attente revue manuelle des 3 messages tagges IA suppression",
+      "rapport_ha_notify": "envoye via notify.might57290_gmail_com (title: [Jarvis] Rapport tri emails - 2026-04-27_140002)"
+    },
     {
       "date": "2026-04-18",
       "actions": {
@@ -148,12 +199,210 @@
         "service": "notify.might57290_gmail_com",
         "title": "[Jarvis] Rapport tri emails - 2026-04-24_172239"
       }
+    },
+    {
+      "date": "2026-04-25",
+      "mode": "headless CLI - run 14:00:02 non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 3,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 3
+      },
+      "details_actions": [
+        {
+          "messageId": "19dc3968843ecbda",
+          "from": "no-reply@emails.mistral.ai",
+          "subject": "Welcome to Le Chat!",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Onboarding legitime post-creation compte Mistral S45 - candidat blacklist 80 si futures newsletters"
+        },
+        {
+          "messageId": "19dc190756021f3e",
+          "from": "noreply@github.com",
+          "subject": "[GitHub] Sudo email verification code",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Code SUDO 2FA GitHub - sensible securite, candidat whitelist permanent"
+        },
+        {
+          "messageId": "19db1b960c989890",
+          "from": "no-reply@accounts.google.com",
+          "subject": "Alerte de sécurité",
+          "category_gmail": "non lue",
+          "match_pattern": "whitelist:no-reply@accounts.google.com",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Whitelist permanent - alerte OAuth Google (mail persistant depuis 21/04)"
+        }
+      ],
+      "nouveaux_patterns": [
+        "whitelist proposee : noreply@github.com (raison: codes securite SUDO/2FA) - en attente validation Mickael",
+        "blacklist potentielle : no-reply@emails.mistral.ai confiance 80 (newsletter_onboarding) - reevaluer si recurrence > 3/sem"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-04-25_140002"
+      }
+    },
+    {
+      "date": "2026-04-26",
+      "mode": "headless CLI - run 05:00:02 non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 4,
+      "spam_count": 1,
+      "actions": {
+        "spam_vides": 1,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 4
+      },
+      "details_actions": [
+        {
+          "messageId": "19dc60ec67131010",
+          "from": "suno@creators.suno.com",
+          "subject": "Turn a random thought into a song",
+          "category_gmail": "SPAM",
+          "match_pattern": "blacklist:*@creators.suno.com",
+          "score_brut": 100,
+          "ponderation": 0,
+          "score_final": 100,
+          "action": "TRASH",
+          "commentaire": "Spam vide - blacklist confiance 100"
+        },
+        {
+          "messageId": "19dc48f3f6d6896d",
+          "from": "no-reply@emails.mistral.ai",
+          "subject": "Your AI Studio subscription is now active",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Confirmation transactionnelle Pay As You Go - garder, pas un pattern promo"
+        },
+        {
+          "messageId": "19dc3968843ecbda",
+          "from": "no-reply@emails.mistral.ai",
+          "subject": "Welcome to Le Chat!",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Onboarding legitime persistant depuis 25/04"
+        },
+        {
+          "messageId": "19dc190756021f3e",
+          "from": "noreply@github.com",
+          "subject": "[GitHub] Sudo email verification code",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Code SUDO 2FA persistant depuis 24/04 - candidat whitelist"
+        },
+        {
+          "messageId": "19db1b960c989890",
+          "from": "no-reply@accounts.google.com",
+          "subject": "Alerte de sécurité",
+          "category_gmail": "non lue",
+          "match_pattern": "whitelist:no-reply@accounts.google.com",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Whitelist permanent - alerte OAuth Google (mail persistant depuis 21/04)"
+        }
+      ],
+      "nouveaux_patterns": [
+        "no-reply@emails.mistral.ai : 2 emails distincts ce run (transactionnel + onboarding) - confirme le profil legitime, pas de blacklist a creer"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-04-26_050002"
+      }
+    },
+    {
+      "date": "2026-04-26",
+      "mode": "headless CLI - run 14:00:02 non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 8,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 8
+      },
+      "details_actions_summary": "5 KEEP transactionnels (3 OpenRouter receipt+welcome+signup, 1 facture Mistral, 1 confirmation Mistral subscription), 3 KEEP persistants (Mistral Le Chat, GitHub SUDO, Google Alerte secu). Detail complet : memory/historique_tri_gmail/run_2026-04-26_140002.json",
+      "nouveaux_patterns": [
+        "OpenRouter (3 mails distincts ce run : receipt + welcome + signup link) - compte fraichement cree S55 Hermes-Jarvis, profil legitime transactionnel + onboarding. Pas de blacklist pour l instant.",
+        "welcome@openrouter.ai : candidat blacklist 80 si recurrence > 3/sem (newsletter_onboarding)"
+      ],
+      "erreurs_signalees": [
+        "Etape 5 BLOQUEE : envoi rapport notify.might57290_gmail_com KO - allowlist drift (settings.local.json contient mcp__home-assistant__ha_call_service obsolete, MCP HA actuel utilise ha_call_write_tool). Action Mickael : MAJ allow array .claude/settings.local.json."
+      ],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": null,
+      "rapport_envoi_status": "BLOQUE_ALLOWLIST_DRIFT_HA_TOOLS"
+    },
+    {
+      "date": "2026-04-27",
+      "mode": "headless CLI - run 05:00:02 non-interactif",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 10,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 10
+      },
+      "details_actions_summary": "10 KEEP : 3 GitHub (OAuth alert + 2x SUDO 2FA), 3 OpenRouter (receipt + welcome + signup link), 2 Mistral transactionnel (facture + subscription), 1 Mistral onboarding (Le Chat persistant), 1 Google Alerte securite (whitelist persistant). Aucun match blacklist, aucun score >= 90, spam vide. Detail complet : memory/historique_tri_gmail/run_2026-04-27_050002.json",
+      "nouveaux_patterns": [
+        "noreply@github.com : recurrence confirmee (3 emails ce run, codes SUDO + alerte OAuth first-party app) - candidat WHITELIST permanent categorie securite/2FA. En attente validation Mickael.",
+        "OpenRouter (3 mails ce run distincts : receipts + welcome + notifications) - profil transactionnel + onboarding confirme S55 Hermes-Jarvis, pas de blacklist.",
+        "Mistral AI (facture MSTRL-API-826012-001 + subscription active + Le Chat welcome) - profil transactionnel legitime confirme, pas de blacklist."
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-04-27_050002"
+      }
     }
   ],
   "stats_globales": {
-    "total_sessions": 4,
-    "total_emails_traites": 19,
-    "total_erreurs": 0,
-    "taux_satisfaction": "100%"
+    "total_sessions": 8,
+    "total_emails_traites": 45,
+    "total_erreurs": 1,
+    "taux_satisfaction": "88%"
   }
 }

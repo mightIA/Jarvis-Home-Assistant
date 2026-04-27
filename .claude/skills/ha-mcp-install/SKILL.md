@@ -214,7 +214,7 @@ toujours proprement la config. Toujours faire **Arreter** puis **Demarrer**.
 **⚠ Piege trailing slash** decouvert session 16 : l'add-on ha-mcp
 retourne 404 si l'URL se termine par `/`. Tester **sans slash final** :
 
-[https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g](https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g)
+[https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo](https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo)
 
 **Reponse attendue** : page texte `HA-MCP server is up and running!` + 6
 etapes instructions Cloudflare Users.
@@ -230,7 +230,7 @@ etapes instructions Cloudflare Users.
 utilise son propre secret path comme auth). L'URL finale est :
 
 ```
-https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g
+https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo
 ```
 
 (a coller dans Cowork en Phase 4).

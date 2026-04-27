@@ -1,7 +1,7 @@
 ---
 title: Jarvis — Audits & TODO
 version: 2
-last_update: 2026-04-23
+last_update: 2026-04-25 (S52)
 scope: Document consolidé — Audit sécurité + Liste des tâches à faire
 owner: Mickael Rubino
 ---
@@ -49,7 +49,7 @@ Audit de la connexion distante à Home Assistant via **ha.might.ovh**. Infrastru
 
 **API protégée** : tous les endpoints testés retournent 403 Forbidden sans authentification valide (`/api/`, `/api/discovery_info`, `/auth/providers`, `/api/onboarding`). Un attaquant non authentifié ne peut pas découvrir la version HA, les providers, ni accéder à l'API.
 
-**MCP Server HA** : le `mcp_server` core HA a été supprimé S19 (bug DCR RFC 7591). Remplacé par l'add-on `ha-mcp` (FastMCP + DCR) exposé via Cloudflare Tunnel sur `https://mcp.might.ovh/private_ORXc7lHmYXqPpLCX9Nq1ehw9` (secret path auto-généré, bypass CF Access). Auth OAuth DCR compatible Claude.ai + Cowork.
+**MCP Server HA** : le `mcp_server` core HA a été supprimé S19 (bug DCR RFC 7591). Remplacé par l'add-on `ha-mcp` (FastMCP + DCR) exposé via Cloudflare Tunnel sur `https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo` (secret path auto-généré, bypass CF Access). Auth OAuth DCR compatible Claude.ai + Cowork.
 
 ### Vulnérabilités — statut S33
 
@@ -177,6 +177,7 @@ Liste des tâches à traiter, classées par priorité. Source complète : `TASKS
 
 | Tâche                                                                   | Date / Session         |
 |-------------------------------------------------------------------------|------------------------|
+| **Tâche #61b — Décongestion `TASKS.md` + skill `decongestion-fichiers-vivants` (politique récurrente)** (-46 % poids, ~14K tokens/tour libérés, archive `TASKS_archive_2026-Q2.md`, seuils Vert/Jaune/Orange/Rouge) | **25/04/2026 (S52)**   |
 | **Tâche #61 — Décongestion `CLAUDE.md` + `METRIQUES.md`** (-76,5 % poids combiné, ~42K tokens/tour libérés) | **25/04/2026 (S51)**   |
 | Création dossier racine `Runtime/` pour services permanents             | 23/04/2026 (S33)       |
 | Déplacement Gmail-MCP-Server `Projets/` → `Runtime/`                    | 23/04/2026 (S33)       |

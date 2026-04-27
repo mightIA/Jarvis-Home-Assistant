@@ -117,7 +117,7 @@ INFRASTRUCTURE EN PLACE (avril 2026, sessions 24-33)
   data.target=["might57290@gmail.com"] obligatoire
   (scope OAuth gmail.send volontairement absent).
 - MCP URL publique ha-mcp :
-  https://mcp.might.ovh/private_Q49aOxbSlqkilVOMVrlE4g
+  https://mcp.might.ovh/private_PfjEvJTqhCdo9ELRqCPADlzo
 - Securite : MFA TOTP + HSTS Cloudflare actifs (S19), CSP
   report-only (S20), MightTab ajourne (choix assume S21).
 

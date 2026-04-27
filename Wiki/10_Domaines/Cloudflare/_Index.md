@@ -41,7 +41,7 @@ de Mickael : Access apps, Tunnels, HSTS, MFA.
 
 - Add-on HA : **Cloudflared** (Tobia Brenner — `brenner-tobias/ha-addons`)
 - Tunnel actif : `mcp.might.ovh` → exposition publique de l'add-on `ha-mcp`
-  (port 9583, secret path `/private_Q49aOxbSlqkilVOMVrlE4g`)
+  (port 9583, secret path `/[REDACTED-SECRET]`)
 - ⚠️ **Pas de slash final** sur l'URL MCP : `base + /` → 307 redirect vers
   `http://` (bug tunnel CF, déjà noté S16)
 
