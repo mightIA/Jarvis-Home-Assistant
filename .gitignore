@@ -111,3 +111,13 @@ Wiki/.obsidian/hotkeys.json.bak
 # repo.
 local-agent-mode-sessions/
 .cowork-session/
+
+
+# ─── Outputs PowerShell d'audits PC (S69+) ────────────────────────
+# Les fichiers BlocA/BlocB/BlocC.txt produits par les audits sécu PC
+# contiennent : hostnames, IPs internes, IPv6 GUA Orange, comptes
+# Windows, ports ouverts, état BitLocker/Defender. Données sensibles
+# malgré repo privé (Règle 0). Préventif pour audits futurs.
+# Note : les outputs déjà commités en S69 (commit 0549e69) restent
+# dans l'historique — chantier de caviardage filter-branch séparé.
+Projets/Audit_Securite_PC_*/outputs_powershell/
