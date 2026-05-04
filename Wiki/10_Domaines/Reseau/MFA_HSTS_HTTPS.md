@@ -1,7 +1,8 @@
 ---
 title: MFA, HSTS, HTTPS — couches de durcissement
 created: 2026-04-27
-tags: [reseau, securite, mfa, hsts, tls]
+updated: 2026-04-27
+tags: [atome, reseau, securite, mfa, hsts, tls]
 status: actif
 domaine: Reseau
 sources: [S08, S19]

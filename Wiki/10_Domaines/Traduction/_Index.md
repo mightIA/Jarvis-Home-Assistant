@@ -1,6 +1,7 @@
 ---
 title: Traduction — Hub
 created: 2026-04-25
+updated: 2026-04-25
 tags: [moc, traduction, domaine/traduction]
 status: actif
 source_skill: .claude/skills/traduction/SKILL.md

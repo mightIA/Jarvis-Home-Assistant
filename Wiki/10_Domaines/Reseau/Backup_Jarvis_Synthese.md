@@ -1,7 +1,8 @@
 ---
 title: Backup Jarvis — synthèse rapide
 created: 2026-04-27
-tags: [reseau, securite, backup]
+updated: 2026-04-27
+tags: [atome, reseau, securite, backup]
 status: actif
 domaine: Reseau
 sources: [Ressources/Protocoles/Backup_Jarvis.md]
@@ -15,7 +16,7 @@ sources: [Ressources/Protocoles/Backup_Jarvis.md]
 
 ## En 5 lignes
 
-1. **Quoi sauvegarder** : `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`
+1. **Quoi sauvegarder** : `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`
    entier (tous `.md`, `.claude/`, `memory/`, `Ressources/`, `.mcp.json`).
 2. **Quoi exclure** : `.claude/settings.local.json` (tokens/secrets) +
    tokens OAuth dans `C:\Users\Might\.claude\`.

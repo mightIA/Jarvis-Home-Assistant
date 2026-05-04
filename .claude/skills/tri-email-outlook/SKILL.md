@@ -1,6 +1,6 @@
 ---
 name: tri-email-outlook
-description: Tri quotidien des emails de la boite Outlook might@live.fr. Pas de connecteur MCP Outlook — tout passe par le navigateur Brave (Claude in Chrome). Utilise l'auto-apprentissage via whitelist / blacklist / learning_log JSON et les scores de confiance 0-100. Genere un rapport journalier envoye par email auto-envoi.
+description: Tri quotidien automatise des emails Outlook might@live.fr. DECLENCHEURS : 'tri Outlook', 'trie ma boite Outlook', 'fais le tri Outlook quotidien', 'lance tri-email-outlook', 'rapport tri Outlook', 'vide spam Outlook', 'Outlook scan'. Pas de MCP Outlook — workflow navigateur (Brave + Claude in Chrome). Auto-apprentissage via whitelist/blacklist/learning_log JSON + scores 0-100. Genere un rapport journalier envoye par auto-mail. Tache planifiee 5h/14h. T#48 ouverte pour rechercher un MCP Outlook.
 ---
 
 # Skill : Tri email Outlook
@@ -60,6 +60,30 @@ rapport).
 - Jamais envoyer un email (autre que le rapport auto) sans confirmation.
 - Toujours verifier que la session Outlook est active avant d'agir.
 - Toujours utiliser le bouton "Selectionner" pour les selections en lot.
+
+
+## Exemples d'invocation utilisateur
+
+- « Lance le tri Outlook » → workflow 8 etapes complet, rapport auto-envoye.
+- « Vide juste le spam Outlook » → etape 4 uniquement (Selectionner tout + Supprimer dans Courrier indesirable).
+- « Ajoute X a la whitelist Outlook » → editer `whitelist.json`, persister, mentionner dans `learning_log.json`.
+- « Pourquoi tu as supprime cet email Lidl ? » → consulter `blacklist.json` + score, expliquer la regle.
+
+## Quand NE PAS utiliser
+
+- Pour Gmail — utiliser `tri-email-gmail` (MCP natif, beaucoup plus rapide).
+- Pour un tri INTERACTIF/manuel d'Outlook ou pour le grand nettoyage initial — utiliser la skill jumelle `tri-email-outlook-priorites` (4 dossiers Urgent/Perso/Info/A-supprimer + validation Mickael).
+- Pour rediger une reponse a un email — passer a `redaction-email`.
+- Si la tache planifiee plante 2 fois de suite : NE PAS retenter en boucle, suspendre et alerter Mickael (probable session Outlook expiree ou ban).
+
+## Pieges connus
+
+- **Session Outlook expiree** : 1re cause d'echec. Verifier `tabs_context_mcp` + screenshot AVANT toute action. Si deconnecte, demander a Mickael de se reconnecter manuellement (jamais de credentials).
+- **Popup "Ne jamais envoyer..."** : apparait quand on deplace depuis Courrier indesirable. TOUJOURS DECOCHER avant OK, sinon les scammers reviennent.
+- **Bouton "Selectionner"** : indispensable pour selection en lot. Sans clic dessus, Shift+clic ne fonctionne pas.
+- **Workflow lent** : ~15-20 min via navigateur (vs 2 min Gmail MCP). Ne pas s'inquieter, c'est normal.
+- **Score >= 90 = suppression auto** : verifier `blacklist.json` est a jour avant lancement, sinon faux-positifs.
+- **Apprentissage** : chaque session DOIT mettre a jour `learning_log.json` meme si rien n'a change (entree timestamp + decisions vides) — pour traçabilite.
 
 ## Reference longue
 

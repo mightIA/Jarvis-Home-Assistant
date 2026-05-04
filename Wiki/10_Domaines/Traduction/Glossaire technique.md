@@ -1,7 +1,8 @@
 ---
 title: Glossaire technique
 created: 2026-04-25
-tags: [traduction, traduction/glossaire, domaine/traduction]
+updated: 2026-04-25
+tags: [atome, traduction, traduction/glossaire, domaine/traduction]
 status: actif
 parent: "[[_Index]]"
 source: Ressources/Competences/Traduction_Glossaire.md

@@ -1,7 +1,8 @@
 ---
 title: HA — Connexion et accès
 created: 2026-04-25
-tags: [ha/connexion, ha/securite]
+updated: 2026-04-25
+tags: [atome, ha/connexion, ha/securite]
 status: actif
 ---
 

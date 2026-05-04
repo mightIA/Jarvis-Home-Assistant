@@ -111,9 +111,9 @@ reason, painting, illustration
 
 ---
 
-## FLUX.1 — negative minimaliste
+## FLUX.1 / FLUX.2 — negative minimaliste ou inutile
 
-FLUX a moins besoin de negative prompts détaillés.
+FLUX.1 a moins besoin de negative prompts détaillés.
 
 ```
 lowres, blurry, watermark, text
@@ -121,19 +121,87 @@ lowres, blurry, watermark, text
 
 Souvent suffisant. Ajouter 2-3 anti-éléments spécifiques au brief.
 
+**FLUX.1 dev / schnell** : negative **inutile** sauf si nodes ComfyUI
+true-CFG activés. Le modèle est entraîné sans negative classifier.
+
+**FLUX.2 [dev]** (nov 2025) : negative court suffit (`lowres, blurry,
+watermark`). L'amélioration multi-reference conditioning rend les
+anti-éléments souvent superflus.
+
+## SD 3.5 — negative court
+
+SD 3.5 (MMDiT, 3 text encoders dont T5-XXL) gère mieux le prompt positif.
+Negative court suffit :
+
+```
+lowres, blurry, watermark, text, deformed, extra limbs
+```
+
+Pondération `(word:1.2)` **non fiable native** sur SD 3.5 — préférer
+reformulation / ordre.
+
+## Pony Diffusion V6 XL — tags qualité dans negative
+
+Pony exige des **tags qualité spécifiques** dans le negative pour bloquer
+les low-quality :
+
+```
+score_6, score_5, score_4, source_pony, source_furry (si non voulu),
+worst quality, low quality, bad anatomy, blurry, jpeg artifacts,
+watermark, text, signature
+```
+
+Combiné aux tags positifs `score_9, score_8_up, score_7_up` → qualité
+nette.
+
+## Pony Diffusion V7 (oct 2025, AuraFlow) — convention différente
+
+Pony V7 utilise **AuraFlow** (pas SDXL). Negative recommandé par Civitai
+docs (à confirmer en itération) :
+
+```
+worst quality, low quality, bad anatomy, blurry, jpeg artifacts,
+watermark, text, signature, deformed
+```
+
+→ **Ne PAS reprendre les `score_X` de Pony V6** sur V7 (différent système).
+
+## Illustrious-XL — negative spécifique
+
+Tags qualité différents de Pony, ne pas mélanger :
+
+```
+worst quality, low quality, bad anatomy, blurry, jpeg artifacts,
+text, watermark, signature, deformed, extra limbs
+```
+
+## Animagine 4 — negative
+
+```
+lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit,
+fewer digits, cropped, worst quality, low quality, normal quality,
+jpeg artifacts, signature, watermark
+```
+
 ---
 
 ## Embeddings populaires (à installer)
 
 | Embedding | Usage | Plateforme |
 |-----------|-------|------------|
-| `EasyNegative` | Universal SD 1.5 | CivitAI |
-| `bad-hands-5` | Mains | CivitAI |
-| `badhandv4` | Mains | CivitAI |
+| `EasyNegative` | Universal SD 1.5 (legacy) | CivitAI |
+| `bad-hands-5` | Mains SD 1.5 | CivitAI |
+| `badhandv4` | Mains SD 1.5 | CivitAI |
 | `BadDream` | Universal SD 1.5 | CivitAI |
 | `UnrealisticDream` | Photo réaliste SD 1.5 | CivitAI |
-| `negative_hand-neg` | Mains alternative | CivitAI |
-| `NEGATIVE_PROMPT_FOR_SDXL` | SDXL universal | CivitAI |
+| `negative_hand-neg` | Mains alternative SD 1.5 | CivitAI |
+| **`negativeXL_D`** | **SDXL universal — remplace EasyNegative en SDXL 2026** | **CivitAI** |
+| **`unaestheticXL`** | **SDXL anti AI-look (slop)** | **CivitAI** |
+| `NEGATIVE_PROMPT_FOR_SDXL` (legacy) | SDXL universal (ancien) | CivitAI |
+
+> 🔄 **Migration 2026** : pour les nouveaux prompts SDXL, préférer
+> `negativeXL_D` + `unaestheticXL` au lieu de `EasyNegative`. EasyNegative
+> reste utile uniquement sur SD 1.5.
 
 Usage : nom de l'embedding **dans le negative prompt**, comme un tag
 classique.

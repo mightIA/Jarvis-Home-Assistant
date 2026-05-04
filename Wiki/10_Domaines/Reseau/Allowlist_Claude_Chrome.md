@@ -1,7 +1,8 @@
 ---
 title: Allowlist Claude in Chrome — débloquer les actions MCP
 created: 2026-04-27
-tags: [reseau, claude-chrome, allowlist]
+updated: 2026-04-27
+tags: [atome, reseau, claude-chrome, allowlist]
 status: actif
 domaine: Reseau
 sources: [S20]

@@ -1,7 +1,8 @@
 ---
 title: Caméras — Configuration et scripts
 created: 2026-04-25
-tags: [domotique/cameras, ha/scripts]
+updated: 2026-04-25
+tags: [atome, domotique/cameras, ha/scripts]
 status: actif
 ---
 

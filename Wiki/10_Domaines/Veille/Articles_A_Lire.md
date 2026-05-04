@@ -1,7 +1,8 @@
 ---
 title: Articles a lire
 created: 2026-04-27
-tags: [veille, articles, backlog, lecture]
+updated: 2026-04-27
+tags: [atome, veille, articles, backlog, lecture]
 status: actif
 ---
 

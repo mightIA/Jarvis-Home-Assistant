@@ -1,6 +1,7 @@
 ---
 title: Domaines de connaissance persistants
 created: 2026-04-25
+updated: 2026-04-25
 tags: [readme, structure]
 ---
 

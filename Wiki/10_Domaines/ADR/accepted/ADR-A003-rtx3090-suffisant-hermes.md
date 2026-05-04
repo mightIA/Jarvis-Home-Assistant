@@ -1,6 +1,7 @@
 ---
 title: ADR-A003 — RTX 3090 24 GB suffisant pour Hermès Agent + MCP HA
 created: 2026-04-27
+updated: 2026-04-28
 tags: [adr, accepted, hardware, gpu, hermes, llm]
 status: accepted
 session_origine: S57-S63
@@ -33,13 +34,11 @@ Phase B Hermès (T#73) : 5 modèles consécutifs KO (mistral-nemo, Llama 3.3 70B
 - **Hardware Upgrade Ryzen 7950X + carte 48 GB (T#73, 2 410 €)** : annulé après identification de la cause racine côté Hermès (pas hardware).
 - **Bascule définitive Haiku 4.5 OpenRouter en moteur principal** : reste utile pour usage interactif chat humain, pas obligatoire pour Mode Réactif.
 
-## Source
+## Leçons des rejets antérieurs (ADR-002, ADR-003 rejected)
 
-- `Projets/Cookbook_Hermes_RTX3090/README.md` (verdict + tableau latences)
-- `Projets/Cookbook_Hermes_RTX3090/docs/journey-s57-s63.md` (récit chronologique 5 modèles testés)
-- `Projets/Cookbook_Hermes_RTX3090/docs/audit-methodologique.md` (pattern réutilisable)
-- `Projets/Cookbook_Hermes_RTX3090/docs/troubleshooting.md` (catalogue symptôme → fix)
-- `Projets/Cookbook_Hermes_RTX3090/docs/configs.md` (configs reproductibles)
-- Repo public GitHub : `mightIA/hermes-agent-rtx3090-cookbook` (License MIT, publié 26/04/2026, commit `de7e268`)
-- `memory/historique/2026-04-26_session_63_audit_methodologique_2_succes.md`
-- `memory/historique/2026-04-26_session_64_repo_cookbook_publie.md`
+Avant le verdict S63, plusieurs ADR rejected avaient déjà tenté de clore la question du moteur principal sans pointer la vraie cause racine :
+
+- [[10_Domaines/ADR/rejected/ADR-002-mistral-nemo-principal|ADR-002 (rejected)]] — `mistral-nemo:12b` comme principal écarté (perf insuffisante, mais cause racine `has_reasoning guard` non identifiée à l'époque).
+- [[10_Domaines/ADR/rejected/ADR-003-llama33-70b-q3|ADR-003 (rejected)]] — Llama 3.3 70B Q3 écarté pour mêmes symptômes apparents (timeout/empty), même cause racine masquée.
+
+**Leçon transversale** : 5 KO consécutifs sur 5 modèles différents auraient dû déclenc

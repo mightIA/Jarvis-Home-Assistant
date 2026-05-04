@@ -48,8 +48,15 @@ memory/historique_tri_gmail/
 # ─── Dossiers vides volontairement ignorés ──────────────────────────
 # Archives/, outputs/, rapports/ sont des dossiers de travail temporaire.
 # On exclut leur contenu mais on garde la structure via .gitkeep.
+# Exception S95 (T#34 piste a) : Archives/ha_logs/ ré-inclus pour
+# débloquer la sandbox Claude Code CLI v2.1.119 qui refuse les écritures
+# dans dossiers gitignored même avec dangerouslyDisableSandbox.
+# Volume contrôlé par rotation annuelle (script rotate_annual.py qui
+# zippe les dossiers AAAA-MM-JJ après validation).
 Archives/*
 !Archives/.gitkeep
+!Archives/ha_logs/
+!Archives/ha_logs/**
 
 outputs/*
 !outputs/.gitkeep
@@ -94,6 +101,16 @@ Thumbs.db
 desktop.ini
 *.tmp
 *.bak
+*.bak.*
+*.previous
+
+
+# ─── Patches transitoires + scripts ponctuels racine ───────────────
+# Scripts cleanup_*.ps1 à la racine (ex S84 : suppression ciblée 3 fichiers)
+# et dossiers _patches_*/ (apply_patches.ps1 + backups horodatés) sont
+# transitoires par session, pas pertinents en versionning.
+/cleanup_*.ps1
+_patches_*/
 
 
 # ─── Obsidian (vault Wiki/) ────────────────────────────────────────

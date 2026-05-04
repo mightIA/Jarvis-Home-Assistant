@@ -1,6 +1,7 @@
 ---
 title: Home Assistant — Index du domaine
 created: 2026-04-25
+updated: 2026-04-25
 tags: [moc, ha]
 status: actif
 source: Ressources/Competences/Home_Assistant.md + Home_Assistant_Inventaire.md + Mode_Reactif.md

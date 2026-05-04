@@ -78,6 +78,49 @@ Tons : tags pondérés virgulés. Negative prompt obligatoire.
 
 ---
 
+## Extension vidéo — 3 dimensions additionnelles (S90 — patch P2-10)
+
+> Détail complet dans `00_core/dimensions_video.md`. Résumé ici :
+
+Pour les briefs **vidéo** (Runway, Pika, Kling, Luma, Sora 2, Veo 3.1,
+Hailuo), 3 dimensions s'ajoutent aux 12 dimensions image :
+
+```
+13. DURATION         — Durée du clip (5 s, 8 s, 10 s, jusqu'à 60 s sur Sora 2 Pro)
+14. CAMERA MOVEMENT  — Mouvement caméra (dolly, pan, orbit, push in, etc.)
+                       Vocabulaire : _video_common/camera_vocabulary_global.md
+15. AUDIO            — Veo 3.1 / Sora 2 uniquement
+                       Format Veo : Dialogue / SFX / Ambient noise / Music
+                       Format Sora : langage naturel intégré
+```
+
+**Convention Option A actée S90** : 12 dim image gardées + 3 dim vidéo
+séparées (pas d'unification en 15 dim). Permet de scorer image /50 et
+vidéo /65 (ou /60 sans audio).
+
+### Ordre de pondération vidéo
+
+```
+[STYLE] [SUBJECT] [ACTION], [SETTING],
+[CAMERA MOVEMENT], [DURATION],
+[LIGHTING], [COLOR], [MOOD], [TECHNICAL]
+
+Audio: (uniquement Veo 3.1 / Sora 2)
+- Dialogue: <si applicable>
+- SFX: <si applicable>
+- Ambient noise: <one clause>
+- Music: <mood/texture>
+```
+
+### Patterns image-to-video (recommandé 2026)
+
+Au lieu de générer la scène complète en text-to-video, **générer une
+frame de départ** dans une IA image (MJ V7, FLUX.1, gpt-image-2), puis
+prompter **uniquement le mouvement** dans le modèle vidéo. Détail :
+`_video_common/image_to_video_workflow.md`.
+
+---
+
 ## Defaults Mickael (à enrichir dans `style_preferences.md`)
 
 Quand une dimension est absente, appliquer ces defaults par défaut **sauf
@@ -99,41 +142,4 @@ mesure des itérations.
 
 ## Exemple complet (les 3 IA pour le même brief)
 
-**Brief Mickael** : *"un vieux phare breton sous orage la nuit"*
-
-### Midjourney V7
-```
-cinematic photography, an old Breton lighthouse standing on jagged cliffs,
-violent storm at night, lightning striking the sea, towering waves crashing,
-dramatic chiaroscuro lighting, deep blues and greys, ominous and powerful
-mood, wide-angle 24mm shot, ultra-detailed --ar 16:9 --s 250 --c 5 --v 7
-```
-
-### DALL·E 3
-```
-Use this exact prompt without rewriting: A cinematic photograph of an old
-Breton lighthouse standing on jagged cliffs at night during a violent
-thunderstorm. Massive waves crash at its base while lightning forks across
-the dark sky. The composition is wide-angle, with the lighthouse positioned
-slightly off-center on the right third. Lighting is dramatic, alternating
-between flashes of lightning and the sweeping beam of the lighthouse.
-Palette is dominated by deep blues, blacks, and stormy greys. The mood is
-ominous, powerful, and lonely. 16:9 aspect ratio, ultra-detailed, 8K.
-```
-
-### Stable Diffusion (SDXL)
-```
-(cinematic photo:1.2), old Breton lighthouse on jagged cliffs, violent
-thunderstorm, night, lightning strike over the sea, massive crashing waves,
-(dramatic chiaroscuro:1.1), deep blue and grey palette, ominous mood,
-wide-angle 24mm, ultra-detailed, 8k, sharp focus, masterpiece, best quality
-
-Negative: blurry, lowres, cartoon, anime, deformed, watermark, text,
-bad anatomy, oversaturated, pastel, daylight, calm sea
-
-CFG: 7.5 | Steps: 32 | Sampler: DPM++ 2M Karras | Size: 1344x768 (16:9)
-```
-
----
-
-*Version 1.0 — 2026-04-26*
+**Brief Mickael** : *"un vieux phare breton sou

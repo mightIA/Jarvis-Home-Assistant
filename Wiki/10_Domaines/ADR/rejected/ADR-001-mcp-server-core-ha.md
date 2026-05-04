@@ -1,6 +1,7 @@
 ---
 title: ADR-001 — mcp_server core HA
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, ha, mcp]
 status: rejected
 session_origine: S15

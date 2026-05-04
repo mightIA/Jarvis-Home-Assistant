@@ -1,6 +1,6 @@
 ---
 name: yaml-automation
-description: Generation d'automations YAML pretes a coller pour Home Assistant. Couvre gestion des lumieres (scenes, gradation, horaires), chauffage (plannings, eco/confort, presence), securite (alertes, detection mouvement, simulation presence), confort (routines matin/soir, scenes perso), economies d'energie (coupures auto, suivi conso). Toujours proposer un test apres modification.
+description: Generation d'automations YAML pretes a coller pour HA. DECLENCHEURS : 'cree une automation', 'je voudrais qu'a 21h X se passe', 'declenche quand mouvement', 'routine matin/soir', 'simulation presence', 'mode soiree/nuit', 'conso depasse seuil', 'envoie notif quand'. Couvre lumieres (scenes, gradation, horaires), chauffage (plannings, presence), securite (mouvement, simulation), confort (routines), economies d'energie. TOUJOURS proposer un TEST apres modification.
 ---
 
 # Skill : Creation d'automations YAML
@@ -79,6 +79,30 @@ input_boolean:
   validation.
 - Toujours proposer le code complet pret a coller (ne pas modifier les
   fichiers directement).
+
+
+## Exemples d'invocation utilisateur
+
+- « A 21h tamise les lumieres du salon » → trigger `time at: 21:00:00` + action `light.turn_on brightness_pct:30 area_id:salon`.
+- « Si mouvement la nuit, allume couloir 30s » → trigger `state binary_sensor.couloir_motion to: 'on'` + condition `sun.below_horizon` + action `light.turn_on` + delay + `light.turn_off`.
+- « Coupe les ampoules a minuit » → trigger `time at: 00:00:00` + action `light.turn_off entity_id: group.toutes_ampoules`.
+- « Notif HA quand alerte chaudiere » → trigger `state sensor.maison_alerte_2 to: 'on'` + action `notify.persistent_notification` ou `notify.mobile_app_iphone_mickael`.
+
+## Quand NE PAS utiliser
+
+- Pour MODIFIER une automation existante via UI : guider Mickael vers `Parametres > Automatisations > [nom] > Editer YAML`.
+- Pour creer un script (action sequentielle declenchee a la demande) — utiliser `scripts.yaml` ou skill `ha-scripts`.
+- Pour des automations complexes avec choose/parallel/repeat avancee — passer par la skill `home-assistant-best-practices` qui couvre les patterns avances.
+- Pour piloter Lovelace en automation — passer par la skill `browser-mod`.
+
+## Pieges connus
+
+- **Reload requis** : modifier `automations.yaml` necessite `homeassistant.reload_automation` ou `Outils dev > YAML > Automations`. Modifier via UI = pas de reload.
+- **`alias` unique** : 2 automations meme alias = comportement imprevisible. Toujours nom court + explicite + unique.
+- **Conditions vs Triggers** : un trigger SE DECLENCHE, une condition FILTRE. Confondre cree des automations qui ne tournent jamais.
+- **`area_id` vs `entity_id`** : `area_id: salon` cible TOUTES les lumieres du salon. Pour cibler une seule, `entity_id: light.X`.
+- **`mode: single`** par defaut : si le trigger se reproduit pendant que l'action tourne, ELLE EST IGNOREE. Pour les notifications recurrentes, mettre `mode: queued` ou `mode: parallel`.
+- **Test obligatoire** : apres creation, demander a Mickael de tester via `Outils dev > Services > script.X` ou en simulant le trigger.
 
 ## Reference longue
 

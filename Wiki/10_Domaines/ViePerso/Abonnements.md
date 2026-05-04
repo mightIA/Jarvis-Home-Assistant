@@ -1,8 +1,9 @@
 ---
 title: Abonnements
 created: 2026-04-27
-tags: [vie-perso, abonnements, finances, coquille]
-status: pre-rempli-partiel
+updated: 2026-04-28
+tags: [atome, vie-perso, abonnements, finances, coquille]
+status: stub
 domaine: ViePerso
 remplissage_attendu: Mickael
 parent: "[[10_Domaines/ViePerso/_Index]]"
@@ -97,7 +98,7 @@ parent: "[[10_Domaines/ViePerso/_Index]]"
 | Service | Tarif | Renouvellement | Statut | Notes |
 |---|---|---|---|---|
 | Électricité | `[À remplir]` | `[À remplir]` | Actif | `[À remplir — fournisseur, kWh moyen, option HP/HC]` |
-| Gaz | `[À remplir — chaudière Frisquet]` | `[À remplir]` | Actif | Référence `[[10_Domaines/Hardware]]` |
+| Gaz | `[À remplir — chaudière Frisquet]` | `[À remplir]` | Actif | Référence [[10_Domaines/Hardware/_Index\|Hardware]] |
 
 ## Assurances (hors voiture)
 
@@ -118,4 +119,4 @@ parent: "[[10_Domaines/ViePerso/_Index]]"
 
 - Hub : `[[10_Domaines/ViePerso/_Index]]`
 - Lié : `[[10_Domaines/ViePerso/Garanties_Factures]]`, `[[10_Domaines/ViePerso/Voiture]]` (assurance auto)
-- Auto-memories liées : `reference_openrouter_setup_garde_fous`, `reference_llm_subscriptions_comparison`
+- Auto-memories liées : `reference_openrouter_setup_garde_fous`, `reference_llm_subscriptio

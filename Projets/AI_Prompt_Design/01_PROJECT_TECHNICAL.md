@@ -130,6 +130,31 @@ Voir `PROTOCOLE.md` pour les formats de chaque étape.
   - **SD3** / **FLUX.1** : langage naturel mieux supporté, moins de tags
 - LoRA : `<lora:name:0.8>` pour activer (Auto1111/Forge syntax)
 
+### Vidéo — 7 modèles (depuis S90, branche vidéo)
+
+Pour tout brief impliquant une **vidéo générée**, voir le dossier modèle
+correspondant. Tous suivent le pattern **image-to-video recommandé** :
+générer la frame de départ dans une IA image, puis prompter uniquement
+mouvement + caméra (+ audio pour Veo 3.1 / Sora 2).
+
+| Modèle | Audio natif ? | Forces principales | Doc |
+|---|---|---|---|
+| **Runway Gen-4 / Aleph / Act-Two** | ❌ | 4K, édition vidéo (Aleph), motion capture facial (Act-Two), shot continuation | [runway/](runway/) |
+| **Pika 2.x** | ❌ | Scene Ingredients (multi-réfs), Pikaffects (VFX paramétriques) | [pika/](pika/) |
+| **Kling 2.1 / Master** | ❌ | Physique réaliste top-tier, Motion Brush, Master shots | [kling/](kling/) |
+| **Luma Ray2 / Flash** | ❌ | Keyframes start+end (interpolation native), Camera Concepts | [luma/](luma/) |
+| **Sora 2** ⚠️ | ✅ | Audio + Cameos. **API discontinuée 24/09/2026 → migrer vers Veo 3.1** | [sora/](sora/) |
+| **Veo 3.1** | ✅ | Audio natif (Dialogue/SFX/Ambient/Music), prompt structuré, 4K | [veo3/](veo3/) |
+| **Hailuo 02** | 🟡 (limité) | Rapport qualité/prix le meilleur du marché | [hailuo/](hailuo/) |
+
+**Référence transverse** : `_video_common/` (camera_vocabulary_global,
+temporal_cues, image_to_video_workflow) +
+`00_core/dimensions_video.md` (3 dimensions vidéo additionnelles —
+Duration, Camera Movement, Audio).
+
+**Décision Q1 actée S90** : 7 dossiers (les 5 demandés + Veo 3.1 et
+Hailuo 02 recommandés par audit S69).
+
 ---
 
 ## 5. Comment Jarvis interprète une description Mickael
@@ -164,6 +189,7 @@ Méthode interne (à appliquer mentalement) :
 | 3 | Bibliothèque de styles | 30+ styles nommés réutilisables | `00_core/library_styles.md` |
 | 4 | Gestion erreurs fréquentes | catalogue défauts + correctifs | `00_core/error_patterns.md` |
 | 5 | Templates par IA | un template optimisé par IA cible | `<ia>/prompt_template.md` |
+| 6 | **Branche vidéo (S90)** | 7 modèles vidéo + tronc commun + extras + dimensions vidéo | `runway/`, `pika/`, `kling/`, `luma/`, `sora/`, `veo3/`, `hailuo/` + `_video_common/` + `00_core/dimensions_video.md` |
 
 ---
 
@@ -177,43 +203,4 @@ Méthode interne (à appliquer mentalement) :
   par rapport à v1, pas le prompt entier (sauf demande explicite).
 - **Update fichiers** : à chaque convergence, **proposer** la mise à jour
   des fichiers `00_core/*` ou `<ia>/iterations_log.md`. Ne jamais écrire
-  sans validation Mickael (règle CLAUDE.md §4).
-- **Source de vérité** : ces fichiers sont la base. Si Mickael dit "non
-  j'aime pas le bleu" en chat, Jarvis répond "OK je propose d'ajouter ça
-  dans `style_preferences.md`" pour persister.
-- **Toujours en français** côté Jarvis ; les prompts générés sont en EN
-  (sauf DALL·E où FR fonctionne).
-
----
-
-## 8. Extensions futures (hors scope v1)
-
-- **Vidéo** : ajouter `runway/`, `pika/`, `kling/`, `luma/` quand Mickael
-  veut s'y mettre.
-- **Avatar / video humain** : `heygen/`, `d-id/`.
-- **LLM texte** : créer un projet jumeau `AI_Prompt_Text` pour Claude /
-  Gemini / Copilot / Perplexity / Le Chat.
-- **Auto-scoring** : si Jarvis a accès vision (Claude voit l'image
-  directement), scorer automatiquement plus précisément qu'à l'estime.
-- **Export presets** : générer des `.json` Auto1111/ComfyUI à partir des
-  prompts SD validés.
-
----
-
-## 9. Liens internes
-
-- Workflow détaillé : [PROTOCOLE.md](PROTOCOLE.md)
-- Doc pédagogique : [02_PROJECT_PEDAGOGIQUE.md](02_PROJECT_PEDAGOGIQUE.md)
-- Template universel : [00_core/prompt_template_global.md](00_core/prompt_template_global.md)
-- Scoring : [00_core/scoring_grid.md](00_core/scoring_grid.md)
-- Préférences Mickael : [00_core/style_preferences.md](00_core/style_preferences.md)
-- Bibliothèque styles : [00_core/library_styles.md](00_core/library_styles.md)
-- Catalogue erreurs : [00_core/error_patterns.md](00_core/error_patterns.md)
-- Lessons learned : [00_core/lessons_learned.md](00_core/lessons_learned.md)
-- Midjourney : [midjourney/README.md](midjourney/README.md)
-- DALL·E : [dall-e/README.md](dall-e/README.md)
-- Stable Diffusion : [stable-diffusion/README.md](stable-diffusion/README.md)
-
----
-
-*Version 1.0 — 2026-04-26 — Jarvis ↔ Mickael*
+  sans validation Mickael (r

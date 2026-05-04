@@ -5,7 +5,7 @@ de ce qui a marché, ce qui a raté, et pourquoi.
 
 ---
 
-## Format d'une entrée
+## Format d'une entrée (standardisé S90 — patch P2-2)
 
 ```markdown
 ### YYYY-MM-DD — <titre court du brief>
@@ -13,15 +13,24 @@ de ce qui a marché, ce qui a raté, et pourquoi.
 **Brief Mickael**
 > citation littérale ou paraphrase courte
 
+**Stack créatif V7** (si applicable)
+- Personalization codes : `<code1>`, `<code2>`
+- Moodboard codes : `<code_moodboard>`
+- sref URLs : `<url1>`, `<url2>` (sw=400)
+- oref URL : `<url_omni>` (ow=800)
+
 **Prompt v1**
 ```
-<prompt v1 complet>
+<prompt v1 complet avec tous les --params>
 ```
-- Score v1 : XX/50
+- Mode : Standard / Draft / Enhance
+- Paramètres : `--ar W:H --s X --c X --v 7 --exp X` (+ `--no` si applicable)
+- Coût crédits : ~X
+- Score v1 : XX/50 (Fidélité X / Style X / Composition X / Technique X / Mood X)
 - Gap principal : <ce qui n'a pas marché>
 
 **Prompt v2** (si itération)
-- Diff : <ce qu'on a changé>
+- Diff : <ce qu'on a changé exactement>
 - Score v2 : XX/50
 
 **Prompt vN final**
@@ -29,37 +38,4 @@ de ce qui a marché, ce qui a raté, et pourquoi.
 <prompt final qui a convergé>
 ```
 - Score final : XX/50
-
-**Leçons**
-- <leçon retenue, à reporter dans 00_core/lessons_learned.md ou
-  style_library.md>
-
-**Tags** : #portrait #realiste #goldenhour
-```
-
----
-
-## Journal
-
-> *Vide pour l'instant. Première itération à venir.*
-
----
-
-## Index par tags (auto-tenu)
-
-> *À enrichir au fur et à mesure.*
-
-- `#portrait` :
-- `#paysage` :
-- `#anime` :
-- `#cinematic` :
-- `#concept_art` :
-- `#illustration` :
-- `#produit` :
-- `#architecture` :
-- `#macro` :
-- `#fantasy` :
-
----
-
-*Créé le 2026-04-26*
+- Image finale : <

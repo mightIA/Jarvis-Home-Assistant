@@ -146,7 +146,7 @@ Write-LauncherLog 'INFO' "Lancement claude -p (log de sortie : $LogFile)"
 try {
     # --output-format json pour logs parsables
     # stderr redirigé aussi vers le log pour garder trace des warnings/erreurs
-    claude -p $prompt --output-format json 2>&1 | Tee-Object -FilePath $LogFile
+    claude -p $prompt --model claude-sonnet-4-6 --output-format json 2>&1 | Tee-Object -FilePath $LogFile
 
     $exitCode = $LASTEXITCODE
     if ($exitCode -ne 0) {

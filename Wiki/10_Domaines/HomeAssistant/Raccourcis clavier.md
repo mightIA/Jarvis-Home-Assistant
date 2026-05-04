@@ -1,7 +1,8 @@
 ---
 title: HA — Raccourcis clavier
 created: 2026-04-25
-tags: [ha/ui, ha/raccourcis]
+updated: 2026-04-28
+tags: [atome, ha/ui, ha/raccourcis]
 status: actif
 ---
 
@@ -28,7 +29,7 @@ revient régulièrement.
 ## Notes liées
 
 - [[Outils sidebar]] — accès aux outils via la sidebar
-- [[../../30_References/Macros Clavier|Macros Clavier]] — futurs raccourcis G915/Tartarus pour Jarvis
+- [[10_Domaines/ViePerso/Macros clavier|Macros clavier]] — futurs raccourcis G915/Tartarus pour Jarvis
 
 ---
 

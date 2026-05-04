@@ -1,8 +1,9 @@
 ---
 title: Inventaire physique maison
 created: 2026-04-27
+updated: 2026-04-27
 tags: [inventaire, moc, domaine]
-status: coquille
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---
@@ -11,7 +12,7 @@ remplissage_attendu: Mickael
 
 Inventaire physique complet de la maison Mickael à Seremange-Erzange (57).
 Couvre le matériel, l'électroménager, les piles, les équipements connectés et non connectés, les meubles et éléments fixes, pièce par pièce.
-Complément de [[Ressources/Competences/Home_Assistant_Inventaire]] qui couvre, lui, le côté HA/numérique (intégrations, add-ons, dépôts, raccourcis).
+Complément de [Home Assistant — Inventaire (hors vault)](../../../Ressources/Competences/Home_Assistant_Inventaire.md) qui couvre, lui, le côté HA/numérique (intégrations, add-ons, dépôts, raccourcis).
 
 > **État actuel : COQUILLE.** Les templates sont en place, le remplissage demande Mickael lors d'une session dédiée (photos pièce par pièce + factures + captures HA).
 
@@ -44,7 +45,7 @@ Complément de [[Ressources/Competences/Home_Assistant_Inventaire]] qui couvre, 
 
 ## Sources de remplissage à venir (toutes pièces)
 
-- Photos pièce par pièce (à faire avec Mickael — guidage `guidage-photo-etape`)
+- Photos pièce par pièce (à faire avec Mickael)
 - Factures dans dossier physique Mickael
 - Captures écran HA dashboards (Lovelace par pièce)
 - Export ZHA / Zigbee2MQTT (liste des devices avec batteries / link quality)

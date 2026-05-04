@@ -1,6 +1,7 @@
 ---
 title: Veille tech — Hub
 created: 2026-04-27
+updated: 2026-04-27
 tags: [moc, veille, domaine/veille]
 status: actif
 source_ressources:

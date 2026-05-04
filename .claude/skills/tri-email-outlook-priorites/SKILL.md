@@ -1,6 +1,6 @@
 ---
 name: tri-email-outlook-priorites
-description: Tri interactif de la boite Outlook might@live.fr via Brave (Claude in Chrome) avec 4 dossiers de priorite : Urgent, Perso, Info, A supprimer. Workflow manuel : Jarvis classe, Mickael valide par lot (ex "Urgent 1 sup, 2-3 non lu, 4 perso"). Pas d'auto-apprentissage. Complement au skill `tri-email-outlook` (automatise).
+description: Tri INTERACTIF d'Outlook might@live.fr via Brave + Claude in Chrome avec 4 dossiers Urgent/Perso/Info/A-supprimer. DECLENCHEURS : 'tri Outlook par priorite', 'classe mes mails Outlook avec moi', 'fait le tri Outlook avec moi', 'tri Outlook interactif', 'grand nettoyage Outlook', 'tri Outlook valide chaque', 'classement par priorite Outlook'. Workflow manuel : Jarvis classe, Mickael valide par lot (ex 'Urgent 1 sup, 2-3 non lu, 4 perso'). Pas d'auto-apprentissage. Complement au skill jumelle `tri-email-outlook` (automatise quotidien).
 ---
 
 # Skill : Tri email Outlook par priorites
@@ -166,6 +166,21 @@ etre vides par Mickael.
   form_input, browser_batch).
 - Session Outlook active dans Brave (sinon Mickael se reconnecte
   lui-meme — jamais de credentials).
+
+
+## Exemples d'invocation utilisateur
+
+- « Trie ma boite Outlook par priorite » → workflow 7 etapes complet, 4 dossiers, validation par lot.
+- « Fait le tri Outlook avec moi, j'ai 200 mails non lus » → grand nettoyage : creer dossiers + classer + presenter recap par lots de ~10.
+- « Classe mes mails Outlook urgent vs perso vs info » → tri 4 categories standard.
+- Reponse Mickael phase validation : « Urgent 1 sup, 2 non lu, 3 perso, Info tous sup » → appliquer en batch via clic droit > Deplacer ou drag-drop.
+
+## Quand NE PAS utiliser
+
+- Pour le TRI QUOTIDIEN automatise Outlook — utiliser `tri-email-outlook` (taches planifiees 5h/14h).
+- Pour Gmail — utiliser `tri-email-gmail` (MCP natif).
+- Pour rediger / repondre a un email pendant le tri — basculer sur `redaction-email` puis revenir.
+- Si Mickael n'a pas le temps de valider chaque lot : refuser proactivement et proposer `tri-email-outlook` automatise a la place.
 
 ## Reference
 

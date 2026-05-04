@@ -34,12 +34,12 @@ Si Cowork a fait des commandes Git en lecture (meme `git status`), un `.git/inde
 
 ```powershell
 # Verifier
-Test-Path "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\.git\index.lock"
-Test-Path "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Cookbook_Hermes_RTX3090\.git\index.lock"
+Test-Path "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\.git\index.lock"
+Test-Path "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Cookbook_Hermes_RTX3090\.git\index.lock"
 
 # Supprimer si presents
-Remove-Item "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\.git\index.lock" -Force -ErrorAction SilentlyContinue
-Remove-Item "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Cookbook_Hermes_RTX3090\.git\index.lock" -Force -ErrorAction SilentlyContinue
+Remove-Item "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\.git\index.lock" -Force -ErrorAction SilentlyContinue
+Remove-Item "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Cookbook_Hermes_RTX3090\.git\index.lock" -Force -ErrorAction SilentlyContinue
 ```
 
 ### Check 2 — User.email NON Gmail
@@ -88,7 +88,7 @@ Parametres :
 ### Etape 2 — Configurer le remote `origin`
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 git remote add origin https://github.com/mightIA/<nom-du-repo>.git
 git remote -v
 ```
@@ -114,7 +114,7 @@ Template a poser dans `Projets/Push_GitHub_<sessionXX>/rewrite_and_push.ps1` :
 
 ```powershell
 $ErrorActionPreference = "Stop"
-$RepoPath = "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+$RepoPath = "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 $Noreply = "278813549+mightIA@users.noreply.github.com"
 $AuthorName = "Mickael"
 
@@ -163,13 +163,13 @@ git push -u origin main
 Execution :
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Push_GitHub_<sessionXX>\rewrite_and_push.ps1"
+powershell -ExecutionPolicy Bypass -File "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Projets\Push_GitHub_<sessionXX>\rewrite_and_push.ps1"
 ```
 
 ### Etape 5 — Push initial (si user.email deja noreply)
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 git push -u origin main
 ```
 
@@ -191,7 +191,7 @@ A utiliser pour les pushes apres le push initial (90% des cas).
 ### Etape 1 — Pre-flight
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 
 # Locks orphelins
 Remove-Item ".git\index.lock" -Force -ErrorAction SilentlyContinue
@@ -309,5 +309,5 @@ Les anciens hashes apparaissent encore dans CLAUDE.md, METRIQUES.md, et memory/h
 - Auto-memory `feedback_cowork_chat_markdown_pscode.md` — auto-link Cowork chat corrompt les blocs PS.
 - Auto-memory `reference_git_jarvis_repo.md` — historique du repo (decisions S42, push S69).
 - Auto-memory `reference_compte_github_might.md` — compte GitHub `mightIA`.
-- Archive `memory/historique/2026-04-27_session_69_t11_t88_rotation_secret.md` — rotation secret S69.
+- Archive `memory/historique/2026-04-27_session_69b_t11_t88_rotation_secret.md` — rotation secret S69.
 - Script reference S69 : `Projets/Push_GitHub_S69/rewrite_and_push.ps1` — exemple complet de filter-branch + push.

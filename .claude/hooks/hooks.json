@@ -1,5 +1,7 @@
 {
-  "_comment": "Hooks Cowork pour Jarvis. Vide pour l'instant — a remplir au besoin (ex : protection de fichiers Ressources/, notification fin de tri email).",
-  "_last_update": "2026-04-19",
+  "_OBSOLETE": "Ce fichier n'est PLUS LU par Cowork ni Claude Code depuis avril 2026 (Issue Anthropic #27398).",
+  "_VOIR": ".claude/settings.json (champ 'hooks') — c'est la que vit la config reelle des hooks PreToolUse / PostToolUse.",
+  "_HISTORIQUE": "Format `.claude/hooks/hooks.json` utilise jusqu'a debut 2026, deprecie au profit de `.claude/settings.json` unifie. Migration effectuee S72 (28/04/2026) avec installation du hook check-secrets.sh anti-secrets.",
+  "_NE_PAS_EDITER_ICI": "Editer ce fichier n'aura aucun effet. Pour ajouter un hook, modifier .claude/settings.json. Procedure 5 etapes : skill .claude/skills/hook-add-pattern/SKILL.md.",
   "hooks": {}
 }

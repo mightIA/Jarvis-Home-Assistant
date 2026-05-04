@@ -1,7 +1,8 @@
 ---
 title: OpenRouter — setup avec garde-fous
 created: 2026-04-27
-tags: [reseau, securite, openrouter, llm, hermes]
+updated: 2026-04-27
+tags: [atome, reseau, securite, openrouter, llm, hermes]
 status: actif
 domaine: Reseau
 sources: [S55, S60]

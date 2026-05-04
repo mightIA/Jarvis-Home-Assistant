@@ -17,8 +17,8 @@
 #   6. Redirige stdout vers un fichier log horodaté
 #   7. Exit code 0 si tout OK, 1 si pré-filtre échoue, 2 si claude échoue
 #
-# Coût estimé par run (headless) : ~3-5k tokens si RAS (kill switch/niveau 1/0 mail),
-#   ~15-25k tokens si 1-3 alertes traitées. Cadence 30 min = 48 runs/jour.
+# Coût estimé par run (headless, post-S88) : ~10-15k tokens via Haiku 4.5
+#   (--model claude-haiku-4-5). Cadence 1 run/jour 04h00 (CLAUDE.md).
 
 $ErrorActionPreference = 'Stop'
 
@@ -153,7 +153,7 @@ Utiliser les outils de la liste allow dans .claude/settings.local.json, pas d'ap
 Write-LauncherLog 'INFO' "Lancement claude -p (log de sortie : $LogFile)"
 
 try {
-    claude -p $prompt --output-format json 2>&1 | Tee-Object -FilePath $LogFile
+    claude -p $prompt --model claude-haiku-4-5 --output-format json 2>&1 | Tee-Object -FilePath $LogFile
 
     $exitCode = $LASTEXITCODE
     if ($exitCode -ne 0) {

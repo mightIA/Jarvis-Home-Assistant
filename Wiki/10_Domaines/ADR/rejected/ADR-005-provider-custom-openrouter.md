@@ -1,6 +1,7 @@
 ---
 title: ADR-005 — provider custom Hermès pour OpenRouter
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, hermes, openrouter, config]
 status: rejected
 session_origine: S60

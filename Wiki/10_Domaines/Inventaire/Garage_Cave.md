@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Garage / Cave
 created: 2026-04-27
-tags: [inventaire, garage, cave, hardware]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, garage, cave, hardware]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

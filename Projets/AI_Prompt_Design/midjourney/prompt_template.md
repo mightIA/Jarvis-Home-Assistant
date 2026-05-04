@@ -75,6 +75,45 @@ product photography, [product] on [surface/background], [lighting setup],
 --ar 1:1 --style raw --s 50 --c 0 --v 7 --no text, watermark, hands
 ```
 
+## Workflow V7 recommandé (depuis avril 2026)
+
+Workflow optimal pour V7, qui exploite Draft Mode :
+
+```
+1. Brief Mickael
+2. Prompt v1 lancé en `--draft` (Draft Mode = 10× plus rapide, basse qualité)
+3. Génération de 4-6 variations en mode draft (exploration rapide)
+4. Choix de la variation la plus prometteuse
+5. Bouton "Enhance" → repasse la variation choisie en haute qualité (≈ équivalent --v 7 standard)
+6. Si nécessaire : v2 ciblée sur le critère le plus bas (scoring /50)
+```
+
+**Gain typique** : ~5-7× moins de crédits qu'un cycle direct en haute qualité.
+
+## Texte dans l'image V7
+
+V7 a progressé sur le texte mais reste **derrière Ideogram** pour la typo
+production. Pattern recommandé :
+
+```
+[CONTEXT VISUEL], the bold title "[TEXT EN MAJUSCULES]" centered at
+[POSITION], in [STYLE TYPO]
+--ar W:H --s 50 --v 7
+```
+
+**Règles** :
+- Texte **entre guillemets droits** `"..."`
+- **`--s 50`** (basse stylisation = MJ respecte mieux la typo)
+- **Mots courts** (1-3 mots fiables, 4-6 acceptables, > 8 = fails)
+- **Si typo prod fine requise** : passer sur **Ideogram** (typographie native)
+
+**Exemple** :
+```
+A vintage travel poster of Paris at golden hour, the bold title "PARIS"
+centered at the top in Art Deco serif, the subtitle "1928" smaller below
+--ar 2:3 --s 50 --v 7
+```
+
 ## Paramètres par défaut Mickael (à valider en cours d'itération)
 
 | Param | Default | Quand changer |
@@ -105,3 +144,13 @@ product photography, [product] on [surface/background], [lighting setup],
 - ❌ Phrases narratives longues à la DALL·E ("There is a man who...")
   → préférer descriptif compact
 - ❌ Oublier `--ar` quand on a un usage spécifique en tête
+
+### Anti-patterns spécifiques V7 (avril 2026)
+
+- ❌ **Syntaxe multi-prompt `::`** (`A :: B`, `::2`, `::-0.5`) → **cassée
+  silencieusement en V7**. Reformuler ou rester sur `--v 6`.
+- ❌ **Vouloir une illustration sans expliciter le médium** → V7 a un
+  **biais photoréaliste fort**, dérape vers la photo. Toujours préciser
+  "oil painting" / "watercolor" / "ink illustration" / etc.
+- ❌ **Demander du pixel art en V7** → régression nette par rapport à V6.
+  Basculer en `--v 6` pour ce style.

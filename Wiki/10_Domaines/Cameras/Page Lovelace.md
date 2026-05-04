@@ -1,7 +1,8 @@
 ---
 title: Caméras — Page Lovelace
 created: 2026-04-25
-tags: [domotique/cameras, ha/lovelace]
+updated: 2026-04-25
+tags: [atome, domotique/cameras, ha/lovelace]
 status: actif
 session: 18/04/2026
 ---

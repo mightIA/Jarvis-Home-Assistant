@@ -1,10 +1,14 @@
 ---
 title: Browser Mod — contrôle navigateur HA
 created: 2026-04-25
-tags: [outils/browser-mod, ha/integration]
+updated: 2026-04-28
+tags: [atome, outils/browser-mod, ha/integration, domotique/ha-tools, ha/lovelace]
 parent: "[[_Index]]"
 status: actif
+source: Ressources/Competences/Home_Assistant.md §7-§8
 ---
+
+> **Note S72 (28/04/2026)** — fusion de l'ancien atome `Domotique/Browser Mod.md` dans celui-ci. Source unique pour Browser Mod désormais. Le hub `Domotique/_Index.md` redirige ici.
 
 # Browser Mod — skill `browser-mod`
 
@@ -47,7 +51,7 @@ tap_action:
       code: history.back()
 ```
 
-## Badges universels (présents sur 19 vues)
+## Badges universels (présents sur 19 vues — installés 18/04/2026)
 
 | Badge                | Icône                       | Action                              |
 |----------------------|-----------------------------|-------------------------------------|
@@ -58,8 +62,18 @@ tap_action:
 | Nuit                 | `scene.nuit` (icône lune)   | Active `scene.nuit`                 |
 | Capteurs mouvement   | `mdi:motion-sensor`         | Active script capteurs              |
 
+**Prérequis** : Browser Mod doit être installé et configuré (intégration HA reconnue dans `Paramètres → Appareils et services`).
+
 ## Liens
 
 - Skill source : `.claude/skills/browser-mod/SKILL.md`
 - Référence longue : `Ressources/Competences/Home_Assistant.md` sections 7 et 8
-- Hub HA : `[[10_Domaines/HomeAssistant/_Index]]`
+- Hub HA : [[10_Domaines/HomeAssistant/_Index|HomeAssistant]]
+- Apps installées (HACS) : [[10_Domaines/HomeAssistant/Apps installées|Apps installées]]
+- Intégrations HA (`browser_mod` loaded) : [[10_Domaines/HomeAssistant/Intégrations|Intégrations]]
+- Auto-memory : `reference_lovelace_patterns` (popups Réglages via Browser Mod)
+- Hub Domotique appareils : [[10_Domaines/Domotique/_Index|Domotique]] (redirige ici depuis fusion S72)
+
+---
+
+*Source : `Ressources/Competences/Home_Assistant.md` §7 + §8. Atome créé S43 puis enrichi S72 par fusion de l'atome Domotique homonyme.*

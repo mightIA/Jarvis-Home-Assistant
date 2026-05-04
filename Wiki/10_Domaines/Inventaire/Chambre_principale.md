@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Chambre principale
 created: 2026-04-27
-tags: [inventaire, chambre, principale]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, chambre, principale]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

@@ -1,7 +1,8 @@
 ---
 title: Install Claude Code — env dev Windows
 created: 2026-04-25
-tags: [outils/claude-code, install]
+updated: 2026-04-25
+tags: [atome, outils/claude-code, install]
 parent: "[[_Index]]"
 status: actif
 ---
@@ -36,7 +37,7 @@ if ($userPath -notlike "*$claudePath*") {
 ## Lancement Claude Code
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 claude
 ```
 

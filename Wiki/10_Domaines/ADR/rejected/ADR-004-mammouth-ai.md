@@ -1,6 +1,7 @@
 ---
 title: ADR-004 — Mammouth AI comme abonnement complémentaire
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, llm, abonnement]
 status: rejected
 session_origine: S36

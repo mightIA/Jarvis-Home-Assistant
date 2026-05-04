@@ -1,9 +1,10 @@
 ---
 title: Prompt Vie perso v2 (validé)
 created: 2026-04-25
-tags: [vieperso/prompt, prompt]
+updated: 2026-04-25
+tags: [atome, vieperso/prompt, prompt]
 parent: "[[_Index]]"
-status: actif-en-attente
+status: wip
 ---
 
 # Prompt Vie perso — v2 (validé S20)

@@ -1,7 +1,8 @@
 ---
 title: Issues GitHub a suivre
 created: 2026-04-27
-tags: [veille, github, issues, monitoring]
+updated: 2026-04-27
+tags: [atome, veille, github, issues, monitoring]
 status: actif
 ---
 

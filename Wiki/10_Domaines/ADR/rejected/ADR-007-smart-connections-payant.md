@@ -1,6 +1,7 @@
 ---
 title: ADR-007 — Plugin Smart Connections Obsidian payant
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, obsidian, plugin, vectorisation]
 status: rejected
 session_origine: S38

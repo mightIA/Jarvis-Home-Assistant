@@ -1,7 +1,8 @@
 ---
 title: Cloudflare — Setup complet (Tunnel, DNS, Access, bypass MCP)
 created: 2026-04-27
-tags: [reseau, cloudflare, tunnel, dns, access]
+updated: 2026-04-27
+tags: [atome, reseau, cloudflare, tunnel, dns, access]
 status: actif
 domaine: Reseau
 sources: [S08, S15, S16, S17]

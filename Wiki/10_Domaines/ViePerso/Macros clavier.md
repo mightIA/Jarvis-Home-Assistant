@@ -1,9 +1,10 @@
 ---
 title: Macros clavier / souris / pad — catalogue
 created: 2026-04-25
-tags: [vieperso/macros, productivite]
+updated: 2026-04-25
+tags: [atome, vieperso/macros, productivite]
 parent: "[[_Index]]"
-status: brouillon-v1
+status: draft
 ---
 
 # Macros clavier — catalogue v1

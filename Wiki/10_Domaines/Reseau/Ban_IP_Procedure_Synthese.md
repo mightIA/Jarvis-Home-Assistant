@@ -1,7 +1,8 @@
 ---
 title: Ban IP — synthèse rapide
 created: 2026-04-27
-tags: [reseau, securite, ban-ip]
+updated: 2026-04-27
+tags: [atome, reseau, securite, ban-ip]
 status: actif
 domaine: Reseau
 sources: [Ressources/Protocoles/IP_Bans.md]

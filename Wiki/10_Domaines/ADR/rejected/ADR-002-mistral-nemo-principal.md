@@ -1,6 +1,7 @@
 ---
 title: ADR-002 — mistral-nemo:12b en principal Hermès
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, hermes, ollama, llm]
 status: rejected
 session_origine: S58

@@ -1,8 +1,9 @@
 ---
 title: Médecins & professionnels de santé
 created: 2026-04-27
-tags: [vie-perso, sante, medecins, coquille]
-status: coquille
+updated: 2026-04-27
+tags: [atome, vie-perso, sante, medecins, coquille]
+status: stub
 domaine: ViePerso
 remplissage_attendu: Mickael
 parent: "[[10_Domaines/ViePerso/_Index]]"

@@ -1,7 +1,8 @@
 ---
 title: CSP & audit sécurité — statut S33
 created: 2026-04-27
-tags: [reseau, securite, csp, audit]
+updated: 2026-04-27
+tags: [atome, reseau, securite, csp, audit]
 status: actif
 domaine: Reseau
 sources: [S20, audit-2026-04-18]

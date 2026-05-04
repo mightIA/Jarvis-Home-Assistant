@@ -1,6 +1,7 @@
 ---
 title: Réseau & Sécurité — MOC
 created: 2026-04-27
+updated: 2026-04-27
 tags: [moc, reseau, securite]
 status: actif
 domaine: Reseau

@@ -1,7 +1,8 @@
 ---
 title: Skills Setup & Installation
 created: 2026-04-27
-tags: [skill, setup, installation]
+updated: 2026-04-28
+tags: [atome, skill, setup, installation]
 status: actif
 domaine: Skills_Jarvis
 ---
@@ -22,7 +23,7 @@ Catégorie regroupant les 3 skills de **procédures d'installation** (poste Mick
 - **Rôle** : installer Node.js + Git Bash + Claude Code CLI + Python sur Windows 11.
 - **Dépendances** :
   - PowerShell (admin pour ExecutionPolicy)
-  - Dossier cible : `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`
+  - Dossier cible : `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`
   - Script `scripts/install-claude-code.ps1` (install natif PATH utilisateur)
   - Protocole backup : `Ressources/Protocoles/Backup_Jarvis.md` (OneDrive + Git privé)
 - **Détail exécutable** : `.claude/skills/install-claude-code-windows/SKILL.md`
@@ -41,7 +42,7 @@ Catégorie regroupant les 3 skills de **procédures d'installation** (poste Mick
   - Récupération du `secret_path` depuis options de l'add-on
   - Plan d'expo HTTPS publique (Cloudflare Tunnel) — Phase 3 réécrite et VALIDÉE S16
 - **Détail exécutable** : `.claude/skills/ha-mcp-install/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Reseau_Securite/_Index]], [[Cloudflare_Access_HA]]
+- **Liens vault** : [[10_Domaines/Reseau/_Index|Réseau & Sécurité]], [[10_Domaines/Reseau/Cloudflare_Setup|Cloudflare Setup]]
 - **Auto-memory** : `reference_ha_mcp_addon`, `reference_ha_mcp_endpoint_validated`, `reference_ha_mcp_secret_regeneration`
 
 ### `cloudflare-access-ha`
@@ -58,7 +59,7 @@ Catégorie regroupant les 3 skills de **procédures d'installation** (poste Mick
   - **Bypass + Everyone** sur l'endpoint MCP (jamais Allow+MFA — cf. auto-memory `feedback_cf_mcp_bypass_not_allow`)
   - Testée sur `might.ovh` / `ha.might.ovh` le 19/04/2026
 - **Détail exécutable** : `.claude/skills/cloudflare-access-ha/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Reseau_Securite/_Index]]
+- **Liens vault** : [[10_Domaines/Reseau/_Index|Réseau & Sécurité]]
 - **Auto-memory** : `reference_ui_nav_map`
 
 ## Patterns d'usage transversaux
@@ -86,7 +87,7 @@ Tout `.ps1` avec caractères non-ASCII DOIT avoir un BOM UTF-8, sinon PS 5.1 lit
 ## Voir aussi
 
 - [[_Index]] — MOC Skills Jarvis
-- [[Wiki/10_Domaines/Reseau_Securite/_Index]] — domaine Réseau & Sécurité
-- [[Wiki/10_Domaines/Procedures_Rares/_Index]] — procédures rares (rotation secret_path, débans)
+- [[10_Domaines/Reseau/_Index|Réseau & Sécurité]] — domaine Réseau & Sécurité
+- [[10_Domaines/Procedures/_Index|Procédures]] — procédures (rotation secret_path, débans)
 - `Ressources/Protocoles/Backup_Jarvis.md` — protocole de sauvegarde
-- `scripts/install-claude-code.ps1` — script d'install
+- `script

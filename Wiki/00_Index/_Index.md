@@ -1,6 +1,7 @@
 ---
 title: Index Wiki Jarvis
 created: 2026-04-25
+updated: 2026-04-30
 tags: [moc, index]
 status: actif
 ---
@@ -8,57 +9,33 @@ status: actif
 # Index Wiki Jarvis
 
 Point d'entrée principal du vault. À mettre à jour quand de nouveaux
-domaines/projets/références sont ajoutés.
+domaines ou références sont ajoutés.
+
+> **Règle structurelle (S81)** : le vault contient uniquement de la **connaissance pure**. Pas de projets (vivent dans `Projets/` racine), pas d'archives (vivent dans `Archives/` racine), pas de conversations verbatim. Voir [[../10_Domaines/ADR/accepted/ADR-A004-vault-connaissance-pure|ADR-A004]].
 
 ## Domaines actifs
 
-- [x] **Home Assistant** — `[[10_Domaines/HomeAssistant/_Index]]` *(11 atomes — S42)*
-- [x] **Cloudflare** — `[[10_Domaines/Cloudflare/_Index]]` *(hub-atome — S42)*
-- [x] **Frisquet (chaudière)** — `[[10_Domaines/Frisquet/_Index]]` *(hub-atome — S42)*
-- [x] **Cameras Dahua** — `[[10_Domaines/Cameras/_Index]]` *(2 atomes — S42)*
-- [x] **Domotique appareils** — `[[10_Domaines/Domotique/_Index]]` *(2 atomes Dyson + Browser Mod — S42)*
-- [ ] Réseau & sécurité — `[[10_Domaines/Reseau/_Index]]` *(à créer plus tard)*
-- [x] **Email & MCP Gmail** — `[[10_Domaines/Email/_Index]]` *(1 hub + 6 atomes — S44)*
-- [x] **Outils & productivité** — `[[10_Domaines/Outils/_Index]]` *(1 hub + 6 atomes — S45)*
-- [x] **Traduction** — `[[10_Domaines/Traduction/_Index]]` *(1 hub + 4 atomes — S43)*
-- [x] **Vie perso** — `[[10_Domaines/ViePerso/_Index]]` *(1 hub + 4 atomes — S45)*
+- [x] **Home Assistant** — [[../10_Domaines/HomeAssistant/_Index|HomeAssistant]] *(12 atomes)*
+- [x] **Cloudflare** — [[../10_Domaines/Cloudflare/_Index|Cloudflare]] *(hub-atome)*
+- [x] **Frisquet (chaudière)** — [[../10_Domaines/Frisquet/_Index|Frisquet]] *(hub-atome)*
+- [x] **Cameras Dahua** — [[../10_Domaines/Cameras/_Index|Cameras]] *(2 atomes)*
+- [x] **Domotique appareils** — [[../10_Domaines/Domotique/_Index|Domotique]] *(7 atomes — Dyson, Samsung Q80, HomePod, Music Assistant + 3 coquilles HomeKit/EcoFlow/Imprimante 3D)*
+- [x] **Réseau & Sécurité** — [[../10_Domaines/Reseau/_Index|Reseau]] *(8 atomes)*
+- [x] **Email & MCP Gmail** — [[../10_Domaines/Email/_Index|Email]] *(1 hub + 6 atomes — S44)*
+- [x] **Outils & productivité** — [[../10_Domaines/Outils/_Index|Outils]] *(1 hub + 6 atomes)*
+- [x] **Traduction** — [[../10_Domaines/Traduction/_Index|Traduction]] *(1 hub + 4 atomes)*
+- [x] **Vie perso** — [[../10_Domaines/ViePerso/_Index|ViePerso]] *(1 hub + 10 atomes)*
+- [x] **Procédures** — [[../10_Domaines/Procedures/_Index|Procedures]] *(7 atomes : backup, débans, rotation, recovery, etc.)*
+- [x] **Hardware** — [[../10_Domaines/Hardware/_Index|Hardware]] *(5 atomes : PC, dongles Zigbee, onduleurs, fibre)*
+- [x] **Inventaire (pièces)** — [[../10_Domaines/Inventaire/_Index|Inventaire]] *(10 atomes pièces — coquilles, à compléter au fil de l'eau)*
+- [x] **Skills Jarvis** — [[../10_Domaines/Skills_Jarvis/_Index|Skills_Jarvis]] *(MOC des 32 skills `.claude/skills/` — 6 atomes-catégories)*
+- [x] **ADR (Architecture Decision Records)** — [[../10_Domaines/ADR/_Index|ADR]] *(4 accepted + 7 rejected — depuis ADR-A004 S81)*
+- [x] **Veille** — [[../10_Domaines/Veille/_Index|Veille]] *(6 atomes : LLM, providers, MCP, articles, issues GitHub, landscape)*
 
-## Projets en cours
+## Hors vault (pour mémoire — pointeurs lecture seule)
 
-*(à remplir au fur et à mesure)*
-
-- [ ] Hermes Agent (Phase 1bis) — `[[20_Projets/Hermes_Agent/_Plan]]`
-- [ ] Tri email multi-boîtes — `[[20_Projets/Tri_Email_Multi/_Plan]]`
-
-## Références récentes
-
-*(à remplir au fur et à mesure)*
-
-## Tags principaux
-
-- `#ha/*` — Home Assistant (config, automation, dashboard)
-- `#domotique/*` — Appareils connectés (Dyson, Frisquet, Dahua, Tuya)
-- `#reseau/*` — Réseau, DNS, Cloudflare, sécurité
-- `#projet/*` — Projets actifs avec deadline
-
-## Recherche rapide
-
-- **Dataview — 10 dernières notes du vault** :
-
-```dataview
-TABLE WITHOUT ID file.link AS "Note", title AS "Titre", file.folder AS "Dossier"
-FROM ""
-SORT file.cday DESC
-LIMIT 10
-```
-
-- **Dataview — toutes les notes du dossier 20_Projets/** :
-
-```dataview
-TABLE WITHOUT ID file.link AS "Note", title AS "Titre"
-FROM "20_Projets"
-```
-
----
-
-*MOC racine du vault. Mise à jour manuelle ou auto via Templater.*
+- **Projets actifs** — `Projets/` racine du repo (Hardware_Upgrade, Cookbook_Hermes_RTX3090, Jarvis_Hermes_Projet, AI_Prompt_Design, etc.)
+- **Archives** — `Archives/` racine du repo
+- **Sessions historiques** — `memory/historique/` racine du repo
+- **Skills Jarvis source** — `.claude/skills/` racine du repo
+- **Auto-memories Cowork** — `memory/*.md` racine du repo (auto-memory CLI local)

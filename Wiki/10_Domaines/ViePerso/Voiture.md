@@ -1,8 +1,9 @@
 ---
 title: Voiture
 created: 2026-04-27
-tags: [vie-perso, voiture, vehicule, coquille]
-status: coquille
+updated: 2026-04-27
+tags: [atome, vie-perso, voiture, vehicule, coquille]
+status: stub
 domaine: ViePerso
 remplissage_attendu: Mickael
 parent: "[[10_Domaines/ViePerso/_Index]]"

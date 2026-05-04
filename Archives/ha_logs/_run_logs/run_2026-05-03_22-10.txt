@@ -1,0 +1,9 @@
+=== ha_logs_archive_run.bat - 2026-05-03_22-10 === 
+CWD: D:\Might\IA\Projets Cowork\Jarvis - Home Assistant 
+USERNAME: Might 
+CLAUDE_EXE: C:\Users\Might\.local\bin\claude.exe 
+CLAUDE_EXE: PRESENT 
+--- claude --version --- 
+2.1.126 (Claude Code)
+--- DEBUT execution skill --- 
+^C

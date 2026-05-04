@@ -74,26 +74,11 @@ prompt-side et paramètres.
 | Polish excessif / "trop propre" | "with imperfections, slight grain, candid feel" |
 | Personne nommée refusée | Décrire physiquement plutôt que nommer (sauf personnages historiques publics anciens) |
 
-## 9. Spécifique Stable Diffusion
+## 9bis. Spécifique vidéo (ajout S90 — patch P1-17)
 
-| Symptôme | Correctif |
-|----------|-----------|
-| Image floue | Steps trop bas (<20) → monter à 28-32 ; sampler `DPM++ 2M Karras` |
-| Sur-cuisson "AI plastic" | CFG trop haut (>9) → baisser à 6-7 |
-| Anatomie ratée systématique | Negative prompt baseline (voir `stable-diffusion/negative_prompt_baseline.md`) ; LoRA correctifs |
-| Ne respecte pas la pondération | Vérifier syntaxe : `(word:1.2)` et pas `(word: 1.2)` (espace casse) ; SDXL/SD3 moins sensibles |
-| Couleur fade | Modèle sous-trained sur la palette → essayer un autre checkpoint (CivitAI) |
-
----
-
-## Procédure quand un nouveau défaut apparaît 3 fois
-
-1. Documenter ici (symptôme, cause, IA, correctif testé).
-2. Ajouter le correctif dans le `negative_prompt_baseline.md` correspondant
-   si SD.
-3. Logger l'apparition dans `<ia>/iterations_log.md`.
-4. Si correctif fiable validé → promouvoir en "consolidé" (gras).
-
----
-
-*Version 1.0 — 2026-04-26*
+| Symptôme | IA(s) concernée(s) | Cause | Correctif |
+|---|---|---|---|
+| **Morphing facial** sur 5-10 s | Toutes vidéo | Sujet trop complexe ou clip trop long | Réduire durée à 5 s, simplifier action, frame de départ plus nette ; sur Runway → Aleph relighting plutôt que regen |
+| **Mains qui se dédoublent** en milieu de clip | Pika, Hailuo, Sora 2 | Sujet en mouvement avec mains visibles | Cadrer pour cacher mains (mains hors champ ou dans poches dans la frame de départ) |
+| **Texte se déforme** progressivement | Toutes | Modèles vidéo gèrent mal le texte dynamique | Inclure le texte dans la frame de départ (image), pas dans le prompt vidéo. Pour vidéo "vraie" avec texte qui bouge → After Effects en post |
+| **`cut to`, `next scene` ignorés** | Toutes | Modèles génèrent UN shot continu | Pas de mots de montage dans le prompt. Pour vraie séquence multi-shots → composer 2 clips 

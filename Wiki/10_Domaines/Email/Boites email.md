@@ -1,7 +1,8 @@
 ---
 title: Boîtes email de Mickael
 created: 2026-04-25
-tags: [email, email/boites, domaine/email]
+updated: 2026-04-25
+tags: [atome, email, email/boites, domaine/email]
 status: actif
 parent: "[[_Index]]"
 ---

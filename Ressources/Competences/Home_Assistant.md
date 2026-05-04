@@ -138,15 +138,20 @@ Vue `sections` à 3 colonnes (Chambre, Cuisine fixe, Cuisine PTZ). Chaque sectio
 - **Flux vidéo** : carte Frigate
 - **Cuisine PTZ** : contrôles PTZ supplémentaires (Fav 1-5, flèches directionnelles)
 
-### 5.6 PTZ Favoris
+### 5.6 PTZ Favoris + Ronde 360° (S82)
 
-| Bouton HA | Token ONVIF | Favori DMSS | Statut |
-|---|---|---|---|
-| Fav 1 | preset 1 | Favori 1 | OK |
-| Fav 2 | preset 2 | Favori 2 | OK |
-| Fav 3 | preset 3 | Favori 3 | OK |
-| Fav 4 | preset 4 | Favori 4 | OK |
-| Fav 5 | preset 5 | Favori 5 | À vérifier |
+| Bouton HA | Service appelé                                                  | Statut |
+|-----------|-----------------------------------------------------------------|--------|
+| 360°      | `script.cuisine_ptz_ronde` (cycle Fav 1→2→3→4, 5s chaque ~20s)  | OK S82 |
+| Fav 1     | `onvif.ptz` `move_mode=GotoPreset` `preset="1"`                 | OK     |
+| Fav 2     | `onvif.ptz` `move_mode=GotoPreset` `preset="2"`                 | OK     |
+| Fav 3     | `onvif.ptz` `move_mode=GotoPreset` `preset="3"`                 | OK     |
+| Fav 4     | `onvif.ptz` `move_mode=GotoPreset` `preset="4"`                 | OK     |
+
+**Note S82** : l'ancien bouton « Fav 5 » a été reconverti en bouton « 360° »
+qui appelle `script.cuisine_ptz_ronde` (cycle automatique des 4 favoris,
+5 s sur chaque, total ~20 s, sans record). Position : 1re du groupe (avant
+Fav 1). T#7 fermée S82 par approche alternative (pas de preset 5 côté caméra).
 
 ---
 

@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Autres chambres
 created: 2026-04-27
-tags: [inventaire, chambres, enfants]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, chambres, enfants]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

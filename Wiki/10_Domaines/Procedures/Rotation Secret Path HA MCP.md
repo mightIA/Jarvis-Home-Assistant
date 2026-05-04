@@ -1,6 +1,7 @@
 ---
 title: Rotation Secret Path HA MCP
 created: 2026-04-27
+updated: 2026-04-27
 tags: [procedure, securite, ha, mcp]
 status: actif
 domaine: Procedures

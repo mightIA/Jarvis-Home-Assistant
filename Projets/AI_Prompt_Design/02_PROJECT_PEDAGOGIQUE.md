@@ -2,7 +2,77 @@
 
 ## Document projet — version pédagogique complète
 
-*Mickael × Jarvis — 26 avril 2026 — v1.0*
+*Mickael × Jarvis — v1.1 régénérée le 3 mai 2026 (S90) — v1.0 originale 26 avril 2026*
+
+---
+
+## Mise à jour v1.1 — Session 90 (3 mai 2026)
+
+Cette version v1.1 intègre les findings de l'**audit S69 (27/04/2026)** et
+les WebSearch ciblés effectués en S90 sur les modèles 2026 :
+
+### Patches appliqués (40 patches sur 4 phases)
+
+- **Phase A — 11 patches P0 critiques** : Midjourney V7 (`::` cassé,
+  `--oref/--ow`, `--exp/--draft`, anti-patterns V7) ; DALL·E gpt-image
+  (matrice 4 modèles dont **gpt-image-2 sorti 21/04/2026**, params API
+  complets, clarif rewriter) ; Stable Diffusion (SD 3.5 Large/Turbo/Medium,
+  écosystème FLUX étendu, Pony Diffusion V6 + Illustrious-XL).
+- **Phase B — 61 nouveaux fichiers** : branche vidéo entière avec
+  **7 modèles** (Runway Gen-4 + Aleph + Act-Two, Pika 2.x, Kling 2.1 +
+  Master, Luma Ray2 + Flash, Sora 2, Veo 3.1, Hailuo 02), `_video_common/`
+  (vocabulaire caméra, temporal cues, image-to-video workflow) et
+  `00_core/dimensions_video.md` (3 dimensions vidéo additionnelles).
+- **Phase C — 17 patches P1** : workflow Draft V7, stack créatif V7
+  (jusqu'à 6 références combinées), 5 techniques cohérence personnage
+  gpt-image-2, modération 2026 + `moderation="low"`, streaming
+  `partial_images`, **12 nouveaux styles tendance 2026** (Liminal Space,
+  Y2K, Brutalist, Wabi-sabi, Solarpunk, Risograph, Editorial Fashion,
+  Cozy Storybook, Dark Academia, Vaporwave, Cottagecore, Brut Tech),
+  **7 nouveaux styles DALL·E**, ControlNet Union SDXL (12 modes en 1),
+  PuLID-FLUX (best-in-class identité 2026), checkpoints communautaires
+  (Pony V7 AuraFlow, Illustrious, NoobAI, Juggernaut XI, RealVisXL V5),
+  negative_prompt_baseline étendue (Pony, Illustrious, Animagine, FLUX.2,
+  SD 3.5, `negativeXL_D` remplaçant `EasyNegative` en SDXL).
+- **Phase D — 12 patches P2** : section Web App vs Discord MJ, mention
+  V8/V8.1 (choix volontaire V7), workflow ComfyUI FLUX dev + Hyper-FLUX
+  8 steps LoRA (gain ×3 vitesse), pattern PuLID-FLUX, scoring vidéo /65
+  (ou /60 sans audio), template iterations_log enrichi avec stack
+  créatif V7.
+
+### Nouveautés majeures vs v1.0
+
+| Domaine | v1.0 (avril) | v1.1 (mai) |
+|---|---|---|
+| Modèles couverts | 3 IA images | **3 IA images + 7 IA vidéo** |
+| DALL·E | DALL·E 3 + gpt-image-1 | **+ gpt-image-1.5 + gpt-image-2** (cohérence personnages native) |
+| Midjourney | V7 base | **V7 + Stack créatif (oref/ow/exp/draft) + V8/V8.1 mention** |
+| Stable Diffusion | SDXL + FLUX.1 | **+ SD 3.5 + FLUX.2 (nov 2025) + Pony V7 (AuraFlow) + Illustrious + PuLID-FLUX + ControlNet Union** |
+| Vidéo | ❌ | **✅ 7 modèles + tronc commun + extras (~60 fichiers)** |
+| Audio vidéo | N/A | **Veo 3.1 (Dialogue/SFX/Ambient/Music) + Sora 2 (langage naturel) — Sora déprécié 24/09/2026** |
+| Scoring | /50 image uniquement | **/50 image + /65 vidéo (avec audio) ou /60 (sans audio)** |
+| Dimensions | 12 | **12 image + 3 vidéo (Duration / Camera Movement / Audio)** |
+
+### Décisions actées (Q1 → Q6 audit S69)
+
+- **Q1** : 7 dossiers vidéo (Runway / Pika / Kling / Luma / Sora / Veo3 / Hailuo)
+- **Q2** : `dall-e/` renommé en `dall-e_gpt-image/` (matrice 4 modèles unifiée)
+- **Q3** : Option A — 12 dim image + 3 dim vidéo séparées
+- **Q4** : WebSearch effectués sur Sora 2 access, Veo 3.1 audio, Runway
+  Gen-4 + Aleph, FLUX.2, Pony V7
+- **Q5** : Phase A → B → C → D toutes appliquées en S90
+- **Q6** : régénération PDF v1.1 = ce document (post-stabilisation)
+
+### Pièges silencieux 2026 critiques (à connaître)
+
+| Piège | Modèle | Solution |
+|---|---|---|
+| **`::` multi-prompt cassé** | MJ V7 | Reformuler ou rester sur V6 |
+| **gpt-image-2 sorti 21/04/2026** | DALL·E API | Migrer matrice 4 modèles |
+| **Sora 2 web/app discontinued 26/04/2026** | OpenAI | API jusqu'au 24/09/2026 puis migrer Veo 3.1 |
+| **Pony V7 utilise AuraFlow** (pas SDXL) | SD | Tags qualité différents de V6 |
+| **`background=transparent` ignoré silencieusement** | gpt-image-1 edit | Retirer du prompt |
+| **`tilt` confondu avec `pedestal`** | Pika, Hailuo | Préciser "vertical movement, framing tilts" |
 
 ---
 
@@ -132,10 +202,10 @@ Projets/AI_Prompt_Design/
 │   ├── style_library.md
 │   └── iterations_log.md
 │
-├── dall-e/                           # Spécifique DALL·E 3 / gpt-image-1
+├── dall-e_gpt-image/                 # Spécifique DALL·E 3 / gpt-image-1 / 1.5 / 2
 │   ├── README.md
 │   ├── prompt_template.md
-│   ├── parameters_reference.md       # ChatGPT rewriting, formats, API
+│   ├── parameters_reference.md       # matrice 4 modèles, params API
 │   ├── style_library.md
 │   └── iterations_log.md
 │
@@ -571,100 +641,4 @@ sans copier/coller. Hors scope actuel (Mickael préfère garder la main).
 ## Prompt v1 — Midjourney V7
 
 ```
-cinematic photography, an old Breton lighthouse standing on jagged
-cliffs, violent storm at night, lightning striking the sea, towering
-waves crashing, dramatic chiaroscuro lighting, deep blues and stormy
-greys, ominous and powerful mood, wide-angle 24mm, ultra-detailed
---ar 16:9 --style raw --s 100 --c 5 --v 7 --no text, watermark
-```
-
-**Hypothèses appliquées**
-- `cinematic photography` car "photo réaliste" + cadrage 16:9 wallpaper
-- `--style raw --s 100` pour rester réaliste (default Midjourney sur-style)
-- `--c 5` pour des résultats reproductibles
-- `--no text, watermark` baseline universelle
-
-**Variante stylistique**
-```
-hyperrealistic photo, an old Breton lighthouse battered by a violent
-night storm, single beam piercing the rain, neutral tones, claustrophobic
-moody atmosphere, shot on 35mm --ar 16:9 --style raw --s 50 --c 5 --v 7
-```
-
-**Quoi tester en priorité**
-Si v1 trop spectaculaire → baisser `--s` à 50 et retirer "epic".
-Si v1 pas assez dramatique → monter `--s` à 250 et ajouter "epic
-atmosphere, cinematic".
-````
-
-**Mickael** : copie, génère sur Midjourney, renvoie l'image.
-
-**Jarvis** : analyse comparative, score, v2 si besoin, etc.
-
----
-
-## 14. Glossaire
-
-| Terme | Définition |
-|-------|------------|
-| **CFG** | Classifier-Free Guidance. Force avec laquelle SD suit le prompt vs créativité. |
-| **Steps** | Nombre d'itérations de denoising en SD. |
-| **Sampler** | Algorithme de denoising (DPM++ 2M Karras, Euler a, etc.). |
-| **Seed** | Graine numérique pour reproductibilité d'une génération. |
-| **Checkpoint** | Modèle de base SD (`.safetensors` 2-7 GB). |
-| **LoRA** | Low-Rank Adaptation. Petit adaptateur qui ajoute un concept au modèle. |
-| **VAE** | Variational Autoencoder. Composant qui encode/décode. |
-| **Hires fix** | Technique SD 1.5 : générer petit puis upscale + refine. |
-| **Inpainting** | Modifier une zone précise d'une image existante. |
-| **Outpainting** | Étendre une image hors de son cadre original. |
-| **ControlNet** | Modèle de contrôle SD (pose, depth, canny, openpose...). |
-| **IP-Adapter** | Référence d'image de style sans LoRA. |
-| **`--ar`** | Paramètre Midjourney : aspect ratio. |
-| **`--s`** | Paramètre Midjourney : stylize (0-1000). |
-| **`--c`** | Paramètre Midjourney : chaos (0-100). |
-| **`--cref`** | Character reference Midjourney. |
-| **`--sref`** | Style reference Midjourney. |
-| **Prompt rewriting** | DALL·E : ChatGPT réécrit le prompt avant envoi. |
-| **gpt-image-1** | Modèle d'image OpenAI 2025+, plus puissant que DALL·E 3. |
-| **FLUX.1** | Modèle d'image Black Forest Labs (alternative à SD). |
-| **Negative prompt** | Liste de tags à éviter (SD essentiellement). |
-| **Token** | Unité de découpage du prompt par le modèle (~75 max en SD). |
-| **Pondération** | `(tag:1.2)` = booster un tag de 20% en SD. |
-| **Booru tags** | Système de tags inspiré des sites anime (1girl, 1boy...). |
-
----
-
-## 15. Annexes
-
-### A. Liens utiles
-
-- Midjourney : `https://docs.midjourney.com` ; `https://alpha.midjourney.com`
-- DALL·E 3 / gpt-image-1 : `https://platform.openai.com/docs/guides/images`
-- Stability AI : `https://stability.ai`
-- CivitAI : `https://civitai.com` (modèles communautaires SD)
-- A1111 : `https://github.com/AUTOMATIC1111/stable-diffusion-webui`
-- ComfyUI : `https://github.com/comfyanonymous/ComfyUI`
-- Black Forest Labs (FLUX) : `https://blackforestlabs.ai`
-- Bing Image Creator : `https://www.bing.com/images/create`
-
-### B. Références bibliographiques
-
-- "DALL·E 3 system card", OpenAI 2023.
-- "Stable Diffusion v1.5 paper", Stability AI 2022.
-- "FLUX.1 technical report", Black Forest Labs 2024.
-- "Prompt Engineering Guide", DAIR.AI (général LLM/image).
-
-### C. Versionnement de ce document
-
-| Version | Date | Auteur | Changements |
-|---------|------|--------|-------------|
-| 1.0 | 2026-04-26 | Jarvis × Mickael | Création initiale du projet |
-
-### D. Contact / questions
-
-Mickael × Jarvis. Conversations Cowork sur le PC Mickael, dossier
-`D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Projets\AI_Prompt_Design\`.
-
----
-
-*Fin du document — AI Prompt Design v1.0 — 26 avril 2026*
+cinematic photography, an old Breton l

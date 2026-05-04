@@ -1,7 +1,8 @@
 ---
 title: HA — Apps installées (add-ons)
 created: 2026-04-25
-tags: [ha/apps, ha/inventaire]
+updated: 2026-04-25
+tags: [atome, ha/apps, ha/inventaire]
 status: actif
 ---
 

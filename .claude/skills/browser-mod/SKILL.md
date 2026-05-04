@@ -1,6 +1,6 @@
 ---
 name: browser-mod
-description: Controle du navigateur via l'integration Browser Mod (HACS thomasloven, v2.10.2). Utilise pour le rafraichissement reel des pages Lovelace (F5), la navigation back/forward, l'execution de JavaScript, l'affichage de popups et notifications. Indispensable pour les badges universels presents sur les 19 vues Lovelace.
+description: Controle du navigateur via Browser Mod (HACS thomasloven v2.10.2). DECLENCHEURS : 'rafraichis la page', 'F5 sur HA', 'back/forward', 'execute JS dans HA', 'popup HA', 'notification HA depuis automation', 'badge Lovelace navigation', 'configure badges nouvelle vue', 'fire-dom-event'. Utilise pour rafraichissement reel pages Lovelace (F5), navigation back/forward, execution JavaScript, popups et notifications. Indispensable pour les badges universels presents sur 19 vues Lovelace.
 ---
 
 # Skill : Browser Mod
@@ -52,6 +52,29 @@ tap_action:
 | Jour                 | `scene.jour` (icone soleil) | Active `scene.jour`                 |
 | Nuit                 | `scene.nuit` (icone lune)   | Active `scene.nuit`                 |
 | Capteurs mouvement   | `mdi:motion-sensor`         | Active script capteurs              |
+
+
+## Exemples d'invocation utilisateur
+
+- « Rafraichis la page Salon » → `browser_mod.refresh` ciblant le navigateur Mickael.
+- « Reviens en arriere dans le dashboard » → `browser_mod.javascript` code=`history.back()`.
+- « Affiche un popup HA quand alerte chaudiere » → automation avec `browser_mod.popup` title/content.
+- « Ajoute un badge Refresh sur la nouvelle vue Cuisine » → tap_action `fire-dom-event` + `browser_mod.refresh`.
+
+## Quand NE PAS utiliser
+
+- Pour piloter un onglet Brave HORS Home Assistant (Outlook, Gmail, etc.) — utiliser MCP `Claude in Chrome` (`browser_batch`, `navigate`, `find`).
+- Pour modifier la STRUCTURE d'une vue Lovelace — passer a `lovelace-edit` (callWS).
+- Pour creer une notification PERSISTANTE HA (badge cloche) — utiliser `persistent_notification.create`, pas `browser_mod.notification` (qui est ephemere et navigateur-only).
+- Si le navigateur Mickael n'est pas enregistre dans Browser Mod (`browser_mod_browsers` integration) — l'appel echoue silencieusement.
+
+## Pieges connus
+
+- **Targeting** : par defaut Browser Mod cible le navigateur ACTIF (celui qui a fait l'appel). Pour cibler un autre navigateur, ajouter `browser_id` dans data. Tester avant de promettre.
+- **`browser_mod.refresh` != F5 vrai** : recharge la page Lovelace mais sans casser le cache JS — equivalent du F5 standard, PAS Ctrl+F5 (hard reload). Pour vrai hard reload, `browser_mod.javascript` code=`location.reload(true)`.
+- **JavaScript via `browser_mod.javascript`** : execute en contexte page Lovelace. PAS d'acces au DOM HA backend (uniquement frontend). Les appels `hass.callService` fonctionnent.
+- **Notifications ephemeres** : `browser_mod.notification` disparait en quelques secondes — n'est pas memorisee. Pour persistant, utiliser `persistent_notification` (HA core).
+- **Mobile vs Desktop** : Browser Mod fonctionne sur l'app HA mobile mais avec limitations (pas tous les services). Tester avant de scripter pour iPhone Mickael.
 
 ## Reference longue
 

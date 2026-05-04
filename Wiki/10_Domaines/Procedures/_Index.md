@@ -1,11 +1,11 @@
 ---
 title: Procedures rares — Hub
 created: 2026-04-27
+updated: 2026-05-02
 tags: [moc, procedure, domaine/procedures]
 status: actif
 source_skills:
   - .claude/skills/debannissement-ip/SKILL.md
-  - .claude/skills/bascule-conversation/SKILL.md
   - .claude/skills/install-claude-code-windows/SKILL.md
 source_ressources:
   - Ressources/Protocoles/IP_Bans.md
@@ -26,7 +26,11 @@ reste dans `Ressources/Protocoles/` (source de verite, non duplique ici).
 - [[Recovery TOTP HA]] — perte telephone TOTP. HA n'a PAS de codes de secours, plan de prevention + reset MFA via SSH local.
 - [[Perte Acces Distant]] — `ha.might.ovh` down. Diagnostic 4 niveaux (local LAN, CF Tunnel, DNS CF, Pi5 ping).
 - [[Reactivation Cowork Apres Reboot]] — PC redemarre. Verifier autostart Cowork + raccourci `shell:startup`.
-- [[Bascule Conversation Limite Contexte]] — approche limite tokens. Pattern `/compact` vs nouvelle conv (skill `bascule-conversation`).
+
+> **Note S84 (2026-05-02)** : atome `[[Bascule Conversation Limite Contexte]]`
+> retiré suite suppression skill `bascule-conversation` (T#24 cancelled —
+> obsolète depuis mode PC permanent S24). À l'approche limite contexte,
+> proposer `/compact` ou nouvelle conv (auto-memory `feedback_compact_vs_bascule_proposition`).
 
 ## Reflexes de declenchement
 
@@ -38,7 +42,7 @@ reste dans `Ressources/Protocoles/` (source de verite, non duplique ici).
 | Telephone TOTP perdu/casse | [[Recovery TOTP HA]] |
 | Plus d'acces a `ha.might.ovh` (timeout / 5xx) | [[Perte Acces Distant]] |
 | PC reboot, Cowork ne demarre pas | [[Reactivation Cowork Apres Reboot]] |
-| Conv qui rame / approche limite tokens | [[Bascule Conversation Limite Contexte]] |
+| Conv qui rame / approche limite tokens | `/compact` ou nouvelle conv (cf. auto-memory `feedback_compact_vs_bascule_proposition`) |
 
 ## Regles transverses
 

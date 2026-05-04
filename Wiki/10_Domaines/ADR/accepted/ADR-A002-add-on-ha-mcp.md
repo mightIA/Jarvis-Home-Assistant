@@ -1,6 +1,7 @@
 ---
 title: ADR-A002 — Add-on homeassistant-ai/ha-mcp retenu vs core HA
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, accepted, ha, mcp, addon]
 status: accepted
 session_origine: S15

@@ -1,6 +1,7 @@
 ---
 title: Backup Restauration HA
 created: 2026-04-27
+updated: 2026-04-27
 tags: [procedure, backup, ha]
 status: actif
 domaine: Procedures
@@ -20,7 +21,7 @@ detail_executable: Ressources/Protocoles/Backup_Jarvis.md
 
 ## Pourquoi
 
-Le dossier `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant` contient
+Le dossier `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant` contient
 **tout le capital projet** : CLAUDE.md, CONTEXTE.md, TASKS, METRIQUES,
 `.claude/skills/`, `memory/`, `Ressources/`, `.mcp.json`, scripts. La
 reinstallation Claude Code prend 10-15 min, mais reconstituer ce dossier

@@ -1,6 +1,7 @@
 ---
 title: Reactivation Cowork Apres Reboot
 created: 2026-04-27
+updated: 2026-04-27
 tags: [procedure, cowork, windows]
 status: actif
 domaine: Procedures

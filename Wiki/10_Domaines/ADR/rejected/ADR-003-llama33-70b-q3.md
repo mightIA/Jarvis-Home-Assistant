@@ -1,6 +1,7 @@
 ---
 title: ADR-003 — Llama 3.3 70B Q3 en principal Hermès
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, hermes, ollama, llm]
 status: rejected
 session_origine: S58

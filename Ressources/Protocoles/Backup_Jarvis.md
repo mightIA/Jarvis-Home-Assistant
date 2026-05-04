@@ -2,7 +2,7 @@
 
 ## Contexte
 
-Le dossier `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant` contient **tout le capital du projet** :
+Le dossier `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant` contient **tout le capital du projet** :
 - Instructions (`CLAUDE.md`, `CONTEXTE.md`)
 - Tâches et métriques (`TASKS.md`, `METRIQUES.md`)
 - Skills (`.claude/skills/`)
@@ -20,7 +20,7 @@ La réinstallation de Claude Code CLI ne prend que 10-15 min (voir skill `instal
 
 ### ✅ À INCLURE dans le backup
 
-Tout le contenu du dossier `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`, y compris :
+Tout le contenu du dossier `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`, y compris :
 - Tous les `.md`
 - `.claude/skills/` entier
 - `.claude/settings.json` (config Claude Code, non sensible)
@@ -57,7 +57,7 @@ Déplacer (ou sync-er) le dossier Jarvis vers un sous-dossier OneDrive. OneDrive
 
 2. **Option A1 — Copier tout le dossier dans OneDrive** (déplacement pur) :
    ```powershell
-   $src = "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+   $src = "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
    $dst = "$env:USERPROFILE\OneDrive\Jarvis-Backup\Jarvis - Home Assistant"
    Copy-Item -Path $src -Destination $dst -Recurse -Exclude ".claude\settings.local.json"
    ```
@@ -66,7 +66,7 @@ Déplacer (ou sync-er) le dossier Jarvis vers un sous-dossier OneDrive. OneDrive
 3. **Option A2 — Sync miroir périodique** (garder le dossier original sur D: et copier dans OneDrive) :
    Créer une tâche planifiée Windows qui exécute toutes les X heures :
    ```powershell
-   robocopy "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant" `
+   robocopy "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant" `
             "$env:USERPROFILE\OneDrive\Jarvis-Backup\Jarvis - Home Assistant" `
             /MIR /XF "settings.local.json"
    ```
@@ -75,7 +75,7 @@ Déplacer (ou sync-er) le dossier Jarvis vers un sous-dossier OneDrive. OneDrive
 
 1. Se reconnecter au compte OneDrive sur le nouveau Windows
 2. Attendre la sync du dossier `Jarvis-Backup`
-3. Copier le contenu vers `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`
+3. Copier le contenu vers `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`
 4. Recréer `.claude/settings.local.json` à partir du template `.template` (valeurs à re-saisir)
 5. Lancer `scripts\install-claude-code.ps1`
 
@@ -101,7 +101,7 @@ Robocopy hebdomadaire vers disque externe USB/NAS. Mickaël reste maître des do
 
 2. **Créer le script `scripts\backup-jarvis.ps1`** (à créer séparément si souhaité) :
    ```powershell
-   $src = "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+   $src = "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
    $dst = "E:\Backup\Jarvis\Jarvis - Home Assistant"
    $log = "E:\Backup\Jarvis\backup-$(Get-Date -Format 'yyyy-MM-dd').log"
 
@@ -117,7 +117,7 @@ Robocopy hebdomadaire vers disque externe USB/NAS. Mickaël reste maître des do
 ### Restauration post-format
 
 1. Brancher le disque externe
-2. Copier `E:\Backup\Jarvis\Jarvis - Home Assistant` vers `D:\Might\IA\Projets Cowork\`
+2. Copier `E:\Backup\Jarvis\Jarvis - Home Assistant` vers `D:\Documents\IA\Projets Cowork\`
 3. Recréer `.claude/settings.local.json`
 4. Lancer `scripts\install-claude-code.ps1`
 
@@ -142,7 +142,7 @@ Versionner le dossier avec Git et pousser vers un repo **PRIVÉ** sur GitHub ou 
 
 2. **Initialiser Git dans le dossier Jarvis** :
    ```powershell
-   cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+   cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
    git init
    git branch -M main
    ```
@@ -182,7 +182,7 @@ Versionner le dossier avec Git et pousser vers un repo **PRIVÉ** sur GitHub ou 
 1. Installer Git sur le nouveau Windows (via `install-claude-code.ps1`)
 2. Cloner le repo :
    ```powershell
-   cd "D:\Might\IA\Projets Cowork"
+   cd "D:\Documents\IA\Projets Cowork"
    git clone git@github.com:<ton-user>/jarvis-home-assistant-backup.git "Jarvis - Home Assistant"
    ```
 3. Recréer `.claude/settings.local.json` (pas versionné)

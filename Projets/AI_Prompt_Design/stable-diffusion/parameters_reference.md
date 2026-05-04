@@ -237,6 +237,152 @@ Guidance: 0 (schnell) | Steps: 4 | Sampler: Euler | Size: 1024x1024
 
 ---
 
+## SD 3.5 (oct 2024 → focus 2026)
+
+Architecture **MMDiT** avec 3 text encoders dont **T5-XXL** acceptant
+~256 tokens (vs 77 SDXL). Pattern hybride **tags courts CLIP + phrase
+descriptive longue T5**.
+
+| Variante | Taille | Usage | VRAM mini |
+|---|---|---|---|
+| SD 3.5 Large | 8B | Qualité max | 24 GB |
+| SD 3.5 Large Turbo | 8B distillé | 4 steps, rapide | 24 GB |
+| SD 3.5 Medium | 2.5B | Polyvalent | **12 GB** (RTX 3090 OK) |
+
+| Paramètre | Valeur recommandée |
+|---|---|
+| CFG | **3.5 - 4.5** (plus bas que SDXL) |
+| Steps | 28 - 40 |
+| Sampler | **`dpmpp_2m + sgm_uniform`** (couple obligatoire) |
+| Pondération `(word:1.2)` | **non fiable native** — préférer reformulation et ordre |
+
+---
+
+## FLUX écosystème 2026 (étendu)
+
+### Modèles
+- **FLUX.1 [pro]**, **FLUX.1.1 [pro]**, **FLUX.1.1 [pro] Ultra** (4 MP raw mode)
+  — accès API BFL / Replicate / fal.ai
+- **FLUX.1 [dev]** — local 12B, licence non-commerciale
+- **FLUX.1 [schnell]** — Apache 2.0 distillé, 4 steps
+- **FLUX.1 Krea [dev]** (juillet 2025) — anti "AI look"
+- **FLUX.2** — à confirmer via WebSearch (relance prévue avant patches majeurs)
+
+### FLUX Tools (nov 2024) — équivalent ControlNet natif
+
+| Outil | Équivalent ControlNet |
+|---|---|
+| **FLUX.1 Depth** | depth-anything contrôle profondeur |
+| **FLUX.1 Canny** | edge detection contour |
+| **FLUX.1 Fill** | inpaint / outpaint natif |
+| **FLUX.1 Redux** | image variation / mood transfer |
+
+### Samplers couplés FLUX (recommandés ComfyUI)
+
+| Couple | Cas |
+|---|---|
+| `euler + beta` | Défaut, équilibre |
+| `dpmpp_2m + sgm_uniform` | Photo détaillée |
+| `ipndm + simple` | Speed run |
+
+### Distilled models (manquants en v1.0)
+
+**Hyper-SD 8 steps > SDXL Lightning > SDXL Turbo** (règle pratique 2026).
+Voir aussi : LCM-LoRA, TCD-LoRA, DMD2.
+
+---
+
+## Workflow ComfyUI FLUX dev + Hyper-FLUX (gain ×3 vitesse — patch P2-7)
+
+Combiner FLUX.1 dev (qualité) + Hyper-FLUX 8 steps LoRA (vitesse) =
+qualité quasi-équivalente à 28 steps en seulement 8 steps.
+
+### Nodes ComfyUI
+
+```
+1. Load Checkpoint → flux1-dev.safetensors
+2. Load LoRA → Hyper-FLUX-8steps-lora.safetensors (strength: 1.0)
+3. CLIP Text Encode (Positive prompt en langage naturel)
+4. EmptyLatentImage → 1024x1024
+5. KSampler avec :
+   - steps: 8
+   - sampler: euler
+   - scheduler: simple ou beta
+   - cfg: 1.0 (Hyper-FLUX = guidance distillée)
+   - denoise: 1.0
+6. VAE Decode → Save Image
+```
+
+### Comparatif perf
+
+| Setup | Steps | Temps RTX 4090 | Qualité |
+|---|---|---|---|
+| FLUX.1 dev standard | 28 | ~30 s | 100% (référence) |
+| FLUX.1 dev + Hyper-FLUX 8 steps LoRA | 8 | **~10 s** | ~95% |
+| FLUX.1 schnell | 4 | ~6 s | ~85% |
+
+→ **Hyper-FLUX = sweet spot** quand Mickael fait du test rapide en gardant
+~95% de la qualité de référence.
+
+### Téléchargement Hyper-FLUX LoRA
+
+CivitAI : chercher `Hyper-FLUX 8 steps LoRA` (ByteDance).
+HuggingFace : `ByteDance/Hyper-SD` collection.
+
+---
+
+## Pattern PuLID-FLUX pour identité fidèle (patch P2-8)
+
+PuLID-FLUX = **best-in-class 2026** pour préserver l'identité d'un visage
+à travers une scène générée par FLUX, à partir d'**une seule photo de
+référence**.
+
+### Workflow ComfyUI
+
+```
+1. Load Checkpoint → flux1-dev.safetensors
+2. Load Image → photo de référence du visage (1 image suffit)
+3. Node "PuLID-FLUX Apply" :
+   - face image: input du Load Image
+   - strength: 0.7-0.9 (0.9 = identité quasi-parfaite)
+4. CLIP Text Encode (Positive : décrire SCÈNE et ACTION uniquement,
+   PAS le visage)
+5. KSampler standard FLUX :
+   - steps: 20-28
+   - sampler: euler
+   - cfg: 3.5
+6. VAE Decode → Save Image
+```
+
+### Exemple prompt (avec PuLID-FLUX strength 0.85)
+
+Photo de référence : selfie de Mickael.
+
+Prompt :
+```
+A cinematic medium shot of the person standing on a Parisian boulevard
+at golden hour, wearing a tweed coat, hands in pockets, slight smile,
+shallow depth of field, 35mm lens.
+```
+
+→ PuLID-FLUX préserve le visage de Mickael tout en générant la scène
+décrite. **Pas besoin de redécrire le visage** dans le prompt.
+
+### Avantages PuLID-FLUX vs alternatives
+
+| Outil | Photos requises | Qualité identité | Compatibilité |
+|---|---|---|---|
+| **PuLID-FLUX** | 1 photo | ⭐⭐⭐⭐⭐ | FLUX.1 dev |
+| PuLID classique | 1 photo | ⭐⭐⭐⭐ | SDXL |
+| InstantID | 1 photo | ⭐⭐⭐⭐ | SDXL |
+| LoRA personnel entraîné | 15-30 photos | ⭐⭐⭐⭐⭐ | Tout |
+| IP-Adapter Plus Face (legacy) | 1 photo | ⭐⭐⭐ | SDXL / SD 1.5 |
+
+→ **PuLID-FLUX = combo optimal qualité + simplicité** en 2026 pour des
+projets perso (pas besoin d'entraîner un LoRA).
+
+---
+
 ## Sources
 
 - A1111 wiki : `https://github.com/AUTOMATIC1111/stable-diffusion-webui/wiki`

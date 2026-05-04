@@ -17,14 +17,21 @@
 - Utiliser le bouton « Vider le dossier » pour tout supprimer d'un coup
 - Confirmer à Mickael le nombre d'emails supprimés
 
-### Étape 2 : Sélection par vagues pour suppression en lot (À TESTER — TASKS.md #18)
-Méthode à valider ensemble avec Mickael :
-- Sélectionner les emails par **vagues** (groupes de 20-50) avec les cases à cocher
-- Utiliser le bouton « Sélectionner tout » quand disponible pour un traitement en bloc
-- Supprimer chaque vague avant de passer à la suivante (évite les pertes si l'UI bug)
-- Confirmer à Mickael le total en fin de traitement
+### Étape 2 : Sélection par vagues pour suppression en lot (✅ Validée S82)
 
-### Étape 2 : Suppression automatique dans la boîte de réception
+Méthode validée 01/05/2026 (cf. T#18 archivée) :
+
+- Cliquer sur **« Sélectionner »** (bouton en haut de la liste) pour activer le mode multi-sélection (cases à cocher visibles).
+- Cocher la case du **1er email** + **Shift+clic** sur la case du dernier visible → toute la plage est cochée en 2 clics.
+- Cliquer **« Supprimer »** pour valider la vague.
+- Répéter par vagues de 20-50 (selon hauteur d'écran) avant de passer à la suivante.
+- Confirmer à Mickael le total en fin de traitement.
+
+**⚠ Piège Outlook web (S82)** : le mode Sélection est **sticky** — re-clic sur « Sélectionner » et `Esc` ne le désactivent pas. Pour repasser en mode normal (et faire apparaître le bouton « Vider le dossier ») : **F5 pour rafraîchir la page**.
+
+**Quand utiliser cette méthode vs « Vider le dossier »** : la sélection par vagues est utile **uniquement pour un tri sélectif** (garder certains mails, supprimer les autres). Si tout est jetable (spam pur, dossier "À supprimer"), utiliser directement « Vider le dossier » (Étape 1) — 1 clic plus rapide.
+
+### Étape 3 : Suppression automatique dans la boîte de réception
 Supprimer directement (sans demander) les emails qui correspondent à ces catégories :
 
 | Catégorie | Exemples | Raison |
@@ -94,18 +101,50 @@ Pour certains emails importants à supprimer, créer un PDF de sauvegarde avant 
 
 ## PHASE 4 : ENVOYER UN EMAIL
 
-### Prérequis
+> ⚠ **Contrainte OAuth Gmail** : `send_email` et `draft_email` (MCP Gmail) retournent **HTTP 403** car les scopes `gmail.send` / `gmail.compose` sont absents du Client OAuth GCP. Seul `create_draft` fonctionne pour la création de brouillon. L'envoi effectif passe par 2 canaux distincts selon le destinataire.
+
+### 4.1 Auto-envoi (note à soi-même → might57290@gmail.com)
+
+Pas de brouillon intermédiaire — envoi direct via le service Home Assistant `notify.might57290_gmail_com`.
+
+Appel `mcp__home-assistant__ha_call_service` :
+
+```yaml
+service: notify.might57290_gmail_com
+data:
+  target: ["might57290@gmail.com"]   # OBLIGATOIRE — sinon HTTP 500 ValueError
+  title: "[Sujet rapide]"
+  message: |
+    Contenu texte brut (HTML pas encore validé sur cette intégration).
+```
+
+- **`data.target` obligatoire** (auto-memory `feedback_notify_gmail_target.md`, S27).
+- **HTML pas encore validé** sur l'intégration `google_mail` — rester en texte brut.
+- Pas de validation préalable nécessaire (Mickael s'écrit à lui-même).
+
+### 4.2 Envoi à un tiers (SAV, impôts, asso, proche…)
+
+#### Prérequis
 - L'onglet de la boîte email doit être dans le groupe Claude sur Brave
 - La session doit être connectée (pas de page de login)
 - Le domaine doit être autorisé dans l'extension Claude in Chrome (active dans Brave)
 
-### Procédure d'envoi
-- Cliquer sur « Nouveau message » / « Composer »
-- Remplir le champ destinataire avec l'adresse fournie par Mickael
-- Remplir l'objet et le corps du message
-- Si pièce jointe : utiliser l'outil `file_upload` si le fichier est sur le PC
-- **TOUJOURS demander confirmation avant de cliquer Envoyer**
-- Envoyer un screenshot du mail prêt à Mickael pour validation
+#### Procédure d'envoi
+
+**Voie 1 — Brouillon via MCP Gmail (préféré pour Gmail)** :
+- Appeler `create_draft` avec les paramètres `to`, `subject`, `body` directement remplis (pas besoin d'étapes "Remplir" séparées — l'outil prend tout en une seule passe).
+- Le brouillon apparaît dans le dossier "Brouillons" Gmail.
+- Ouvrir Brave sur Gmail → onglet Brouillons → ouvrir le brouillon créé.
+- Vérifier visuellement, screenshot pour Mickael.
+- **TOUJOURS demander confirmation avant de cliquer Envoyer**.
+
+**Voie 2 — Composition directe via Brave (Outlook ou Gmail si MCP indisponible)** :
+- Ouvrir Brave sur la boîte → "Nouveau message" / "Composer".
+- Remplir le champ destinataire avec l'adresse fournie par Mickael.
+- Remplir l'objet et le corps du message.
+- Si pièce jointe : utiliser l'outil `file_upload` si le fichier est sur le PC.
+- **TOUJOURS demander confirmation avant de cliquer Envoyer**.
+- Envoyer un screenshot du mail prêt à Mickael pour validation.
 
 ---
 
@@ -157,7 +196,8 @@ Pour certains emails importants à supprimer, créer un PDF de sauvegarde avant 
 
 ## LIMITATIONS ACTUELLES
 
-- Pas de connecteur MCP email disponible — gestion via Brave uniquement (hors Gmail)
+- **Gmail** : MCP disponible (lecture + drafts + labels) mais **pas d'envoi direct** (scopes `gmail.send` / `gmail.compose` absents OAuth GCP) → envoi auto-envoi via `notify.might57290_gmail_com` HA, envoi à un tiers via Brave.
+- **Outlook** : pas de MCP actif — gestion via Brave uniquement (T#48 = MCP Outlook à chercher).
 - Les domaines email doivent être autorisés dans l'extension Claude in Chrome (active dans Brave)
 - Le tri email par email dans le navigateur est lent (pas de bulk API)
 - Claude ne peut pas se reconnecter seul si la session email expire

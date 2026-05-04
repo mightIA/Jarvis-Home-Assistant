@@ -1,0 +1,27 @@
+=== ha_logs_archive_run.bat - 2026-05-04_02-00 === 
+CWD: D:\Might\IA\Projets Cowork\Jarvis - Home Assistant 
+USERNAME: Might 
+CLAUDE_EXE: C:\Users\Might\.local\bin\claude.exe 
+CLAUDE_EXE: PRESENT 
+--- claude --version --- 
+2.1.126 (Claude Code)
+--- DEBUT execution skill --- 
+Archive quotidienne `2026-05-04` complétée en mode headless.
+
+**3 fichiers livrés dans `Archives/ha_logs/2026-05-04/`** :
+
+| Fichier | Taille | Contenu |
+|---------|--------|---------|
+| `raw_logbook_2026-05-04.json` | 752.5 KB | 5140 entrées 24h (fusion de 11 pages MCP, plafond 500/appel) |
+| `raw_system_errors_2026-05-04.json` | 8.9 KB | 8 erreurs distinctes + 6 warnings distincts |
+| `consolide_2026-05-04.md` | 8.6 KB | Synthèse 6 sections |
+
+**Faits saillants** :
+- Aucun ban IP (recherches `banned` + `invalid authentication` à vide).
+- 1 restart HA Core détecté ~**2026-05-03 19:34 Paris** — compteurs `system_log` reset à ce moment.
+- Top 3 erreurs : Frigate API 292 (add-on injoignable), Moonraker websocket 281 (T#90), HomeKit port 2096 already in use (boot, critique).
+- Top warning : 877 occurrences "150 device limit" HomeKit — filter option à envisager.
+- 73.6% des events logbook = capteurs de mouvement Chambre/Cuisine (1656 events chacun pour `chambre_cell_motion_detection` + `chambre_motion_alarm`).
+
+JSON validés, helpers `_tmp_*` + `_merge.py` nettoyés. Archive overwrite confirmée (le dossier `2026-05-04` existait déjà mais n'avait que 2 lignes — pas d'archive antérieure du jour à écraser).
+--- FIN execution skill (exit code 0) --- 

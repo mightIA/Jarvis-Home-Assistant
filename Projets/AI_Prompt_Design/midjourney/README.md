@@ -63,6 +63,35 @@
   forcément ton choix)
 - ⚠️ Trop de mots = dilution → viser 30-60 mots utiles
 
+## Web App vs Discord (état 2026)
+
+| Feature | Web App `alpha.midjourney.com` | Discord bot |
+|---|---|---|
+| Génération de base | ✅ | ✅ |
+| Upscale 4K | ✅ | 🟡 (via /upscale) |
+| Vary Region (inpainting) | ✅ | ✅ |
+| Pan / Zoom out | ✅ | ✅ |
+| **Moodboards** | ✅ | ❌ |
+| **Personalization V2** | ✅ | 🟡 (lecture seule) |
+| **Style Creator** | ✅ | ❌ |
+| **Editor (canvas multi-image)** | ✅ | ❌ |
+| **Profiles (multi-personas)** | ✅ | ❌ |
+| Conversational Mode | ✅ | ❌ |
+
+→ **Recommandation Mickael** : tout faire en web app sauf workflow legacy.
+Voir détail features V7 dans [parameters_reference.md](parameters_reference.md).
+
+## V8 / V8.1 — choix volontaire V7 dans ce projet
+
+Selon la roadmap MJ, **V8** (puis **V8.1**) doivent améliorer :
+- **Texte rendu fiable** (rattrapage Ideogram pour la typo prod)
+- Cohérence personnages multi-poses encore meilleure
+- Vidéo native MJ (en concurrence avec Veo 3.1 et Runway)
+
+**Choix de ce projet (S91, 03/05/2026)** : rester sur **V7** par défaut
+tant que V8 n'est pas stabilisé. V8 sera intégré dans le projet quand
+sortie + 2-3 mois de retours communauté.
+
 ## Liens projet
 
 - Template prompt : [prompt_template.md](prompt_template.md)

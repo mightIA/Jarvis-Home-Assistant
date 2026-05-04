@@ -28,7 +28,7 @@ Mickael, pas par `mcp__workspace__bash`.
    `.gitkeep`) via Write tool — OK, pas dans `.git/`.
 2. **Donner à Mickael un bloc PowerShell autonome** :
    ```powershell
-   cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+   cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
    git init -b main
    git config user.name "Mickael"
    git config user.email "might57290@gmail.com"

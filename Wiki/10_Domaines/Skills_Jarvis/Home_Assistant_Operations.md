@@ -1,7 +1,8 @@
 ---
 title: Skills Home Assistant — Opérations
 created: 2026-04-27
-tags: [skill, home-assistant]
+updated: 2026-04-28
+tags: [atome, skill, home-assistant]
 status: actif
 domaine: Skills_Jarvis
 ---
@@ -19,7 +20,7 @@ Catégorie regroupant les 11 skills qui touchent à Home Assistant (statut, scri
   - MCP `ha-mcp` (add-on `homeassistant-ai/ha-mcp` exposé via `https://mcp.might.ovh/<secret_path>`)
   - OAuth 2.0 DCR
 - **Détail exécutable** : `.claude/skills/ha-status/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Reseau_Securite/_Index]], [[Wiki/10_Domaines/Hardware/_Index]]
+- **Liens vault** : [[10_Domaines/Reseau/_Index|Réseau & Sécurité]], [[10_Domaines/Hardware/_Index|Hardware]]
 
 ### `ha-scripts`
 
@@ -47,7 +48,7 @@ Catégorie regroupant les 11 skills qui touchent à Home Assistant (statut, scri
   - Protocole ONVIF / app DMSS
   - Stockage `/media/cameras/`
 - **Détail exécutable** : `.claude/skills/cameras-dahua/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Hardware/_Index]]
+- **Liens vault** : [[10_Domaines/Hardware/_Index|Hardware]]
 
 ### `dyson-purifier`
 
@@ -68,7 +69,7 @@ Catégorie regroupant les 11 skills qui touchent à Home Assistant (statut, scri
   - Fichier `ip_bans.yaml` (non sensible, exception à la Règle 0)
   - Voir `Ressources/Protocoles/IP_Bans.md`
 - **Détail exécutable** : `.claude/skills/debannissement-ip/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Reseau_Securite/_Index]], [[Wiki/10_Domaines/Procedures_Rares/_Index]]
+- **Liens vault** : [[10_Domaines/Reseau/_Index|Réseau & Sécurité]], [[10_Domaines/Procedures/_Index|Procédures]]
 
 ### `browser-mod`
 
@@ -133,8 +134,8 @@ Lors de toute modif HA, fournir l'URL cliquable (local `http://192.168.1.11:2096
 ## Voir aussi
 
 - [[_Index]] — MOC Skills Jarvis
-- [[Wiki/10_Domaines/Reseau_Securite/_Index]] — domaine Réseau & Sécurité
-- [[Wiki/10_Domaines/Hardware/_Index]] — domaine Hardware
-- [[Wiki/10_Domaines/Procedures_Rares/_Index]] — procédures rares (debans, secrets)
+- [[10_Domaines/Reseau/_Index|Réseau & Sécurité]] — domaine Réseau & Sécurité
+- [[10_Domaines/Hardware/_Index|Hardware]] — domaine Hardware
+- [[10_Domaines/Procedures/_Index|Procédures]] — procédures (rotation secret_path, débans, etc.)
 - `Ressources/Competences/Home_Assistant.md` — référence HA complète
-- `Ressources/Competences/Home_Assistant_Inventaire.md` — inventaire add-ons / intégrations
+- `Ressources/Competences/Home_Assistant_Inven

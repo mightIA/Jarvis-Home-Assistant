@@ -1,7 +1,8 @@
 ---
 title: Landscape LLM 2026
 created: 2026-04-27
-tags: [veille, llm, marche, landscape]
+updated: 2026-04-27
+tags: [atome, veille, llm, marche, landscape]
 status: actif
 ---
 

@@ -1,6 +1,7 @@
 ---
 title: ADR rejected — convention
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, convention]
 ---
 

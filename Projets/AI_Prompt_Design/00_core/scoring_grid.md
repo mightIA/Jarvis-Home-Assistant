@@ -74,7 +74,7 @@ Grille objective pour scorer une image générée par rapport au brief.
 
 ---
 
-## Total et seuils de décision
+## Total et seuils de décision (image)
 
 | Total /50 | Décision Jarvis |
 |-----------|-----------------|
@@ -87,35 +87,32 @@ Grille objective pour scorer une image générée par rapport au brief.
 
 ---
 
-## Format de scoring dans la réponse Jarvis
+## Extension vidéo — 3 critères additionnels (S90 — patch P2-9)
 
-```markdown
-**Score**
-| Critère | Score | Note |
-|---------|-------|------|
-| Fidélité prompt | 8/10 | "il manque le drapeau au sommet" |
-| Style | 9/10 | "réaliste cinématographique parfait" |
-| Composition | 7/10 | "phare un peu trop centré" |
-| Technique | 8/10 | "très net mais une petite irrégularité de la corniche" |
-| Mood | 9/10 | "ambiance orageuse parfaite" |
-| **Total** | **41/50** | **Très bon, 1 tour de polish ?** |
-```
+> Détail complet dans `00_core/dimensions_video.md`. Résumé scoring ici :
 
----
+### 6. Duration (/5)
 
-## Pondération possible (à activer si Mickael demande)
+| Score | Description |
+|---|---|
+| 5 | Durée optimale pour l'action (ni trop courte ni trop longue) |
+| 4 | Durée acceptable, légère perte de cohérence |
+| 3 | Durée mal calibrée (sujet morphing en fin de clip) |
+| 1-2 | Durée incompatible avec l'action prévue |
 
-Par défaut tous les critères pèsent égal. Si pour une image donnée
-Mickael indique sa priorité, Jarvis peut pondérer :
+### 7. Camera Movement (/5)
 
-```
-Total pondéré = 0.4 × Fidélité + 0.2 × Style + 0.15 × Composition
-              + 0.15 × Technique + 0.1 × Mood
-```
+| Score | Description |
+|---|---|
+| 5 | Mouvement caméra exactement comme prompté, fluide |
+| 4 | Mouvement présent mais légèrement décalé (vitesse, axe) |
+| 3 | Mouvement ambigu, modèle a interprété autrement |
+| 1-2 | Mouvement absent ou totalement différent du prompt |
 
-Utile par exemple pour un brief "peu importe le style mais le sujet doit
-être exactement ça" → on monte à 0.5 sur Fidélité.
+### 8. Audio (/5) — Veo 3.1, Sora 2 uniquement
 
----
-
-*Version 1.0 — 2026-04-26*
+| Score | Description |
+|---|---|
+| 5 | Dialogue lip-sync parfait + SFX synchros + ambient cohérent |
+| 4 | Audio bon mais 1 décalage mineur |
+| 3 | Dialogue in

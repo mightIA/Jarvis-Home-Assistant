@@ -11,8 +11,10 @@ type: reference
 ## Chemin
 
 ```
-D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Wiki\
+D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Wiki\
 ```
+
+> Note S80 (30/04/2026) : chemin migré du path obsolète `D:\Might\IA\...` (posé en S41) vers le path actuel ci-dessus. Patch global appliqué S80 sur 25 fichiers (skills CLI + Wiki + memory active + Ressources). `.mcp.json` patché à la main par Mickael (hook `check-secrets.sh` bloque l'édition automatique des fichiers sensibles).
 
 Versionné avec le projet Jarvis (décision D1-S41). Ouvert dans Obsidian
 via "Ouvrir un dossier comme coffre" — **NE PAS** ouvrir le projet
@@ -39,12 +41,4 @@ racine (indexerait 1000+ fichiers).
 
 ## Conventions
 
-- Nommage `snake_case` ou `PascalCase`, pas d'espaces ni accents (compat WSL2 + Hermès).
-- Dates ISO `YYYY-MM-DD`.
-- Tags hiérarchiques `#domaine/sous-domaine`.
-- Frontmatter YAML systématique (`title`, `created`, `tags`, `status`).
-- Une idée = une note, liens `[[wikilinks]]`.
-
-## Doc complète
-
-`Ressources/Competences/Obsidian.md` (8 sections, 185 lignes).
+- Nommage `snake_case` ou 

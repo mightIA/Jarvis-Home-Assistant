@@ -1,8 +1,9 @@
 ---
 title: Contacts professionnels
 created: 2026-04-27
-tags: [vie-perso, pro, contacts, coquille]
-status: coquille
+updated: 2026-04-27
+tags: [atome, vie-perso, pro, contacts, coquille]
+status: stub
 domaine: ViePerso
 remplissage_attendu: Mickael
 parent: "[[10_Domaines/ViePerso/_Index]]"

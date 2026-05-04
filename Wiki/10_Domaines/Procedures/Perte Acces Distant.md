@@ -1,6 +1,7 @@
 ---
 title: Perte Acces Distant
 created: 2026-04-27
+updated: 2026-04-27
 tags: [procedure, reseau, ha, cloudflare]
 status: actif
 domaine: Procedures

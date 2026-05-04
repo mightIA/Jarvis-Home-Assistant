@@ -1,6 +1,6 @@
 ---
 name: tri-email-gmail
-description: Tri quotidien et à la demande des emails de la boîte Gmail might57290@gmail.com. Utilise le serveur MCP Gmail custom local (GongRzhe/Gmail-MCP-Server, outils mcp__gmail-mcp-local__*) pour toutes les actions CRUD + labels + filtres. Envoi du rapport journalier via service Home Assistant notify.might57290_gmail_com (scope gmail.send absent). Implémente l'auto-apprentissage via whitelist / blacklist / learning_log JSON et les scores de confiance 0-100.
+description: Tri quotidien et à la demande des emails de la boîte Gmail might57290@gmail.com. Utilise le serveur MCP Gmail custom local (GongRzhe/Gmail-MCP-Server, outils mcp__gmail-mcp-local__*) pour toutes les actions CRUD + labels + filtres. Envoi du rapport journalier via service Home Assistant notify.might57290_gmail_com (scope gmail.send absent). Annonce vocale Piper en fin de tri via script.jarvis_voice (S85, T#89). Implémente l'auto-apprentissage via whitelist / blacklist / learning_log JSON et les scores de confiance 0-100.
 ---
 
 # Skill : Tri email Gmail
@@ -29,7 +29,7 @@ Conséquences pratiques :
 
 - Toute action Gmail write (modify_email, batch_*, delete_*) se lance
   depuis `claude` CLI, dans le dossier projet
-  `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`.
+  `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`.
 - Si je suis en Cowork quand Mickael demande un tri : pattern
   **brain(Cowork) + hands(CLI)** obligatoire (S19). Je prépare le plan
   + la query dans Cowork, Mickael lance `claude` CLI pour exécuter.
@@ -72,6 +72,12 @@ Tous préfixés `mcp__gmail-mcp-local__` :
 | `create_filter` | Créer le filtre auto-archivage des rapports |
 | `download_attachment` | Sauvegarde PDF avant suppression si besoin |
 
+Côté Home Assistant (MCP `home-assistant`) :
+
+| Outil | Usage |
+|---|---|
+| `ha_call_service` | **Restreint à `notify.might57290_gmail_com` (étape 5, rapport mail) et `script.jarvis_voice` (étape 9bis, annonce vocale fin de tri S85 T#89) pour cette skill** |
+
 **Outils interdits dans cette skill** (via `settings.local.json` deny) :
 `delete_email` (hard delete), `delete_label`, `delete_filter`.
 
@@ -79,7 +85,7 @@ Tous préfixés `mcp__gmail-mcp-local__` :
 `gmail.send` absent côté OAuth GCP). Tout envoi passe par le service HA
 `notify.might57290_gmail_com` via `mcp__home-assistant__ha_call_service`.
 
-## Workflow en 9 étapes
+## Workflow en 9 étapes (+ 9bis annonce vocale S85)
 
 1. **Scanner** l'inbox via `search_emails` avec query
    `in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri`. L'exclusion
@@ -126,6 +132,35 @@ Tous préfixés `mcp__gmail-mcp-local__` :
    supprimés) + écriture du log dans
    `memory/historique_tri_gmail/run_{timestamp}.json`.
 
+### Étape 9bis — Annonce vocale via `script.jarvis_voice` (S85, T#89)
+
+Après l'étape 9 (confirmation finale + log écrit), si le tri a eu lieu (au
+moins 1 mail traité) **et** qu'on est en mode automatique (run cron 5h ou
+14h), annoncer la complétion :
+
+```
+ha_call_service(
+  domain="script",
+  service="jarvis_voice",
+  data={
+    "message": "<formule de salutation selon heure> Mickael, le tri Gmail est terminé. <N> mails traités, <P> prioritaires en boîte de réception.",
+    "title": "Tri Gmail"
+  }
+)
+```
+
+**Formule de salutation** :
+- Run 5h (matin) → `"Bonjour Mickael, ..."`
+- Run 14h (après-midi) → `"Bonjour Mickael, le tri de l'après-midi est terminé. ..."` (sans répéter "Tri Gmail")
+- Run manuel → pas d'annonce vocale (anti-spam, Mickael l'a lancé lui-même donc il sait)
+
+**Cas RAS (0 mail traité)** : pas d'annonce vocale (anti-spam, on n'annonce que les sessions productives).
+
+**Comportement HA-side** (rappel) :
+- Push iPhone systématique (⚠️ T#88 payload vide en attente de fix, fallback acceptable).
+- TTS Piper diffusé sur HomePod salle de bain + Samsung Q80 salon **uniquement si `person.mickael == home`**.
+- Si Mickael distant, seul le push iPhone est envoyé.
+
 ## Scores de confiance
 
 | Score | Action | Dans le rapport ? |
@@ -149,6 +184,9 @@ Tous préfixés `mcp__gmail-mcp-local__` :
   répondre.
 - Respecter la limite **50 messageIds par appel `batch_modify_emails`**
   (quota Gmail API 250 units/user/seconde, 5 units/message).
+- **Étape 9bis annonce vocale** : ne déclencher QUE en mode automatique
+  (run cron 5h/14h) ET si au moins 1 mail traité. Anti-spam vocal pour
+  les runs manuels Mickael.
 
 ## Limitations connues
 
@@ -172,3 +210,12 @@ Tous préfixés `mcp__gmail-mcp-local__` :
 - `Ressources/Protocoles/Gmail.md` — protocole complet (v3.0 — 22 avril 2026)
 - `Ressources/Competences/Gmail_MCP_Custom.md` — référence technique
   du serveur MCP (19 outils, OAuth, réinstall, diagnostic)
+
+## Évolution S85 (T#89) — annonce vocale Piper
+
+Ajout de l'étape 9bis (annonce vocale via `script.jarvis_voice`) :
+- Tri Gmail automatique (5h/14h) doublé d'une annonce vocale TTS Piper.
+- Run manuel : pas d'annonce (anti-spam vocal).
+- Cas RAS (0 mail traité) : pas d'annonce.
+- Diffusion HomePod + TV salon si Mickael home, push iPhone seul sinon (T#88 payload vide).
+- Architecture : MCP direct (`mcp__home-assistant__ha_call_service` sur `script.jarvis_voice`).

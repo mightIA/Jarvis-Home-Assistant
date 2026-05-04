@@ -1,8 +1,9 @@
 ---
 title: Rédaction email
 created: 2026-04-25
-tags: [email, email/redaction, domaine/email]
-status: actif-en-refonte
+updated: 2026-04-28
+tags: [atome, email, email/redaction, domaine/email]
+status: wip
 parent: "[[_Index]]"
 source_skill: .claude/skills/redaction-email/SKILL.md
 ---
@@ -97,8 +98,5 @@ Décision attendue lors de la session #46.
 - Référence longue : `Ressources/Competences/Gestion_Emails.md` section 5
 - MCP Gmail : [[Gmail MCP custom]]
 - Service envoi : [[Envoi via Home Assistant]]
-- Tâche refonte : `TASKS.md` #46
-
----
-
-*Atome créé S44. Skill marquée `status: actif-en-refonte` jusqu'à #46.*
+- Macros clavier (raccourcis composition) : [[10_Domaines/ViePerso/Macros clavier|Macros clavier]]
+- Tâche refonte 

@@ -3,7 +3,7 @@ id: 95
 title: "Proxy local HA-MCP injection headers Service Token CF Access (post-Proxmox)"
 status: open
 priority: P3
-session_opened: S107
+session_opened: S103
 tags: [ha-mcp, cowork, cloudflare, service-token, proxy, hardware-upgrade]
 source: "Session 04/05/2026 — bascule à faire après migration Proxmox + PC domotique (BoM v4 S101)"
 ---
@@ -18,7 +18,7 @@ Suite à la migration Service Token CF Access (T#60 résolue S102), le connecteu
 - Côté Cowork desktop : **l'UI ne supporte pas l'injection de headers HTTP custom** pour les connecteurs MCP. Le formulaire d'ajout propose bien des champs ID/Secret quand l'URL contient `/private_<secret>` mais les utilise pour un **flow OAuth standard** (`"auth": "oauth"` dans la résolution interne), pas comme headers `CF-Access-Client-Id`/`CF-Access-Client-Secret`. → 403 Forbidden CF Access lors du clic "Connecter"
 - La config interne des connecteurs Cowork desktop est stockée en **base binaire LevelDB Chromium** (`%APPDATA%\Claude\Local Storage\leveldb\` + `IndexedDB\`), pas dans un JSON éditable. Modification directe = risque corruption Cowork.
 
-## Choix conservation Service Token (S104, refus régression sécu)
+## Choix conservation Service Token (S103, refus régression sécu)
 
 3 options évaluées en session courante :
 
@@ -41,7 +41,7 @@ Côté Cowork : le connecteur "Jarvis HA" pointe sur `http://localhost:9999/priv
 
 ## Pourquoi reporté post-Proxmox / PC domotique
 
-Mickael décision S104 : pas de nouveau composant runtime sur le PC actuel (already running Gmail-MCP-Server, Hermès, Ollama, Brave + Cowork + Claude Code). Le proxy s'installera proprement sur :
+Mickael décision S103 : pas de nouveau composant runtime sur le PC actuel (already running Gmail-MCP-Server, Hermès, Ollama, Brave + Cowork + Claude Code). Le proxy s'installera proprement sur :
 - soit le PC domotique dédié à venir
 - soit en VM Proxmox dédiée (cohérent avec project_hardware_upgrade_bom_v4_s101.md)
 
@@ -64,7 +64,7 @@ Acceptable transitoire : pas de HA dans Cowork pour l'instant. Mickael consulte 
 
 ## Liens
 
-- Source du blocage : memory/feedback_cowork_no_custom_http_headers_mcp.md (auto-memory créée S107)
+- Source du blocage : memory/feedback_cowork_no_custom_http_headers_mcp.md (auto-memory créée S103)
 - Tâche source : [T#60](archive_2026-Q2/task_060.md) → résolution S102
 - Tâche connexe : [T#94](task_094.md) — path cleanup + Niveau 2a/2b
 - Hardware : [BoM v4 S101](../memory/project_hardware_upgrade_bom_v4_s101.md)

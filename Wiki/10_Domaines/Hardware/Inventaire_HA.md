@@ -1,11 +1,12 @@
 ---
 title: Inventaire HA — pointeur synthèse
 created: 2026-04-27
+updated: 2026-04-27
 migrated_from: Ressources/Competences/Home_Assistant_Inventaire.md (pointeur, pas copie)
 type: atome
 domaine: Hardware
 maintenance: vivant (mise à jour récurrente côté Ressources)
-tags: [hardware, ha, inventaire, pointeur]
+tags: [atome, hardware, ha, inventaire, pointeur]
 ---
 
 # Inventaire HA — synthèse pointeur
@@ -32,7 +33,7 @@ Cet atome est un **pointeur** vers la fiche d'inventaire Home Assistant complèt
 📍 **Fichier de référence à maintenir à jour** :
 
 ```
-D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Ressources\Competences\Home_Assistant_Inventaire.md
+D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Ressources\Competences\Home_Assistant_Inventaire.md
 ```
 
 Couvre :

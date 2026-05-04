@@ -1,7 +1,99 @@
 {
   "_description": "Journal d'apprentissage - trace chaque action de tri pour ameliorer les patterns",
-  "_updated": "2026-04-27_140002",
+  "_updated": "2026-05-03_050002",
   "sessions": [
+    {
+      "date": "2026-05-04_140002",
+      "mode": "headless CLI - run quotidien automatise (Task Scheduler 14h00)",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 20,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "label_ia_suppression_appliques": 8,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 12
+      },
+      "details_actions_summary": "0 TRASH auto (aucun score >=90). 8 IA suppression : welcome@openrouter.ai x7 + notifications@openrouter.ai x1 (score 80, blacklist *@openrouter.ai S99). 12 KEEP : Microsoft OTP x1, GitHub x6 securite/2FA, receipts@openrouter.ai x1 (exception blacklist), Mistral x3 (facture+subscription+welcome), Google alerte securite x1 (whitelist). Detail : memory/historique_tri_gmail/run_2026-05-04_140002.json",
+      "nouveaux_patterns_proposes": [
+        "noreply@github.com -> whitelist securite/2FA confirmee (recurrence multi-sessions) - en attente validation Mickael",
+        "*@accountprotection.microsoft.com -> whitelist OTP Microsoft (recurrence 5h+14h) - en attente validation Mickael"
+      ],
+      "erreurs_signalees": [
+        "Etape 5 BLOQUEE : HA MCP non charge dans ce run headless (CF Access env vars probablement absentes du contexte Task Scheduler). Rapport email non envoye. Action Mickael : verifier vars CF_ACCESS_* en 'System' dans Variables d'environnement Windows."
+      ],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": null,
+      "rapport_envoi_status": "BLOQUE_HA_MCP_UNAVAILABLE"
+    },
+    {
+      "date": "2026-05-04_001513",
+      "mode": "headless CLI - run quotidien automatise (Task Scheduler 05h00)",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri",
+      "inbox_count": 22,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 2,
+        "label_ia_suppression_appliques": 7,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 13
+      },
+      "details_actions_summary": "2 TRASH auto : Claude Team 'Your guide to Claude Code on mobile' (score 100) + HelloWatt promo (score 90). 7 IA suppression : welcome@openrouter.ai serie onboarding (score ~75). 13 KEEP : GitHub x5 securite/2FA, OpenRouter receipts/notif x2, Mistral x3, Microsoft OTP x1, Google whitelist x1. Detail complet : memory/historique_tri_gmail/run_2026-05-04_001513.json",
+      "nouveaux_patterns_proposes": [
+        "welcome@openrouter.ai -> blacklist newsletter_onboarding confiance 80 (7 emails ce run, serie continue depuis S55) - en attente validation Mickael",
+        "*@accountprotection.microsoft.com -> whitelist OTP Microsoft securite auth (3e run consecutif) - en attente validation Mickael",
+        "noreply@github.com -> whitelist securite/2FA/OAuth (recurrence multi-sessions confirmee) - en attente validation Mickael"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "notify.might57290_gmail_com",
+        "title": "[Jarvis] Rapport tri emails - 2026-05-04_001513",
+        "status": "OK"
+      }
+    },
+    {
+      "date": "2026-05-03_050002",
+      "mode": "headless CLI - run quotidien automatise (Task Scheduler 05h00)",
+      "query_scan": "in:inbox -label:Jarvis-Alert -label:Jarvis-RapportTri newer_than:1d",
+      "inbox_count": 1,
+      "spam_count": 0,
+      "actions": {
+        "spam_vides": 0,
+        "supprimes_auto": 0,
+        "supprimes_validation": 0,
+        "archives": 0,
+        "gardes": 1
+      },
+      "details_actions": [
+        {
+          "messageId": "19dee122711fbce3",
+          "from": "account-security-noreply@accountprotection.microsoft.com",
+          "subject": "Votre code a usage unique",
+          "category_gmail": "non lue",
+          "match_pattern": "aucun",
+          "score_brut": null,
+          "ponderation": 0,
+          "score_final": null,
+          "action": "KEEP",
+          "commentaire": "Code OTP Microsoft 093008 - email transactionnel securite/2FA. Candidat WHITELIST permanent (profil similaire a noreply@github.com)."
+        }
+      ],
+      "nouveaux_patterns_proposes": [
+        "whitelist proposee : *@accountprotection.microsoft.com (raison: codes OTP Microsoft 365 / Outlook, categorie securite/auth) - en attente validation Mickael"
+      ],
+      "erreurs_signalees": [],
+      "feedback_mickael": "mode non-interactif headless - pas de validation requise",
+      "rapport_envoye": {
+        "service": "draft Gmail (create_draft)",
+        "title": "[Jarvis] Rapport tri emails - 2026-05-03",
+        "draft_id": "r6282724506044881062"
+      }
+    },
     {
       "date": "2026-04-27_140002",
       "mode": "headless non-interactif (Task Scheduler 14h)",
@@ -400,9 +492,9 @@
     }
   ],
   "stats_globales": {
-    "total_sessions": 8,
-    "total_emails_traites": 45,
-    "total_erreurs": 1,
-    "taux_satisfaction": "88%"
+    "total_sessions": 11,
+    "total_emails_traites": 88,
+    "total_erreurs": 2,
+    "taux_satisfaction": "89%"
   }
 }

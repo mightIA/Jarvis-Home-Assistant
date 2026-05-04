@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "archive_date": "2026-05-03",
+    "period": "Depuis dernier restart HA Core (T#34 test bout-en-bout)",
+    "note": "Restart HA Core effectué ~11h08 UTC pour appliquer purge_keep_days: 35. Compteurs system_log repartis à zéro à ce moment.",
+    "source": "ha_get_logs source=system",
+    "error_log_status": "ENDPOINT 404 — non disponible dans cette version HA, à retirer de la SKILL ha-logs-archive"
+  },
+  "errors": {
+    "success": true,
+    "source": "system",
+    "level": "ERROR",
+    "total_entries": 6,
+    "entries": [
+      {"name": "moonraker_api.websockets.websocketclient", "message": ["Websocket connection error: Cannot connect to host 192.168.1.81:7125 ssl:default [Connect call failed ('192.168.1.81', 7125)]"], "level": "ERROR", "source": ["runner.py", 289], "timestamp": 1777804476.4096618, "count": 6, "first_occurred": 1777804297.420235},
+      {"name": "custom_components.frigate.api", "message": ["Error fetching information from http://ccab4aaf-frigate-fa:5000/api/stats: Cannot connect to host ccab4aaf-frigate-fa:5000 ssl:False [Connect call failed ('172.30.33.7', 5000)]"], "level": "ERROR", "source": ["custom_components/frigate/api.py", 548], "timestamp": 1777804476.4091084, "count": 6, "first_occurred": 1777804302.904523},
+      {"name": "homeassistant", "message": ["Error doing job: Task exception was never retrieved (task: None)"], "level": "ERROR", "source": ["components/homekit/__init__.py", 892], "timestamp": 1777804310.6916385, "count": 1, "first_occurred": 1777804310.6916385, "exception_brief": "OSError: [Errno 98] error while attempting to bind on address ('0.0.0.0', 2096): [errno 98] address in use"},
+      {"name": "homeassistant.components.homekit.util", "message": ["media_player.decodeur_tv_uhd does not support any media_player features", "media_player.tv_samsung_q80_series_65 does not support any media_player features"], "level": "ERROR", "source": ["components/homekit/util.py", 405], "timestamp": 1777804310.3733363, "count": 6, "first_occurred": 1777804310.1567492},
+      {"name": "pyhap.characteristic", "message": ["TargetHeatingCoolingState: value=0 is an invalid value."], "level": "ERROR", "source": ["components/homekit/type_thermostats.py", 760], "timestamp": 1777804310.3730319, "count": 3, "first_occurred": 1777804310.1564817},
+      {"name": "homeassistant.components.homekit", "message": ["HomeKit Prise mobile 2 Child lock cannot startup: entity not available", "HomeKit Prise fixe PC Chambre Child lock cannot startup", "HomeKit Prise fixe cuisine porte Child lock cannot startup", "HomeKit Prise mobile 1 Child lock cannot startup"], "level": "ERROR", "source": ["components/homekit/__init__.py", 997], "timestamp": 1777804310.0969687, "count": 4, "first_occurred": 1777804310.0728474}
+    ]
+  },
+  "warnings": {
+    "success": true,
+    "source": "system",
+    "level": "WARNING",
+    "total_entries": 5,
+    "entries": [
+      {"name": "custom_components.moonraker", "message": ["Cannot configure moonraker instance"], "level": "WARNING", "source": ["custom_components/moonraker/__init__.py", 187], "timestamp": 1777804476.408535, "count": 6, "first_occurred": 1777804297.414119},
+      {"name": "homeassistant.components.homekit", "message": ["Cannot add sensor.fsc_bp104e_4787_estimated_distance as this would exceed the 150 device limit", "Cannot add sensor.s5f2baf8b434e2caac_c049_estimated_distance", "Cannot add switch.wifi_bridge_1_wan_access_2", "Cannot add sensor.sce86cff88adfeeebc_5efd_estimated_distance", "Cannot add sensor.fsc_bp104e_3ad8_estimated_distance"], "level": "WARNING", "source": ["components/homekit/__init__.py", 779], "timestamp": 1777804310.4261281, "count": 879, "first_occurred": 1777804310.2999022},
+      {"name": "homeassistant.components.homekit", "message": ["The bridge has entity camera.chambre_mediaprofile_channel1_mainstream — create a separate HomeKit instance in accessory mode", "camera.cuisine_profile000", "camera.cuisine_profile001", "camera.cuisine_profile100"], "level": "WARNING", "source": ["components/homekit/__init__.py", 745], "timestamp": 1777804310.4116535, "count": 4, "first_occurred": 1777804310.3859136},
+      {"name": "homeassistant.util.logging", "message": ["Module homeassistant.components.homekit is logging too frequently. 200 messages since last count"], "level": "WARNING", "source": ["util/logging.py", 74], "timestamp": 1777804310.3948927, "count": 1, "first_occurred": 1777804310.3948927},
+      {"name": "custom_components.hacs", "message": ["You have 'custom-cards/bar-card' installed with HACS — this repository has been removed (no longer maintained)", "You have 'nervetattoo/simple-thermostat' installed with HACS — this repository has been abandoned"], "level": "WARNING", "source": ["custom_components/hacs/base.py", 972], "timestamp": 1777804309.4442072, "count": 2, "first_occurred": 1777804309.4438772}
+    ]
+  }
+}

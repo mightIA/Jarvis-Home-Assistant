@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Cuisine
 created: 2026-04-27
-tags: [inventaire, cuisine]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, cuisine]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

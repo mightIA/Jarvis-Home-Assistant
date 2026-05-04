@@ -1,7 +1,8 @@
 ---
 title: HA — Intégrations configurées
 created: 2026-04-25
-tags: [ha/integrations, ha/inventaire]
+updated: 2026-04-25
+tags: [atome, ha/integrations, ha/inventaire]
 status: actif
 ---
 

@@ -42,39 +42,22 @@ Projets/AI_Prompt_Design/
 │   ├── error_patterns.md         ← erreurs fréquentes + correctifs
 │   └── scoring_grid.md           ← grille notation /50
 ├── midjourney/                   ← spécifique MJ V7
-├── dall-e/                       ← spécifique DALL·E 3 / gpt-image-1
-└── stable-diffusion/             ← spécifique SD 1.5 / SDXL / SD3 / Flux
+├── dall-e_gpt-image/             ← spécifique DALL·E 3 / gpt-image-1 / 1.5 / 2
+├── stable-diffusion/             ← spécifique SD 1.5 / SDXL / SD3 / Flux
+│
+│   ─── BRANCHE VIDÉO (depuis S90, 03/05/2026) ───
+│
+├── _video_common/                ← référence transverse vidéo
+│   ├── camera_vocabulary_global.md
+│   ├── temporal_cues.md
+│   └── image_to_video_workflow.md
+├── runway/                       ← Runway Gen-4 / Aleph / Act-Two (4K, édition vidéo)
+├── pika/                         ← Pika 2.x (Scene Ingredients, Pikaffects)
+├── kling/                        ← Kling 2.1 / Master (physique réaliste, Motion Brush)
+├── luma/                         ← Luma Ray2 / Flash (Keyframes start+end, Camera Concepts)
+├── sora/                         ← Sora 2 ⚠️ déprécié 24/09/2026
+├── veo3/                         ← Veo 3.1 (audio natif, prompt structuré)
+└── hailuo/                       ← Hailuo 02 (rapport qualité/prix)
 ```
 
-Chaque dossier IA contient : `README.md`, `prompt_template.md`,
-`parameters_reference.md`, `style_library.md`, `iterations_log.md`
-(+ `negative_prompt_baseline.md` pour SD).
-
----
-
-## Statut
-
-| Phase | État | Date |
-|-------|------|------|
-| Structure projet créée | ✅ | 2026-04-26 |
-| Fichiers core remplis | ✅ | 2026-04-26 |
-| Dossiers IA initialisés | ✅ | 2026-04-26 |
-| Premier cycle itératif | ⏳ | À lancer |
-| 10 itérations cumulées | ⏳ | — |
-| Templates stabilisés | ⏳ | — |
-
----
-
-## Pour démarrer une session
-
-Mickael : *"Jarvis, on continue AI Prompt Design. Décris-moi : <description image>"*
-
-Jarvis : lit `01_PROJECT_TECHNICAL.md` + `00_core/style_preferences.md` +
-`00_core/lessons_learned.md` + le `prompt_template.md` de l'IA cible →
-génère le prompt optimisé.
-
-Voir `PROTOCOLE.md` pour le détail du cycle complet.
-
----
-
-*Créé en session 60 — 26 avril 2026 — par Jarvis avec Mickael.*
+Chaque dossier IA **image** contien

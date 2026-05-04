@@ -1,7 +1,7 @@
 ---
 title: Outils & productivité — Hub
 created: 2026-04-25
-updated: 2026-04-25
+updated: 2026-05-02
 tags: [moc, hub, outils]
 parent: "[[00_Index/_Index]]"
 status: actif
@@ -12,7 +12,7 @@ status: actif
 Hub central des skills techniques transverses Jarvis qui ne sont pas
 spécifiques à la domotique, à l'email, à la traduction ou à la vie perso.
 Couvre la **mécanique du travail** : navigation HA, environnement Claude
-Code, bascule de session, guidage par photos.
+Code, debannissement IP.
 
 > **Règle 0 — Données sensibles** : avant tout accès à un mot de passe,
 > token, ou donnée perçue comme sensible (session Windows, HA, sites web,
@@ -26,25 +26,12 @@ Code, bascule de session, guidage par photos.
 - `[[Debannissement IP]]` — 3 méthodes (SSH local, File editor distant, MCP fallback)
 - `[[Install Claude Code]]` — env dev Windows complet (Node + Git + CC + Python)
 - `[[HA MCP add-on]]` — install homeassistant-ai/ha-mcp + expo CF Tunnel
-- `[[Bascule conversation]]` — transfert d'état urgence limite contexte
-- `[[Guidage photo etape]]` — mode pas-à-pas par captures avec anticipation limite
 
-## Chaînage entre skills
-
-Les skills transverses s'enchaînent souvent dans un même flux :
-
-```
-[procedure longue Cloudflare/HA/Reseau]
-        |
-        v
-[[Guidage photo etape]]   (réponses 2-3 lignes + comptage captures)
-        |
-        v  (à LIMITE - 1)
-[[Bascule conversation]]  (resume reprise + MAJ TASKS/METRIQUES/historique)
-        |
-        v  (si fin de travail)
-session-closure (skill, hors vault)
-```
+> **Note S84 (2026-05-02)** : les atomes `[[Bascule conversation]]` et
+> `[[Guidage photo etape]]` ont été retirés suite à la suppression des skills
+> `bascule-conversation` et `guidage-photo-etape` (T#24 cancelled —
+> obsolètes depuis mode PC permanent S24). Le mode pas-à-pas reste régi par
+> la **règle pas-à-pas** (CLAUDE.md §4, S53).
 
 ## Skills NON migrées dans ce hub
 
@@ -88,4 +75,4 @@ déjà couvertes dans `[[10_Domaines/HomeAssistant/_Index]]` :
 ## Tags
 
 `#outils/browser-mod` `#outils/debannissement` `#outils/claude-code`
-`#outils/ha-mcp` `#outils/bascule` `#outils/guidage-photo`
+`#outils/ha-mcp`

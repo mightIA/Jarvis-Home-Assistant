@@ -1,6 +1,6 @@
 ---
 name: ha-status
-description: Recuperer le statut des appareils Home Assistant (lumieres, thermostat, cameras, prises, capteurs). Utilise le MCP Server natif HA via OAuth. Repond a des questions du type "donne-moi le statut de X", "qu'est-ce qui est allume", "temperature actuelle", "presence dans la maison".
+description: Recuperer le statut des entites Home Assistant. DECLENCHEURS : 'donne le statut de X', 'qu'est-ce qui est allume ?', 'temperature actuelle', 'humidite chambre', 'qui est a la maison ?', 'presence Mickael', 'la lumiere Y est-elle ON ?', 'capteur de mouvement', 'etat porte/fenetre', 'overview HA'. Lecture seule via MCP HA (`ha_get_state`, `ha_get_overview`, `ha_search_entities`) avec fallback REST 192.168.1.11:2096 puis ha.might.ovh. Couvre lumieres, climat, cameras, presence, capteurs Dyson.
 ---
 
 # Skill : Statut Home Assistant
@@ -70,6 +70,29 @@ approprie (`light.turn_on`, `climate.set_temperature`, `script.<nom>`).
   la skill `debannissement-ip`.
 - Jamais executer un script qui n'est pas dans la liste connue (voir
   skill `ha-scripts` ou `Ressources/Competences/Home_Assistant.md`).
+
+
+## Exemples d'invocation utilisateur
+
+- « La lumiere de la chambre est allumee ? » → `ha_get_state` entity_id=light.ampoule_chambre.
+- « Quelle temperature dans le salon ? » → `ha_get_state` entity_id=sensor.maison_temperature_zone_1_2.
+- « Qui est a la maison ? » → `ha_get_state` entity_id=person.mickael (+ device_tracker associes).
+- « Donne moi un overview » → `ha_get_overview` detail_level=minimal.
+- « Toutes les ampoules allumees » → `ha_search_entities` domain=light state=on.
+
+## Quand NE PAS utiliser
+
+- Pour MODIFIER un etat (allumer/eteindre) → utiliser `ha-scripts` ou directement `ha_call_service`.
+- Pour les entites NON HA (capteur externe non integre, app tierce) — pas dans le perimetre.
+- Pour les logs / historique long terme — utiliser `ha_get_history` (skill `home-assistant-manager`).
+- Pour le diagnostic d'un ban IP — basculer sur skill `debannissement-ip` apres 2-3 erreurs 401/403.
+
+## Pieges connus
+
+- **Suffixe `_2`** sur les entites Frisquet (climate.maison_zone_1_2, water_heater.chauffe_eau_maison_2, sensor.maison_temperature_zone_1_2, sensor.maison_alerte_2). Eviter les anciennes versions sans `_2` — orphelines.
+- **MCP HA peut renvoyer 144 entites `unavailable`** sur `sensor` (vu en S75). C'est normal sur l'install Mickael, ne pas alerter sauf si entite SPECIFIQUE attendue.
+- **Limite contexte** : `ha_get_overview` detail_level=full peut renvoyer >1000 entites. Toujours commencer en `minimal` avec `limit:5-20`.
+- **Fallback REST** = dernier recours. Si le MCP HA echoue 2 fois, NE PAS retomber automatiquement sur REST sans verifier d'abord ban IP.
 
 ## Reference longue
 

@@ -1,0 +1,269 @@
+---
+name: ha-logs-archive
+description: Archive les logs Home Assistant (error_log brut + system structuré + logbook) dans `Archives/ha_logs/AAAA-MM/` avec consolidation `.md` lisible (top erreurs, bans IP, reboots, extraits stack traces). DECLENCHEURS : "archive les logs HA", "sauvegarde les logs HA avant formatage", "ha-logs-archive", déclenchement automatique mensuel via scheduled task Windows. Outil principal : MCP `ha_get_logs` (4 sources : error_log/system/logbook/supervisor). Rotation annuelle vers `Archives/ha_logs_AAAA.zip` au 1er janvier (règle CLAUDE.md §9). Logs jamais commit Git (`.gitignore Archives/*`).
+---
+
+# Skill — Archive des logs Home Assistant
+
+## Quand cette skill est déclenchée
+
+- **Manuel — avant un formatage / migration / restauration risquée**
+  Mickael dit : *"archive les logs HA"*, *"sauvegarde les logs HA avant
+  formatage"*, *"ha-logs-archive"*, *"backup logs Home Assistant"*.
+- **Automatique — mensuel** via scheduled task Windows (le 1er du mois à
+  02h00) qui invoque `claude-code` + cette skill pour archiver M-1.
+- **Automatique — annuel** au 1er janvier via la même scheduled task : zip
+  des 12 dossiers mensuels de l'année écoulée (helper Python
+  `scripts/rotate_annual.py`).
+
+## Quand NE PAS l'utiliser
+
+- Pour consulter un log ponctuel ("erreur Dyson hier soir") → utiliser
+  directement `ha_get_logs` source=system level=ERROR hours_back=24.
+- Pour debug d'un crash en cours → ouvrir Settings > System > Logs côté
+  HA UI (plus rapide), puis archiver après diagnostic.
+- Si le MCP HA est down → suspendre la skill, déclencher
+  `debannissement-ip` si 401/403 récurrents.
+
+## Architecture des fichiers
+
+```
+Archives/ha_logs/                           ← Racine (gitignored par Archives/*)
+├── 2026-05/                                ← 1 dossier par mois (AAAA-MM)
+│   ├── raw_home-assistant_2026-05.log      ← Source error_log (brut texte)
+│   ├── raw_system_errors_2026-05.json      ← Source system (ERROR + WARNING)
+│   ├── raw_logbook_2026-05.json            ← Source logbook (state changes)
+│   └── consolide_2026-05.md                ← Synthèse lisible humain
+├── 2026-04/
+│   └── ...
+├── ha_logs_2025.zip                        ← Zip annuel (rotation 1er janv.)
+└── README.md                               ← Note conservation/rotation
+```
+
+## Procédure d'exécution (mensuelle)
+
+### 1. Vérifier l'environnement
+
+```bash
+# Bash sandbox Cowork — repérer le mount du projet Jarvis
+COWORK_DIR="$(find /sessions -maxdepth 4 -type d -name 'Jarvis - Home Assistant' 2>/dev/null | head -1)"
+cd "$COWORK_DIR"
+
+# Période à archiver (par défaut = mois précédent)
+YEAR_MONTH="$(date -d 'last month' +%Y-%m)"   # ex 2026-04
+mkdir -p "Archives/ha_logs/${YEAR_MONTH}"
+echo "Archive vers : Archives/ha_logs/${YEAR_MONTH}"
+```
+
+### 2. Tester la connexion MCP HA (pré-flight)
+
+Appel MCP **avant** la grosse récup pour vérifier que ha-mcp répond :
+
+```
+ha_get_logs source=system level=ERROR limit=1
+```
+
+Si erreur → **suspendre**, vérifier ban IP via skill `debannissement-ip`.
+Si 2-3 erreurs 401/403 consécutives → **arrêter** (règle CLAUDE.md §2).
+
+### 3. Récupérer les 3 sources brutes
+
+Chaque source = appel MCP + écriture fichier. Pagination si volume gros.
+
+#### 3a. error_log (raw home-assistant.log)
+
+```
+ha_get_logs source=error_log hours_back=720
+```
+
+→ Save sortie texte vers `Archives/ha_logs/<YEAR_MONTH>/raw_home-assistant_<YEAR_MONTH>.log`.
+
+⚠️ Si la sortie dépasse ~2 MB de texte → paginer avec `offset`/`limit`
+(ex : limit=10000 puis offset=10000, etc.) et concaténer.
+
+#### 3b. system (errors + warnings structurés)
+
+```
+ha_get_logs source=system level=ERROR hours_back=720 limit=5000
+ha_get_logs source=system level=WARNING hours_back=720 limit=5000
+```
+
+→ Combiner les 2 retours en JSON et save vers
+`Archives/ha_logs/<YEAR_MONTH>/raw_system_errors_<YEAR_MONTH>.json`.
+
+#### 3c. logbook (state changes globaux)
+
+```
+ha_get_logs source=logbook hours_back=720 compact=true limit=20000
+```
+
+→ Save JSON vers `Archives/ha_logs/<YEAR_MONTH>/raw_logbook_<YEAR_MONTH>.json`.
+
+⚠️ Très volumineux (peut dépasser 5 MB sur 30j) — paginer si besoin.
+`compact=true` strip les attribute dicts pour gagner du contexte.
+
+### 4. Consolider en `.md` lisible
+
+Lire les 3 sources brutes puis produire `consolide_<YEAR_MONTH>.md` avec ces sections :
+
+#### En-tête
+
+```
+# Logs HA — <Mois> <Année>
+
+**Période** : AAAA-MM-01 → AAAA-MM-31
+**Tailles brutes** :
+- error_log : X.X MB
+- system : N entrées (E erreurs / W warnings)
+- logbook : N entrées
+**Généré le** : AAAA-MM-JJ HH:MM (skill ha-logs-archive)
+```
+
+#### Top 5 erreurs récurrentes
+
+Compter les occurrences groupées par `name` ou `message` du système log.
+Tableau Markdown avec 3 colonnes : nb occur. / Component / Message.
+
+#### Bans IP détectés
+
+Filtrer `error_log` sur les patterns connus :
+- `Login attempt or request with invalid authentication`
+- `Banned IP`
+- `is now blocked due to too many login attempts`
+
+Tableau : Date / IP / Type.
+
+#### Reboots HA
+
+Filtrer `error_log` sur :
+- `Home Assistant Core started`
+- `Setup of domain`
+- `Starting Home Assistant`
+
+Tableau : Date / Trigger / Downtime estimé.
+
+#### Extraits stack traces (3-5 max)
+
+Sélectionner les erreurs critiques avec stack trace (recherche
+`Traceback`, `Exception`, `Error`) et inclure 3-5 extraits courts.
+
+#### Warnings notables
+
+Synthèse texte courte (5-10 lignes) sur les warnings récurrents et leurs
+fréquences.
+
+### 5. Vérifications post-archive
+
+```bash
+COWORK_DIR="$(find /sessions -maxdepth 4 -type d -name 'Jarvis - Home Assistant' 2>/dev/null | head -1)"
+ls -lah "${COWORK_DIR}/Archives/ha_logs/${YEAR_MONTH}/"
+```
+
+Doit voir 4 fichiers :
+- `raw_home-assistant_*.log`
+- `raw_system_errors_*.json`
+- `raw_logbook_*.json`
+- `consolide_*.md`
+
+Vérifier :
+- ✅ 4 fichiers présents
+- ✅ Tailles cohérentes (logs > 0 byte)
+- ✅ `.md` consolidé contient les 5 sections
+- ✅ Aucune erreur de parsing dans les JSON (parse-test au passage)
+
+## Procédure d'exécution (annuelle, 1er janvier)
+
+Helper Python : `scripts/rotate_annual.py`
+
+À coller côté **PowerShell** (Might-1000D, scheduled task) :
+
+```powershell
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
+python .claude\skills\ha-logs-archive\scripts\rotate_annual.py --year 2025
+```
+
+Le script :
+1. Liste tous les dossiers `Archives/ha_logs/2025-*/`
+2. Crée `Archives/ha_logs/ha_logs_2025.zip` les contenant
+3. Vérifie le zip (intégrité, comptage fichiers)
+4. **Supprime les dossiers mensuels uniquement après vérification OK**
+5. Affiche un résumé (taille zip, nb fichiers, ratio compression)
+
+## Trigger automatique mensuel — scheduled task Windows
+
+Sur **Might-1000D**, créer une scheduled task :
+
+- **Nom** : `Jarvis-HA-Logs-Archive-Mensuel`
+- **Trigger** : 1er du mois, 02h00
+- **Action** : commande `claude-code` (ou équivalent CLI) avec une
+  invocation de la skill `ha-logs-archive`
+- **Conditions** : exiger PC allumé, démarrer même si manqué (catch-up)
+
+(à finaliser quand le binaire `claude-code` invoqué sera défini —
+proposition : un fichier `.bat` qui lance la skill et logge dans
+`Archives/ha_logs/_run_logs/run_AAAA-MM-JJ.txt`)
+
+## Règles de sécurité — Règle 0 (CLAUDE.md)
+
+- 🔴 Logs HA peuvent contenir : **IPs LAN**, **URLs internes**
+  (`http://192.168.1.X`), **tokens partiels** dans des stack traces, IDs
+  d'appareils. **Jamais** commit Git.
+- ✅ `Archives/*` est exclu via `.gitignore` (ligne 51), donc
+  `Archives/ha_logs/` est de facto hors repo.
+- ⚠️ **Ne jamais** uploader le contenu des logs HA hors du PC sans
+  validation explicite Mickael (Règle 0).
+- ⚠️ **Pas de partage** des consolidés `.md` même synthétiques sans relire
+  manuellement — ils peuvent contenir des extraits stack traces avec
+  paths/IPs.
+
+## Pièges connus
+
+- **Volume logbook** : 30 jours peuvent générer 5+ MB de JSON. Paginer
+  avec `offset`/`limit` (ex 4 pages de 5000 entries).
+- **Format logbook** : `compact=true` strip les attributs — toujours
+  lisible mais plus léger. Activer **toujours** pour archive.
+- **Reboots HA dans la fenêtre** : les logs avant un reboot peuvent être
+  tronqués (rotation logrotate côté HA). C'est normal.
+- **Décalage timezone** : HA log en UTC, le `.md` consolidé doit indiquer
+  les timestamps **avec timezone** (`AAAA-MM-JJ HH:MM UTC`).
+
+## À faire post-stabilisation (vérification)
+
+> **Note S87** : Mickael prévoit après stabilisation complète du modèle
+> (et refonte vault terminée) une **vérification fichier-par-fichier**
+> que ce processus archive bien les logs sans perte. À ce moment-là :
+>
+> 1. Choisir 1 mois de référence (ex M-1 du moment)
+> 2. Comparer `error_log` brut récupéré ↔ HA UI Settings > System > Logs
+>    sur la même fenêtre (cohérence des entries critiques)
+> 3. Vérifier que `system_errors` couvre **toutes** les erreurs vues
+>    par Mickael depuis 30j (pas de filter de niveau qui drop des
+>    entries importantes)
+> 4. Vérifier que le consolidé `.md` ne **manque** pas de bans IP /
+>    reboots vs un comptage manuel
+> 5. Tester la rotation annuelle sur un dataset minimal (créer 2 dossiers
+>    bidons, lancer le script, vérifier intégrité du zip)
+> 6. Tester la skill `debannissement-ip` en parallèle pour s'assurer du
+>    fallback en cas d'erreur 401/403
+
+## Évolutions possibles (v2+)
+
+- **Dashboard HA dédié** : sensor `sensor.ha_logs_archive_last_run` pour
+  voir la dernière archive depuis Lovelace.
+- **Alerte si archive ratée** : email/notification si la scheduled task
+  n'a pas tourné depuis > 35 jours.
+- **Mode "before formatage"** : archive instantanée sur N jours configurable
+  (pas seulement le mois précédent).
+- **Compression à la volée** : zipper le `raw_logbook_*.json` directement
+  pour économiser ~70% d'espace.
+- **Diff inter-mois** : ajouter au consolidé un comparatif "+X erreurs vs
+  mois M-1, top régressions".
+
+## Références
+
+- Skill créée S87 (mai 2026) — alignement design avec Mickael S87
+- Source : T#34 (`tasks/task_034.md`)
+- MCP utilisé : `ha_get_logs` (add-on `ha-mcp`, voir `.mcp.json`)
+- Pattern fichiers inspiré de `memory/historique/<scope>_archive_YYYY-Qn.md`
+- Règle rotation annuelle : CLAUDE.md §9
+- Helper Python : `scripts/rotate_annual.py`

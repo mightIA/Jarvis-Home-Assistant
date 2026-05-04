@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Salon
 created: 2026-04-27
-tags: [inventaire, salon]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, salon]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

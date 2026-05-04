@@ -15,29 +15,41 @@
 | `--style` | `raw`, `4a`, `4b`, `4c`, `cute`, `expressive`, `original`, `scenic` | (off) | Mode de stylisation |
 | `--no` | mots séparés par virgule | (off) | Negative (light) |
 | `--tile` | flag | off | Image tilable / pattern répétable |
-| `--p` ou `--personalize` | flag ou code | off | Active ta personnalisation entraînée |
+| `--p` ou `--personalize` | flag ou code | off | Active ta personnalisation entraînée (**V7 = Personalization V2 par défaut**, blend possible de 2 profils) |
+| `--exp` | 0 - 100 | 0 | **V7 only** — deuxième dimension de stylize (sweet spots **5, 10, 25, 50**). Ne pas dépasser 50 si combiné avec `--s` ou `--p` |
+| `--draft` | flag | off | **V7 only** — Draft Mode 10× plus rapide, basse qualité, bouton **Enhance** pour repasser en haute qualité |
 
 ## Image inputs
 
-| Param | Effet |
-|-------|-------|
-| URL en début de prompt | Image-to-image classique (mood/référence) |
-| `--cref <url>` | Character reference (cohérence personnage) |
-| `--cw 0-100` | Character weight (0 = visage seul, 100 = tout) |
-| `--sref <url>` | Style reference (clone le style) |
-| `--sref random` | Style aléatoire reproductible |
-| `--sw 0-1000` | Style weight pour --sref |
-| `--iw 0-2` | Image weight global (pondération de l'image vs texte) |
+| Param | Effet | V applicable |
+|-------|-------|--------------|
+| URL en début de prompt | Image-to-image classique (mood/référence) | toutes |
+| `--oref <url>` | **Omni-Reference** — référence universelle (objet, personnage, style) | **V7 only** |
+| `--ow 0-1000` | Omni-Reference weight (sweet spot **600-1000** pour fidélité forte) | **V7 only** |
+| `--cref <url>` | Character reference (cohérence personnage) — **legacy V6, préférer `--oref` en V7** | V6, V7 toléré |
+| `--cw 0-100` | Character weight (0 = visage seul, 100 = tout) — **legacy V6** | V6, V7 toléré |
+| `--sref <url>` | Style reference (clone le style) | V6, V7 |
+| `--sref random` | Style aléatoire reproductible | V6, V7 |
+| `--sw 0-1000` | Style weight pour --sref | V6, V7 |
+| `--iw 0-2` | Image weight global (pondération de l'image vs texte) | toutes |
 
 ## Permutations et pondérations
 
-| Syntaxe | Effet |
-|---------|-------|
-| `{a, b, c}` | Génère 3 prompts différents |
-| `{1..5}` | Range 1, 2, 3, 4, 5 |
-| `concept A :: concept B` | Sépare en deux prompts pondérés (égaux) |
-| `concept A ::2 concept B ::1` | Pondération explicite |
-| `concept ::-0.5` | Negative weight (similaire à `--no`) |
+> 🔴 **Piège V7 (avril 2026)** : la syntaxe **multi-prompt `::`**
+> (séparateurs et poids explicites) **ne fonctionne plus en V7**. Elle
+> reste fonctionnelle en V6 et antérieures. Source : aitooldiscovery.com,
+> thecodersblog.com 2026.
+
+| Syntaxe | Effet | V applicable |
+|---------|-------|--------------|
+| `{a, b, c}` | Génère 3 prompts différents | toutes |
+| `{1..5}` | Range 1, 2, 3, 4, 5 | toutes |
+| `concept A :: concept B` | Sépare en deux prompts pondérés (égaux) | **V6 et < seulement** |
+| `concept A ::2 concept B ::1` | Pondération explicite | **V6 et < seulement** |
+| `concept ::-0.5` | Negative weight (similaire à `--no`) | **V6 et < seulement** |
+
+**Workaround V7** : utiliser `--no` pour les négatifs et reformuler la
+phrase pour le multi-prompt (ou rester sur `--v 6`).
 
 ## Aspect ratios standard
 
@@ -121,6 +133,75 @@
 # Anime moderne
 --niji 7 --style cute --s 150
 ```
+
+## Stack créatif V7 (combinaison features depuis avril 2026)
+
+Recette pour exploiter pleinement V7 — combiner jusqu'à **6 références
+visuelles** dans un seul prompt :
+
+```
+2 personalization codes (--p code1 --p code2) blendés
++ 2 moodboards (--p moodboard_code1 --p moodboard_code2)
++ 2 style references (--sref url1 --sref url2 --sw 400)
++ optionnellement 1 omni-reference (--oref url --ow 800) pour cohérence sujet
++ prompt texte court (15-25 mots)
++ --ar W:H --s 75 --c 10 --v 7
+```
+
+### Sweet spots actualisés V7
+
+| Param | Prod | Exploration | Notes |
+|---|---|---|---|
+| `--s` (stylize) | **55-100** | 100-250 | 75 = inclination communauté |
+| `--c` (chaos) | **0-25** | 30-50, jusqu'à 60-80 pour moodboards | — |
+| `--exp` | 0-50 | jusqu'à 50 | **Ne pas dépasser 50** si combiné `--s` ou `--p` |
+| `--ow` (omni-ref) | **600-1000** | 200-500 | 1000 = fidélité max au visage/objet |
+
+### Exemple stack complet
+
+```
+A young woman walking through a misty forest at dawn, contemplative mood
+--p personalCodeA --p personalCodeB
+--p moodboardForestVibe
+--sref https://i.imgur.com/refStyle1.jpg --sw 400
+--oref https://i.imgur.com/charRef.jpg --ow 800
+--ar 2:3 --s 75 --c 15 --v 7
+```
+
+### Pièges Stack créatif
+
+- ❌ Plus de **6 références totales** = MJ confus, résultat dilué
+- ❌ Codes `--p` non issus du même compte (ne fonctionne pas)
+- ❌ Moodboard et personalization avec esthétiques opposées (annule)
+- ❌ `--exp 80` combiné `--s 250` (sur-stylisation cassée)
+
+## Différences Web App vs Discord (état 2026)
+
+| Feature | Web App `alpha.midjourney.com` | Discord bot |
+|---|---|---|
+| Génération de base | ✅ | ✅ |
+| Upscale 4K | ✅ | 🟡 (via /upscale) |
+| Vary Region (inpainting) | ✅ | ✅ |
+| Pan / Zoom out | ✅ | ✅ |
+| **Moodboards** | ✅ | ❌ |
+| **Personalization V2** | ✅ | 🟡 (lecture seule) |
+| **Style Creator** | ✅ | ❌ |
+| **Editor (canvas multi-image)** | ✅ | ❌ |
+| **Profiles (multi-personas)** | ✅ | ❌ |
+| Conversational Mode | ✅ | ❌ |
+
+→ **Recommandation Mickael** : tout faire en web app sauf workflow legacy.
+
+## V8 / V8.1 (à venir 2026 — mention)
+
+Selon la roadmap MJ, V8 (puis V8.1) doivent améliorer :
+- **Texte rendu fiable** (rattrapage Ideogram)
+- Cohérence personnages multi-poses encore meilleure
+- Vidéo native MJ (en concurrence avec Veo / Runway)
+
+→ **Choix de ce projet (S91)** : rester sur **V7** par défaut tant que V8
+n'est pas stabilisé. V8 sera intégré quand sortie + 2-3 mois retours
+communauté.
 
 ## Sources
 

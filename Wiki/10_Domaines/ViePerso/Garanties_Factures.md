@@ -1,8 +1,9 @@
 ---
 title: Garanties & factures
 created: 2026-04-27
-tags: [vie-perso, garanties, factures, coquille]
-status: pre-rempli-partiel
+updated: 2026-04-27
+tags: [atome, vie-perso, garanties, factures, coquille]
+status: stub
 domaine: ViePerso
 remplissage_attendu: Mickael
 parent: "[[10_Domaines/ViePerso/_Index]]"

@@ -1,7 +1,8 @@
 ---
 title: Mode Réactif — 5 niveaux d'autonomie
 created: 2026-04-25
-tags: [ha/mode-reactif, jarvis/autonomie]
+updated: 2026-04-25
+tags: [atome, ha/mode-reactif, jarvis/autonomie]
 status: actif
 ---
 

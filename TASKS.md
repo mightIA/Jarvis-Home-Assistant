@@ -10,7 +10,7 @@ auto_generated: true
 
 # TASKS — Index
 
-**31 tâches ouvertes** + **61 archivées (Q2 2026)**.
+**31 tâches ouvertes** + **62 archivées (Q2 2026)**.
 
 Détail de chaque tâche : `tasks/task_NNN.md`. Régénération : skill `regen-tasks-index`.
 
@@ -27,6 +27,7 @@ Détail de chaque tâche : `tasks/task_NNN.md`. Régénération : skill `regen-t
 | **T#54** | ⏸️ `pending` | Créer les profils réutilisables du MCP `pdf-toolkit` pour accélérer... | email, pdf, mcp | [→](tasks/task_054.md) |
 | **T#57** | ⏸️ `pending` | Valider le flux complet `fill_pdf` du MCP pdf-toolkit avec un PDF a... | pdf, mcp, cowork | [→](tasks/task_057.md) |
 | **T#92** | ⏸️ `pending` | Bibliothèque TTS multi-modèles Jarvis (Pi5 légers + PC Windows prem... | tts, piper, kokoro, f5-tts, +8 | [→](tasks/task_092.md) |
+| **T#96** | 🟢 `open` | Script backup global PC pour migration nouveau hardware (configs h... | backup, migration, pc-hardware, claude-cli, +4 | [→](tasks/task_096.md) |
 
 ### ⚪ P3 — Basse
 
@@ -43,7 +44,6 @@ Détail de chaque tâche : `tasks/task_NNN.md`. Régénération : skill `regen-t
 | **T#47** | 🟢 `open` | Assigner les phrases Jarvis récurrentes aux 3 périphériques Logitec... | gmail, pdf, cowork | [→](tasks/task_047.md) |
 | **T#59** | 🟢 `open` | Investigation après vérif négative S40 | ha-mcp, hermes, gmail, pdf, +2 | [→](tasks/task_059.md) |
 | **T#77** | 🟢 `open` | Modèle MAISON Nous Research conçu pour Hermès Agent | hermes, pdf | [→](tasks/task_077.md) |
-| **T#78** | 🟢 `open` | MEMORY | cowork | [→](tasks/task_078.md) |
 | **T#85** | 🟢 `open` | Linter type cclint sur CLAUDE.md/TASKS.md (incohérences auto) | linter, quality | [→](tasks/task_085.md) |
 | **T#86** | 🟢 `open` | Explorer le marketplace Cowork (Compétences / Connecteurs / Plugins... | cowork, marketplace, exploration | [→](tasks/task_086.md) |
 | **T#87** | 🟢 `open` | Tester MCP Cloudflare officiel (couverture Zero Trust / Tunnel / DNS) | cloudflare, mcp, security, zero-trust | [→](tasks/task_087.md) |
@@ -124,6 +124,7 @@ Détail de chaque tâche : `tasks/task_NNN.md`. Régénération : skill `regen-t
 | T#80 | ✅ | Compléter hub Domotique avec 6 équipements TODO | S86 | [→](tasks/archive_2026-Q2/task_080.md) |
 | T#84 | ✅ | Vérifier puis supprimer .claude/hooks.json annoté OBSOLET... | S77 | [→](tasks/archive_2026-Q2/task_084.md) |
 | T#48 | ❌ | Rechercher et installer un MCP pour la boite Outlook (Mic... | S92 | [→](tasks/archive_2026-Q2/task_048.md) |
+| T#78 | ✅ | MEMORY — Décongestion MEMORY.md (objectif atteint via refonte S71) | S108 | [→](tasks/archive_2026-Q2/task_078.md) |
 
 </details>
 

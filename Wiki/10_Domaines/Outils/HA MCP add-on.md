@@ -1,7 +1,8 @@
 ---
 title: HA MCP add-on (homeassistant-ai/ha-mcp)
 created: 2026-04-25
-tags: [outils/ha-mcp, ha/integration, mcp]
+updated: 2026-04-25
+tags: [atome, outils/ha-mcp, ha/integration, mcp]
 parent: "[[_Index]]"
 status: actif
 ---

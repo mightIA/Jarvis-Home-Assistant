@@ -15,10 +15,10 @@
 #   4. Redirige stdout vers un fichier log horodate
 #   5. Exit code 0 si OK (y compris cas "RAS"), 1 si pre-filtre echoue, 2 si claude echoue
 #
-# Cout estime par run (headless) :
-#   - Cas RAS (pas d'evenement) : ~3-5k tokens
-#   - Cas "journee active" (5-20 events) : ~20-40k tokens (parsing log + generation PDF)
-# Cadence 1 run/jour 23h30 -> impact forfait Max negligeable.
+# Cout estime par run (headless, post-S88) :
+#   - Cas RAS (pas d'evenement) : 0 token (pre-filtre PS Etape 2bis, pas d'appel claude)
+#   - Cas "journee active" : ~20-40k tokens via Sonnet 4.6 (--model claude-sonnet-4-6)
+# Cadence 1 run/jour 23h30 -> impact quota Max minimal.
 
 $ErrorActionPreference = 'Stop'
 
@@ -101,6 +101,47 @@ if (-not $claudeCmd) {
 }
 
 # ===========================================================================
+# Etape 2bis - Pre-filtre RAS (S88 - optimisation quota Max)
+# ===========================================================================
+# Si la journee est RAS (log absent OU ne contient que RAS/STOP), on cree
+# directement la ligne "RAS" sans invoquer claude. Gain : ~215k tokens / run.
+# Cas non-RAS (events reels) -> bascule vers claude -p (Etape 3).
+
+$Today        = Get-Date -Format 'yyyy-MM-dd'
+$LogJourFile  = Join-Path $ProjectRoot "memory\historique_reactif\$Today.md"
+$RasLine      = "RAS - rapport journalier execute $(Get-Date -Format 'HH:mm:ss')"
+$IsRas        = $false
+
+if (-not (Test-Path $LogJourFile)) {
+    Write-LauncherLog 'INFO' "Pre-filtre RAS : log $Today.md absent -> creation directe, pas d'appel claude"
+    $IsRas = $true
+    $header = "# Historique Mode Reactif - $Today"
+    Set-Content -Path $LogJourFile -Value $header -Encoding UTF8
+    Add-Content -Path $LogJourFile -Value '' -Encoding UTF8
+    Add-Content -Path $LogJourFile -Value $RasLine -Encoding UTF8
+} else {
+    $content = Get-Content -Path $LogJourFile -Encoding UTF8
+    $eventLines = $content | Where-Object {
+        $_ -match '\S' -and `
+        $_ -notmatch '^#' -and `
+        $_ -notmatch '^RAS\b' -and `
+        $_ -notmatch '^STOP\b'
+    }
+    if (-not $eventLines) {
+        Write-LauncherLog 'INFO' "Pre-filtre RAS : log $Today.md ne contient que RAS/STOP -> ajout ligne RAS, pas d'appel claude"
+        $IsRas = $true
+        Add-Content -Path $LogJourFile -Value $RasLine -Encoding UTF8
+    } else {
+        Write-LauncherLog 'INFO' "Pre-filtre RAS : log $Today.md contient $($eventLines.Count) event(s) -> bascule claude -p"
+    }
+}
+
+if ($IsRas) {
+    Write-LauncherLog 'INFO' 'Run RAS termine sans appel claude (gain quota Max)'
+    exit 0
+}
+
+# ===========================================================================
 # Etape 3 - Lancer claude -p en mode headless
 # ===========================================================================
 
@@ -131,7 +172,7 @@ Utiliser les outils de la liste allow dans .claude/settings.local.json, pas d'ap
 Write-LauncherLog 'INFO' "Lancement claude -p (log de sortie : $LogFile)"
 
 try {
-    claude -p $prompt --output-format json 2>&1 | Tee-Object -FilePath $LogFile
+    claude -p $prompt --model claude-sonnet-4-6 --output-format json 2>&1 | Tee-Object -FilePath $LogFile
 
     $exitCode = $LASTEXITCODE
     if ($exitCode -ne 0) {

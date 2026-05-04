@@ -1,7 +1,8 @@
 ---
 title: Provider benchmarks
 created: 2026-04-27
-tags: [veille, providers, benchmarks, llm]
+updated: 2026-04-27
+tags: [atome, veille, providers, benchmarks, llm]
 status: actif
 ---
 

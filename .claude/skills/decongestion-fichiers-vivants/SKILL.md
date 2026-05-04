@@ -21,15 +21,19 @@ description: Mesure les fichiers réinjectés à chaque tour Cowork (CLAUDE.md, 
 
 ## Pourquoi cette skill existe
 
-Trois sessions ont validé le pattern (S49 recherche → S51 application
-CLAUDE.md+METRIQUES.md → S52 application TASKS.md) :
+Cinq sessions ont validé le pattern (S49 recherche → S51 application
+CLAUDE.md+METRIQUES.md → S52 application TASKS.md → S71 éclatement
+TASKS.md+CLAUDE.md footer → S72 décongestion P1 METRIQUES.md) :
 
 | Session | Fichier | Avant | Après | Tokens libérés/tour |
 |---------|---------|-------|-------|---------------------|
 | S51 | `CLAUDE.md` | 124 KB | 12 KB | ~28 K |
 | S51 | `METRIQUES.md` | 97 KB | 40 KB | ~14 K |
 | S52 | `TASKS.md` | 124 KB | 66 KB | ~14 K |
-| **Cumul** | **3 fichiers** | **345 KB** | **118 KB** | **~57 K** |
+| S71 | `TASKS.md` (éclatement `tasks/task_NNN.md`) | 106 KB | 10.7 KB | ~24 K |
+| S71 | `CLAUDE.md` (footer narratif) | 50 KB | 1 KB | ~12 K |
+| **S72** | **`METRIQUES.md` (narration tableaux)** | **64 KB** | **3.2 KB** | **~15 K** |
+| **Cumul S51→S72** | **3 fichiers vivants** | **— rythme cumulé** | **—** | **~107 K** |
 
 Sans politique d'archivage récurrent, ces fichiers regonflent linéairement
 (rythme observé S01-S52 : ~4 sessions/jour, ~2 K chars de patches vivants
@@ -37,17 +41,19 @@ ajoutés par jour entre les 4 fichiers réinjectés).
 
 ## Seuils de déclenchement
 
-| Niveau | Critère | Action |
+> ⚠ **Refonte S98 (04/05/2026)** — anciens seuils (Vert <30 KB/fichier, Rouge >90 KB) trop tolérants. METRIQUES.md à 20 KB restait classé Vert. Nouveaux seuils alignés sur le warning EN HAUT des fichiers vivants (« Cible : <5 KB. Si > 10 KB → exécuter skill »).
+
+| Niveau | Critère (par fichier) | Action |
 |--------|---------|--------|
-| **Vert** | Total < 60 KB combiné OU aucun fichier > 30 KB | Rien à faire |
-| **Jaune** | Total 60-100 KB OU un fichier 30-60 KB OU une ligne unique > 5 KB | Mentionner en fin de session, proposer si Mickael aborde le sujet |
-| **Orange** | Total 100-150 KB OU un fichier 60-90 KB OU une ligne unique 10-20 KB | **Proposer activement** la décongestion en fin de session |
-| **Rouge** | Total > 150 KB OU un fichier > 90 KB OU une ligne unique > 20 KB | **Recommander fortement** (impact tokens/tour mesurable) |
+| **Vert** | Aucun fichier > 5 KB ET total combiné < 30 KB | Rien à faire |
+| **Jaune** | Un fichier 5-10 KB OU une ligne unique > 2 KB | Mentionner en fin de session |
+| **Orange** | Un fichier 10-20 KB OU une ligne unique 5-10 KB | **Proposer activement** la décongestion en fin de session |
+| **Rouge** | Un fichier > 20 KB OU une ligne unique > 10 KB | **Recommander fortement** + tenter auto-déclenchement |
 
 ## Procédure de mesure (1 commande Bash)
 
 ```bash
-cd "/sessions/cool-charming-tesla/mnt/Jarvis - Home Assistant"
+cd "$(pwd)"  # ou path Cowork du projet : /sessions/<nom-session>/mnt/Jarvis - Home Assistant
 echo "=== Fichiers réinjectés à chaque tour Cowork ==="
 for f in CLAUDE.md TASKS.md METRIQUES.md memory/MEMORY.md; do
   if [ -f "$f" ]; then
@@ -63,6 +69,10 @@ echo ""
 TOTAL=$(cat CLAUDE.md TASKS.md METRIQUES.md memory/MEMORY.md 2>/dev/null | wc -c)
 echo "TOTAL combiné : $TOTAL chars (~$((TOTAL / 4)) tokens/tour)"
 ```
+
+**5e fichier à mesurer manuellement (S98)** : auto-memory Cowork
+`C:\Users\<user>\AppData\Roaming\Claude\local-agent-mode-sessions\<...>\spaces\<space-id>\memory\MEMORY.md`.
+Non monté en bash (path en dehors du connected folder), accessible via `Read` tool sur path Windows absolu. Ce fichier est réinjecté à CHAQUE tour Cowork ; appliquer les mêmes seuils.
 
 ## Procédure de décongestion (méthodologie validée S51-S52)
 
@@ -193,6 +203,16 @@ echo "      ~$TOKENS tokens/tour libérés"
 5. **Confirmer avant écraser** — règle CLAUDE.md générale. La proposition
    doit présenter un plan chiffré (tokens libérés estimés, fichiers
    touchés, backup prévu) AVANT l'exécution.
+6. **Narration session NE VA JAMAIS dans un fichier vivant** — règle S98 04/05/2026
+   (auto-memory `feedback_pattern_stockage_data_fichiers_vivants`). Quand Mickael
+   demande d'updater METRIQUES.md / CLAUDE.md / TASKS.md en fin de session, écrire
+   UNE ligne courte + lien vers `memory/historique/AAAA-MM-JJ_session_NN_titre.md`.
+   Le résumé complet va dans le fichier archive uniquement. Anti-pattern observé S98 :
+   empiler "Dernière session précédente" dans un tableau (METRIQUES gonfle de 5 KB
+   par session, +100 KB/mois sans purge). Idem frontmatter `last_update:` géant
+   (1 ligne YAML qui empile l'historique de toutes les sessions = critique car
+   ligne unique > 10 KB). Idem MEMORY.md auto-memory Cowork (1 ligne ≤120 chars
+   par entrée, jamais de paragraphe).
 
 ## Format de proposition à Mickael
 
@@ -252,3 +272,48 @@ ou se déclenche d'elle-même selon la description.
   — deuxième application validée (TASKS.md).
 - Archive `memory/historique/TASKS_archive_2026-Q2.md` — premier exemple
   d'archive trimestrielle (pattern transposable).
+
+## Pattern S71 — éclatement TASKS.md (28/04/2026)
+
+Niveau supplémentaire ajouté en S71 : quand `TASKS.md` dépasse Orange/Rouge,
+**éclater en `tasks/task_NNN.md` (1 fichier par tâche)** + `TASKS.md` index
+auto-généré par la skill `regen-tasks-index`. Pattern Backlog.md / Cline
+Memory Bank, validé S71 : 106 KB → 10.7 KB (-90%).
+
+Skills connexes créées S71 : `add-task` (création), `close-task` (clôture +
+archivage), `regen-tasks-index` (régénération index).
+
+## Pattern S72 — décongestion P1 METRIQUES.md (28/04/2026)
+
+Le tableau « Compteurs globaux » de METRIQUES.md (47 lignes narratives type
+`Date Phase X — événement Y`) + le tableau « Modifications HA significatives »
+(78 lignes) ont été archivés dans `memory/historique/METRIQUES_archive_2026-Q2.md`.
+Le fichier vivant ne garde plus que les **vrais compteurs** (sessions, mois,
+tri email, bans IP) + pointeurs vers l'archive.
+
+**Méthode appliquée** :
+
+1. Backup `memory/_decongestion_backup_s72/METRIQUES.md.bak` (intégral).
+2. `sed -n '8,58p'` + `sed -n '82,160p'` pour extraire les 2 tableaux.
+3. Append dans archive existante avec en-têtes de section + footer.
+4. Réécriture METRIQUES.md complet via `Write` (squelette compteurs + pointeurs).
+5. Nettoyage des bytes nuls résiduels Windows : `sed -n '1,/<marker>/p' > tmp && cp tmp <fichier>`.
+
+Gain mesuré : 64 KB → 3.2 KB (-95%, ~15 K tokens libérés/tour). Total fichiers
+vivants réinjectés post-S72 : ~32 KB (~8 K tokens/tour) — **niveau Vert**.
+
+## Reste à faire identifié S72 (pour prochaine décongestion)
+
+- **Auto-memories Cowork space (RÉSOLU S98 04/05/2026)** : le `MEMORY.md`
+  auto-memory Cowork EST accessible via `Read`/`Write` tool sur path absolu Windows
+  `C:\Users\<user>\AppData\Roaming\Claude\local-agent-mode-sessions\<...>\spaces\<space-id>\memory\MEMORY.md`.
+  Consolidé S98 de 31 KB → ~11 KB (124 → 95 entrées sectionnées). La skill
+  `anthropic-skills:consolidate-memory` peut être invoquée pour passe réflexive,
+  ou patch direct via `Write` quand l'objectif est juste de raccourcir l'index.
+- **CLAUDE.md à 12.7 KB / 242 lignes** : sous le seuil critique (300 lignes
+  HumanLayer) mais haut. Compression possible des sections §7 et §8 vers
+  pointeurs si besoin.
+- **Suppression backups anciens** : `memory/_decongestion_backup_s51/`,
+  `_s52/` et `_s71/` à proposer à la suppression vers S75+ si aucun rollback
+  effectué.
+

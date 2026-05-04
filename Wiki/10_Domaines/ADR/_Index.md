@@ -1,6 +1,7 @@
 ---
 title: ADR — Architecture Decision Records
 created: 2026-04-27
+updated: 2026-04-27
 tags: [moc, adr, decisions]
 status: actif
 domaine: ADR
@@ -18,9 +19,10 @@ Un ADR documente une decision d'architecture importante (techno, pattern, fourni
 
 ## ADR accepted
 
-- [[ADR-A001-vault-obsidian-sandbox]] — Vault Obsidian Wiki/ comme sandbox Phase 1bis-a (S41)
+- [[ADR-A001-vault-obsidian-sandbox]] — Vault Obsidian Wiki/ comme sandbox Phase 1bis-a (S41) *(structure superseded par ADR-A004)*
 - [[ADR-A002-add-on-ha-mcp]] — Add-on `homeassistant-ai/ha-mcp` retenu vs `mcp_server` core HA (S15)
 - [[ADR-A003-rtx3090-suffisant-hermes]] — RTX 3090 24 GB suffisant pour Hermès Agent + MCP HA (Cookbook S57-S63)
+- [[ADR-A004-vault-connaissance-pure]] — Vault = connaissance pure, pas de projets ni d'archives (S81)
 
 ## ADR rejected
 
@@ -29,5 +31,4 @@ Un ADR documente une decision d'architecture importante (techno, pattern, fourni
 - [[ADR-003-llama33-70b-q3]] — `Llama 3.3 70B Q3` rejeté (JSON dans content + 10m52s/tour, S58)
 - [[ADR-004-mammouth-ai]] — Mammouth AI rejeté (flat sans API, S36)
 - [[ADR-005-provider-custom-openrouter]] — `provider: custom` Hermès rejeté (bug Issue #12146, S60)
-- [[ADR-006-cerfa-acroform]] — CERFA AcroForm rejeté (dématérialisation cassée, S46)
-- [[ADR-007-smart-connections-payant]] — Plugin Smart Connections Obsidian payant rejeté (Karpathy LLM Wiki bat la vectorisation, S38)
+- [[ADR-006-cerfa-acroform]] — CERFA AcroForm rejeté (dématérialisation cassée, 

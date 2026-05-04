@@ -1,6 +1,6 @@
 ---
 name: ha-scripts
-description: Execution des scripts Home Assistant (snapshots cameras, enregistrements video, vidage des dossiers medias, scripts Dyson, scripts Frisquet). Liste de scripts validee — ne jamais executer un script hors liste sans validation explicite de Mickael.
+description: Execution des scripts Home Assistant valides (allowlist). DECLENCHEURS : 'lance le script', 'execute script.X', 'snapshot camera', 'enregistre video', 'vide medias', 'reglage angle Dyson', 'active capteurs mouvement', 'scene jour/nuit'. Couvre snapshots/records cameras, vidage medias, scripts Dyson, scenes, capteurs mouvement. Liste blanche stricte — JAMAIS executer un script hors liste sans validation explicite Mickael.
 ---
 
 # Skill : Execution de scripts Home Assistant
@@ -80,6 +80,29 @@ Logique Min inversee : le bouton + agrandit le cone (diminue la valeur min).
   validation explicite de Mickael.
 - Confirmation demandee avant tout script destructif (vidage medias).
 - Verifier que HA est joignable avant execution (via la skill `ha-status`).
+
+
+## Exemples d'invocation utilisateur
+
+- « Lance le snapshot de la chambre » → `script.cam_snapshot_chambre` via `script.turn_on` ou MCP `ha_call_service` domain=script service=cam_snapshot_chambre.
+- « Active la scene Nuit » → `scene.turn_on` entity_id=scene.nuit.
+- « Coupe les capteurs de mouvement » → `script.capteurs_de_mouvement_off`.
+- « Vide tous les medias cameras » → CONFIRMATION puis `script.cam_vider_dossier`.
+- « Diminue l'angle min Dyson de 10 » → `script.dyson_angle_low_minus`.
+
+## Quand NE PAS utiliser
+
+- Pour creer ou modifier un script — utiliser la skill `home-assistant-manager` ou editer `scripts.yaml`.
+- Pour executer un service HA brut (sans script wrapper) — utiliser directement `ha_call_service`.
+- Pour les scripts Frisquet (gestion preset chaudiere) — passer par `chaudiere-frisquet` qui utilise `climate.set_preset_mode` directement.
+
+## Pieges connus
+
+- **Allowlist stricte** : refuser tout script absent du tableau (meme si Mickael le nomme). Demander confirmation explicite + verifier qu'il existe avant.
+- **Confirmation destructive** : `cam_vider_*` et `shell_command.vider_*` sont IRREVERSIBLES — toujours confirmer.
+- **HA injoignable** : echec silencieux possible. Verifier statut avant via skill `ha-status` (ou MCP `ha_get_state`).
+- **Logique Dyson Min inversee** : le bouton + agrandit le cone (diminue valeur min). Le repreciser meme si la skill Dyson le mentionne aussi.
+- **Scenes** : `scene.turn_on` pas `script.turn_on`. Confondre les deux echoue silencieusement.
 
 ## Reference longue
 

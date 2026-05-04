@@ -1,7 +1,8 @@
 ---
 title: Références externes
 created: 2026-04-25
-tags: [readme, structure]
+updated: 2026-04-25
+tags: [reference, readme, structure]
 ---
 
 # 30_References/

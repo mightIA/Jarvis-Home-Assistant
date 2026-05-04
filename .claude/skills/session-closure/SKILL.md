@@ -1,6 +1,6 @@
 ---
 name: session-closure
-description: A declencher en fin de session importante. Propose a Mickael de regenerer un .md date dans memory/historique/, de mettre a jour les skills ou protocoles modifies, de regenerer Jarvis_Audits_Todo.pdf si nouvelles taches, de mettre a jour CLAUDE.md si l'arborescence a evolue, et d'actualiser METRIQUES.md.
+description: A declencher en fin de session importante. DECLENCHEURS : 'fin de session', 'on s'arrete la', 'cloture session', 'sauvegarde la session', 'session-closure', 'on cloture', 'fait le bilan'. Propose a Mickael : (1) regenerer un .md date dans memory/historique/, (2) MAJ skills/protocoles modifies, (3) regenerer Jarvis_Audits_Todo.MD (format .md depuis S33, plus de PDF) si nouvelles taches, (4) MAJ CLAUDE.md si arborescence a evolue, (5) MAJ METRIQUES.md (compteurs sessions/tris/bans). Si session courte = ne RIEN proposer.
 ---
 
 # Skill : Cloture de session
@@ -58,8 +58,30 @@ A chaque session :
 
 Si la session etait courte ou sans nouveaute : ne rien proposer.
 
+
+## Exemples d'invocation utilisateur
+
+- « On s'arrete la pour ce soir » → declenchement complet 6 etapes.
+- « Cloture la session, on a juste fait un debogage » → eval rapide : peu de modifs → ne proposer QUE l'historique court (etape 1) + METRIQUES (etape 5).
+- « Sauvegarde la session » → equivalent cloture, generer le .md historique meme si session courte.
+- « Fait le bilan rapide » → produire un resume court (3-5 lignes) sans creer de .md.
+
+## Quand NE PAS utiliser
+
+- Si Mickael n'a pas signale de fin → ne pas proposer spontanement (anti-pattern : couper une session encore active).
+- Pour un changement de TOPIC en cours de session (passer du tri email au debogage HA) — ce n'est pas une fin de session.
+- Si la session est < 5 min sans modification de fichier — ne rien proposer.
+- Pour une session de pure lecture / questions-reponses sans nouvelle info => ne rien proposer.
+
+## Pieges connus
+
+- **Format `.md` ONLY** depuis S33 pour les 3 fichiers Knowledge fallback (`Jarvis_Profil.md`, `Jarvis_Instructions.md`, `Jarvis_Audits_Todo.md`). NE PLUS proposer la regen PDF/ReportLab (auto-memory `feedback_knowledge_md_not_pdf.md`).
+- **METRIQUES.md** : ne PAS oublier d'incrementer le compteur sessions du mois meme pour une session courte (sinon decalage).
+- **Numerotation sessions** : lire `memory/historique/INDEX_sessions.md` AVANT de proposer un numero (anti-pattern : repiquer un numero deja utilise).
+- **Doublons S/jour** : si plusieurs sessions le meme jour, suffixer `a`/`b`/`c` (S69a/S69b — convention S74).
+- **Frontmatter YAML** : tout `.md` historique DOIT avoir frontmatter `title/date/session/duration/mode`, sinon il sera mal indexe par `INDEX_sessions.md`.
+- **Append-only IDs** : si une tache T#XX a ete creee puis supprimee dans la session, son ID reste reserve a vie (D4 S71). Ne pas reutiliser.
+
 ## Rotation archives (annuelle)
 
-Au 1er janvier de chaque annee, zipper les sessions de l'historique de
-l'annee ecoulee dans `Archives/historique_AAAA.zip`, puis vider
-`memory/historique/` (sauf le ou les .md de la nouvelle annee).
+Au 1er janvier de chaque annee, zipper les sessions de l'historique de l'annee ecoulee dans `Archives/historique_AAAA.zip`, puis vider `memory/historique/` (sauf le ou les .md de la nouvelle annee).

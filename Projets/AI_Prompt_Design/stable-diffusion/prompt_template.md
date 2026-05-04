@@ -112,6 +112,47 @@ CFG: 3.5 | Steps: 20-28 | Sampler: Euler ou Heun | Size: 1024x1024
 Pas besoin de negative prompt aussi détaillé qu'avec SDXL.
 ```
 
+## Template type "Pony Diffusion V6 XL" (anime/cartoon/furry SDXL fine-tune)
+
+> ⚠️ Pony exige des **tags qualité spécifiques** sans lesquels la qualité
+> s'effondre. Non interopérable avec Illustrious sur les LoRAs.
+
+```
+score_9, score_8_up, score_7_up, source_anime, rating_safe,
+[anime style: shojo / shonen / studio ghibli], 1girl/1boy,
+[character description], [pose], [expression], [outfit],
+[setting], [lighting], [color palette], depth of field
+
+Negative: score_6, score_5, score_4, source_pony, source_furry (si non voulu),
+worst quality, bad anatomy, blurry, jpeg artifacts
+
+CFG: 6-7 | Steps: 28-32 | Sampler: DPM++ 2M Karras | Size: 1024x1024 (SDXL)
+```
+
+**Règles Pony** :
+- Tags qualité **obligatoires** : `score_9, score_8_up, score_7_up` (les 3 cumulés)
+- Tags source : `source_anime`, `source_cartoon`, `source_furry`
+- Tags rating : `rating_safe`, `rating_questionable`, `rating_explicit`
+
+## Template type "Illustrious-XL" (anime SDXL fine-tune, alternative à Pony)
+
+> ⚠️ Illustrious utilise des **tags qualité différents** de Pony. Ne pas
+> mélanger les deux conventions dans un même prompt.
+
+```
+masterpiece, best quality, very aesthetic, absurdres, [anime style],
+1girl/1boy, [character description], [pose], [expression], [outfit],
+[setting], [lighting], [color palette]
+
+Negative: worst quality, low quality, bad anatomy, blurry, jpeg artifacts,
+text, watermark, signature
+
+CFG: 5-7 | Steps: 28-32 | Sampler: Euler a ou DPM++ 2M Karras | Size: 1024x1024
+```
+
+**Règles Illustrious** : tags qualité `masterpiece, best quality, very
+aesthetic, absurdres` cumulés en début de prompt.
+
 ## LoRA
 
 Syntaxe Auto1111/Forge : `<lora:name:weight>` à coller dans le prompt.

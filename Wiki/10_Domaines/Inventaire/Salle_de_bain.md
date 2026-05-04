@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Salle de bain
 created: 2026-04-27
-tags: [inventaire, salle_de_bain]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, salle_de_bain]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

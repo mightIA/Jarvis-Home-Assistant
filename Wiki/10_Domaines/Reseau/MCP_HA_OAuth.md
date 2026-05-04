@@ -1,7 +1,8 @@
 ---
 title: MCP HA — add-on ha-mcp + OAuth DCR
 created: 2026-04-27
-tags: [reseau, mcp, oauth, ha-mcp]
+updated: 2026-04-27
+tags: [atome, reseau, mcp, oauth, ha-mcp]
 status: actif
 domaine: Reseau
 sources: [S15, S16, S17, S48, S53]

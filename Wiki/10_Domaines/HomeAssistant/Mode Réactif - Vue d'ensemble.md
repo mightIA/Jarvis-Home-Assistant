@@ -1,7 +1,8 @@
 ---
 title: Mode Réactif — Vue d'ensemble
 created: 2026-04-25
-tags: [ha/mode-reactif, jarvis/architecture]
+updated: 2026-04-25
+tags: [atome, ha/mode-reactif, jarvis/architecture]
 status: actif
 version: v1.1
 ---

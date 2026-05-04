@@ -1,14 +1,15 @@
 ---
 title: Skills Email — Tri auto & rédaction
 created: 2026-04-27
-tags: [skill, email]
+updated: 2026-04-28
+tags: [atome, skill, email]
 status: actif
 domaine: Skills_Jarvis
 ---
 
 # Skills Email — Tri auto & rédaction
 
-Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (voir [[Wiki/10_Domaines/Email/Boites_Email]]).
+Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (voir [[10_Domaines/Email/Boites email|Boîtes email]]).
 
 ## Skills incluses
 
@@ -23,7 +24,7 @@ Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (v
   - Fichiers patterns : `Ressources/Data/gmail_patterns/whitelist.json` + `blacklist.json` + `learning_log.json`
   - Pattern brain(Cowork) + hands(CLI) si demande arrive en Cowork
 - **Détail exécutable** : `.claude/skills/tri-email-gmail/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Email/Tri_Gmail_Automatise]], [[Wiki/10_Domaines/Email/Gmail_MCP_Custom]], [[Wiki/10_Domaines/Email/Envoi_via_Home_Assistant]]
+- **Liens vault** : [[10_Domaines/Email/Tri Gmail automatise|Tri Gmail automatisé]], [[10_Domaines/Email/Gmail MCP custom|Gmail MCP custom]], [[10_Domaines/Email/Envoi via Home Assistant|Envoi via Home Assistant]]
 
 ### `tri-email-outlook`
 
@@ -35,7 +36,7 @@ Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (v
   - Fichiers patterns : `Ressources/Data/outlook_patterns/whitelist.json` + `blacklist.json` + `learning_log.json`
   - Rapport auto-envoyé par email
 - **Détail exécutable** : `.claude/skills/tri-email-outlook/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Email/Tri_Outlook]], [[Wiki/10_Domaines/Email/Boites_Email]]
+- **Liens vault** : [[10_Domaines/Email/Tri Outlook|Tri Outlook]], [[10_Domaines/Email/Boites email|Boîtes email]]
 
 ### `tri-email-outlook-priorites`
 
@@ -47,7 +48,7 @@ Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (v
   - Pas d'auto-apprentissage (workflow purement manuel/interactif)
   - Mickael valide chaque lot ("Urgent : 1 sup, 2-3 non lu, 4 perso")
 - **Détail exécutable** : `.claude/skills/tri-email-outlook-priorites/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Email/Tri_Outlook]]
+- **Liens vault** : [[10_Domaines/Email/Tri Outlook|Tri Outlook]]
 
 ### `redaction-email`
 
@@ -59,7 +60,7 @@ Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (v
   - Adaptation du ton selon le destinataire (6 profils : Pro, SAV, Admin, Proche, Asso, Auto-envoi)
   - Validation explicite avec screenshot avant envoi
 - **Détail exécutable** : `.claude/skills/redaction-email/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Email/Redaction_email]], [[Wiki/10_Domaines/Email/Boites_Email]]
+- **Liens vault** : [[10_Domaines/Email/Redaction email|Rédaction email]], [[10_Domaines/Email/Boites email|Boîtes email]]
 
 ## Patterns d'usage transversaux
 
@@ -68,7 +69,7 @@ Catégorie regroupant les 4 skills qui touchent aux 4 boîtes mail de Mickael (v
 Toute action **write** Gmail (`modify_email`, `batch_*`, `delete_*`, `create_draft`) passe par Claude Code CLI car le MCP `gmail-mcp-local` est en transport stdio. Cowork = lecture seule via connecteur Gmail natif.
 
 - **Brain (Cowork)** : prépare la query, le plan d'action, le filtre.
-- **Hands (CLI)** : Mickael lance `claude` dans `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant` pour exécuter.
+- **Hands (CLI)** : Mickael lance `claude` dans `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant` pour exécuter.
 
 ### Envoi mail sans scope `gmail.send`
 
@@ -81,5 +82,4 @@ Les skills planifiées (`tri-email-gmail`, `tri-email-outlook`) tournent via Win
 ## Voir aussi
 
 - [[_Index]] — MOC Skills Jarvis
-- [[Wiki/10_Domaines/Email/_Index]] — domaine Email
-- `Ressources/Protocoles/Gmail.md` + `Ressources/Protocoles/Outlook.md` — protocoles complets
+- [[10_Domaines/Email/_Index|Domaine Email]] —

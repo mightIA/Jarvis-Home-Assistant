@@ -1,7 +1,8 @@
 ---
 title: Modeles LLM a tester
 created: 2026-04-27
-tags: [veille, llm, modeles, rtx3090]
+updated: 2026-04-27
+tags: [atome, veille, llm, modeles, rtx3090]
 status: actif
 ---
 

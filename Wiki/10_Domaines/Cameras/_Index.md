@@ -1,6 +1,7 @@
 ---
 title: Caméras Dahua — Index du domaine
 created: 2026-04-25
+updated: 2026-04-25
 tags: [moc, domotique/cameras, ha/cameras]
 status: actif
 source: Ressources/Competences/Home_Assistant.md §5

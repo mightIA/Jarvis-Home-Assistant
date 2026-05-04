@@ -1,7 +1,8 @@
 ---
 title: Gmail MCP custom
 created: 2026-04-25
-tags: [email, email/gmail, email/mcp, domaine/email]
+updated: 2026-04-25
+tags: [atome, email, email/gmail, email/mcp, domaine/email]
 status: actif
 parent: "[[_Index]]"
 source: Ressources/Competences/Gmail_MCP_Custom.md
@@ -93,7 +94,7 @@ Token OAuth Consent Testing dure **7 jours**. Pré-filtre PowerShell vérifie
 l'âge `< 6 jours` (marge de sécurité). Refresh manuel par Mickael :
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Runtime\Gmail-MCP-Server"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Runtime\Gmail-MCP-Server"
 npm run auth
 ```
 

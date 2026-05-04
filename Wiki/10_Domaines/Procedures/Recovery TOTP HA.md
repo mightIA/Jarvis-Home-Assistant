@@ -1,6 +1,7 @@
 ---
 title: Recovery TOTP HA
 created: 2026-04-27
+updated: 2026-04-27
 tags: [procedure, securite, ha, mfa]
 status: actif
 domaine: Procedures

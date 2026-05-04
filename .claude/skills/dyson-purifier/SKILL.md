@@ -1,6 +1,6 @@
 ---
 name: dyson-purifier
-description: Controle du purificateur Dyson via integration HACS dyson_local (MQTT local). Pilotage vitesse, sens, oscillation, angles min/max via service set_angle. Lecture des capteurs qualite air (temperature, humidite, COV, formaldehyde, PM2.5, PM10, NO2). Visualisation SVG temps reel via /homeassistant/www/dyson_angle_viz.html.
+description: Controle du purificateur Dyson Mickael via integration HACS dyson_local (MQTT local). DECLENCHEURS : 'qualite air', 'PM2.5', 'COV', 'formaldehyde', 'NO2', 'Dyson', 'purificateur', 'angle min/max', 'oscillation', 'allume/eteint le ventilo', 'change la vitesse', 'inverse le sens', 'ouvre/ferme le cone', 'temperature/humidite chambre Dyson'. Pilotage vitesse, sens, oscillation, angles min/max via service set_angle. Lecture capteurs qualite air. Visualisation SVG temps reel via /homeassistant/www/dyson_angle_viz.html.
 ---
 
 # Skill : Dyson Purifier
@@ -78,6 +78,27 @@ Labels Min/Max et amplitude. Orientation conforme a l'app Dyson : Arriere
 - **Col 2** : iframe SVG visualisation angles, affichage angles min/max,
   graphiques Temperature, Humidite, COV.
 - **Col 3** : Graphiques Formaldehyde, PM2.5, PM10, NO2.
+
+
+## Exemples d'invocation utilisateur
+
+- « Quelle est la qualite de l'air dans la chambre ? » → lecture PM2.5/COV/HCHO/NO2.
+- « Mets le Dyson sur 5 » → `fan.set_percentage` avec percentage=50 (echelle 0-100).
+- « Ferme l'angle a 100-180 » → `dyson_local.set_angle` avec angle_low=100, angle_high=180.
+- « Inverse le sens du ventilo » → `fan.set_direction` direction=reverse.
+
+## Quand NE PAS utiliser
+
+- Si Mickael parle d'un autre purificateur ou capteur de qualite air NON-Dyson (autre integration).
+- Pour les filtres / consommables Dyson : pas couvert ici, voir l'app Dyson directement.
+- Pour les reglages avances MQTT (topics, retain) : passer par la skill `home-assistant-manager`.
+
+## Pieges connus
+
+- **Logique Min inversee** : le bouton + agrandit le cone (DIMINUE la valeur min). Toujours expliquer a Mickael avant d'appliquer.
+- **percentage 1-100** : `fan.set_percentage` attend 1 a 100, pas 1 a 10. Diviser/multiplier selon contexte.
+- **Bouton Auto** : il existe sur le Dyson, mais a tester avant de promettre — sur certains modeles `Auto` est un mode sur `select.dyson_purifier_mode` plutot qu'une vitesse.
+- **Visualisation SVG** : depend de WebSocket actif. Si l'iframe ne se rafraichit pas, verifier `/api/websocket` cote HA.
 
 ## Reference longue
 

@@ -593,6 +593,40 @@ La décision finale reste la tienne, en tout temps.
 
 ---
 
+## Avancement post-S36 (annoté S81 — 30/04/2026)
+
+> Section ajoutée S81 lors de l'épuration du vault Obsidian. Annotations originellement portées dans `Wiki/15_Hermes_Agent/02_Plan_Phase1bis.md` et `03_Decision_Q1-Q8.md` (supprimés Phase C audit vault). Détails complets dans `memory/historique/` aux sessions citées.
+
+### Phasage réel
+
+| Phase | Prévu S36 | Réel post-S36 |
+|---|---|---|
+| Phase 1 (étude LLM Wiki Karpathy) | Fait S36 | Fait S36 — refonte complète NON |
+| Phase 1bis (faisabilité) | 1 session ~1 h | **5 sessions** décomposée en 4 sous-phases (1bis-a → 1bis-d) |
+| 1bis-a vault Obsidian | — | Fait S41 (~50 min) |
+| 1bis-b Mistral Doc AI | — | CLÔTURÉE S46 (recommandation stack hybride pdf-toolkit + Mistral OCR) |
+| 1bis-c install Hermès | — | CLÔTURÉE S48 (~3h30, 4 modèles testés, V1 partiellement validé) |
+| 1bis-d β1 `enable_tool_search` | — | ON S53 (lecture HA OK 100 %, écriture KO confirmée pattern S48) |
+| 1bis-d retest post `hermes update` | — | V1 3/3 S63 (qwen35-agent + 4 commits critiques `reasoning_content`) |
+| Phase 2 (installation effective) | 2-3 sessions ~3-5 h | **Anticipée** dans Phase 1bis-c S48 (WSL2 + Ollama + Hermès + 4 modèles + ha-mcp gateway). Gateway Telegram **non activée**. |
+| Phase 3 (migration skills) | semaines à mois | **Non démarrée** — bloquée tant que T#11 (3 patterns sensibles ha-mcp) non arbitrée |
+| Régime croisière 24/7 | cible | **Pas atteint** — Hermès lancé à la demande, Cowork reste outil principal (>99 % sessions) |
+
+### État des 4 décisions formelles (D1-D4)
+
+| # | Décision | Statut | Action |
+|---|---|---|---|
+| **D1** | Lancer Phase 1bis ou reporter | PRISE | Lancée S41+ |
+| **D2** | Lancer Phase 2 | PRISE | Anticipée dans Phase 1bis-c S48 |
+| **D3** | Budget OpenRouter (5-10 $) | PRISE | Exécutée S55 — $20 dépôt one-time + cap $5/mois (clé `Hermes-Jarvis`) |
+| **D4** | Priorité migration skills Phase 3 | EN ATTENTE | Dépendante de T#11 (3 patterns sensibles ha-mcp) |
+
+### Verdict S63 — RTX 3090 24 Go suffit
+
+`qwen35-agent` V1 validé 3/3 scénarios après `hermes update`. **NO-GO confirmé** sur upgrade hardware ~2410 €. Bascule cloud LLM Haiku 4.5 annulée — local viable, OpenRouter reste exception ~5 %.
+
+---
+
 *Fin du document — Projet Jarvis → Hermes Agent — Session 36, 24 avril 2026.*
 
 *Rien dans ce document n'engage une décision. Tout reste ouvert.*

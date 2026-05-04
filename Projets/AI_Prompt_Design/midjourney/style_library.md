@@ -87,11 +87,9 @@ Briques EN courtes qui marchent particulièrement bien sur **MJ V7**.
 | Onirique | `dreamlike, ethereal, soft focus, surreal lighting` |
 | Joyeux | `bright cheerful mood, vibrant colors, sunny, uplifting` |
 
-## Combos qui marchent (à enrichir avec les itérations Mickael)
+## Nouveaux styles 2026 (ajout S90 — patch P1-4)
 
-> *Vide pour l'instant. À documenter avec date + brief + prompt complet
-> + score obtenu.*
+12 styles tendance 2026 identifiés via audit S69. Format enrichi avec
+**code sref** et **code moodboard** (à compléter au fur et à mesure).
 
----
-
-*Version 1.0 — 2026-04-26 — base initiale*
+| Style | Briqu

@@ -1,7 +1,8 @@
 ---
 title: Langues et directions
 created: 2026-04-25
-tags: [traduction, traduction/langues, domaine/traduction]
+updated: 2026-04-25
+tags: [atome, traduction, traduction/langues, domaine/traduction]
 status: actif
 parent: "[[_Index]]"
 ---

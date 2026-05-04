@@ -1,43 +1,25 @@
 ---
 title: Skills Workflow & Communication
 created: 2026-04-27
-tags: [skill, workflow, meta]
+updated: 2026-05-02
+tags: [atome, skill, workflow, meta]
 status: actif
 domaine: Skills_Jarvis
 ---
 
 # Skills Workflow & Communication
 
-Catégorie regroupant les 5 skills méta qui régulent la **manière** dont Jarvis travaille avec Mickael (gestion de session, communication, langues, hygiène des fichiers).
+Catégorie regroupant les 3 skills méta qui régulent la **manière** dont Jarvis travaille avec Mickael (gestion de session, communication, langues, hygiène des fichiers).
+
+> **Note S84 (2026-05-02)** : suppression de 2 skills obsolètes —
+> `bascule-conversation` et `guidage-photo-etape` (T#24 cancelled). Ces skills
+> étaient conçues pour le mode iPhone à captures saturées, devenu marginal
+> depuis l'instauration du mode PC permanent S24 (CLAUDE.md §4 RÈGLE PRINCIPALE).
+> Pour la limite contexte : `/compact` ou nouvelle conv (auto-memory
+> `feedback_compact_vs_bascule_proposition`). Pour le pas-à-pas : règle
+> CLAUDE.md §4 RÈGLE PAS-À-PAS (S53).
 
 ## Skills incluses
-
-### `bascule-conversation`
-
-- **Déclencheur** :
-  - `guidage-photo-etape` détecte `LIMITE - 1` captures atteintes
-  - Mickael dit "bascule", "archive et relance", "nouvelle conv"
-  - Limite contexte images approchée
-- **Rôle** : transition propre d'une conversation Claude.ai saturée vers une nouvelle conv, sans perdre l'état.
-- **Dépendances** :
-  - Génération d'un résumé de reprise complet
-  - Mise à jour `TASKS.md` + `METRIQUES.md` + archive `memory/historique/`
-  - Bloc à coller fourni à Mickael pour la nouvelle conv
-- **Détail exécutable** : `.claude/skills/bascule-conversation/SKILL.md`
-- **Lien sœur** : `session-closure` (fin normale) vs `bascule-conversation` (urgence limite images)
-
-### `guidage-photo-etape`
-
-- **Déclencheur** :
-  - Mickael envoie une **capture d'écran** d'une interface (Cloudflare, HA, routeur, dashboard)
-  - "guide-moi étape par étape", "pas à pas", "je suis sur iPhone, réponse courte"
-  - Flux interface → photo → action → photo suivante
-- **Rôle** : mode pas-à-pas, réponses 2-3 lignes max, **une action par message**, sans pavé explicatif. Anticipation de la limite contexte image (alerte à 5+ captures).
-- **Dépendances** :
-  - Compteur de captures
-  - Pont vers `bascule-conversation` à `LIMITE - 1`
-- **Détail exécutable** : `.claude/skills/guidage-photo-etape/SKILL.md`
-- **Auto-memory** : `feedback_guidage_photo_etape`, `feedback_anticipation_limite_images`
 
 ### `session-closure`
 

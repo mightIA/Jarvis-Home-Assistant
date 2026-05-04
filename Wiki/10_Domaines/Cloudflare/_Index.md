@@ -1,6 +1,7 @@
 ---
 title: Cloudflare — Index du domaine
 created: 2026-04-25
+updated: 2026-04-25
 tags: [moc, reseau/cloudflare]
 status: actif
 source: Ressources/Competences/Home_Assistant_Inventaire.md §6 + Ressources/Competences/Home_Assistant.md

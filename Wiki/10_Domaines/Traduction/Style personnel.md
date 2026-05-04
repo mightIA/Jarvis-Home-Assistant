@@ -1,7 +1,8 @@
 ---
 title: Style personnel
 created: 2026-04-25
-tags: [traduction, traduction/style, domaine/traduction]
+updated: 2026-04-25
+tags: [atome, traduction, traduction/style, domaine/traduction]
 status: actif
 parent: "[[_Index]]"
 source: Ressources/Competences/Traduction_Style_Personnel.md

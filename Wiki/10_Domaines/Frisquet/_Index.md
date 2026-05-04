@@ -1,6 +1,7 @@
 ---
 title: Chaudière Frisquet — Index du domaine
 created: 2026-04-25
+updated: 2026-04-25
 tags: [moc, domotique/chauffage, ha/frisquet]
 status: actif
 source: Ressources/Competences/Home_Assistant.md §6

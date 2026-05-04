@@ -1,7 +1,8 @@
 ---
 title: Skills Mode Réactif
 created: 2026-04-27
-tags: [skill, mode-reactif, alerting]
+updated: 2026-04-28
+tags: [atome, skill, mode-reactif, alerting]
 status: actif
 domaine: Skills_Jarvis
 ---
@@ -28,7 +29,7 @@ Catégorie regroupant les 2 skills du **Mode Réactif Jarvis v1.1** (architectur
   - Dossier de log `memory/historique_reactif/`
   - Task Scheduler Windows `Jarvis-CheckAlert`
 - **Détail exécutable** : `.claude/skills/check-jarvis-alert/SKILL.md`
-- **Liens vault** : [[Wiki/10_Domaines/Email/Tri_Gmail_Automatise]], [[Wiki/10_Domaines/Procedures_Rares/_Index]]
+- **Liens vault** : [[10_Domaines/Email/Tri Gmail automatise|Tri Gmail automatisé]], [[10_Domaines/Procedures/_Index|Procédures]]
 
 ### `rapport-journalier-reactif`
 
@@ -69,11 +70,11 @@ Référence générale : `Ressources/Competences/Mode_Reactif.md`.
 
 - **Phase 0** : livrée S22 (skills + scripts + helper HA)
 - **Phase 1** : tasks `#36` / `#37` / `#38` toujours pending (activation scheduled tasks + tests bout-en-bout)
-- Update auto reporté **v1.2 post-Proxmox** (cf. [[Wiki/10_Domaines/Hardware/_Index]] projet upgrade)
+- Update auto reporté **v1.2 post-Proxmox** (cf. [[10_Domaines/Hardware/_Index|projet upgrade Hardware]])
 
 ## Voir aussi
 
 - [[_Index]] — MOC Skills Jarvis
 - `Ressources/Competences/Mode_Reactif.md` — architecture et procédures
 - `memory/historique_reactif/` — logs par alerte
-- Auto-memory `project_mode_reactif_v1_1`
+- Auto-memory `proje

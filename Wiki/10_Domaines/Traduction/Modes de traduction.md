@@ -1,7 +1,8 @@
 ---
 title: Modes de traduction
 created: 2026-04-25
-tags: [traduction, traduction/mode, domaine/traduction]
+updated: 2026-04-25
+tags: [atome, traduction, traduction/mode, domaine/traduction]
 status: actif
 parent: "[[_Index]]"
 ---

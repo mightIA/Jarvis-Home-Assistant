@@ -1,7 +1,8 @@
 ---
 title: Dyson Purifier
 created: 2026-04-25
-tags: [domotique/dyson, ha/integrations]
+updated: 2026-04-25
+tags: [atome, domotique/dyson, ha/integrations]
 status: actif
 source: Ressources/Competences/Home_Assistant.md §9
 ---

@@ -1,7 +1,8 @@
 ---
 title: Tri Gmail automatisé
 created: 2026-04-25
-tags: [email, email/gmail, email/tri, domaine/email]
+updated: 2026-04-25
+tags: [atome, email, email/gmail, email/tri, domaine/email]
 status: actif
 parent: "[[_Index]]"
 source_skill: .claude/skills/tri-email-gmail/SKILL.md

@@ -1,7 +1,8 @@
 ---
 title: Mode Réactif — Décisions S31 (bascule CLI)
 created: 2026-04-25
-tags: [ha/mode-reactif, jarvis/cli, jarvis/securite]
+updated: 2026-04-25
+tags: [atome, ha/mode-reactif, jarvis/cli, jarvis/securite]
 status: actif
 session: 31
 ---

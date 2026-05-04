@@ -1,7 +1,8 @@
 ---
 title: Envoi via Home Assistant
 created: 2026-04-25
-tags: [email, email/envoi, email/ha, domaine/email]
+updated: 2026-04-28
+tags: [atome, email, email/envoi, email/ha, domaine/email]
 status: actif
 parent: "[[_Index]]"
 ---
@@ -98,9 +99,9 @@ Les rapports sont consultables d'un clic via le label `Jarvis-RapportTri`.
 
 - Stack MCP Gmail : [[Gmail MCP custom]]
 - Pipeline tri Gmail : [[Tri Gmail automatise]]
-- Mode Réactif : `[[../HomeAssistant/Mode Reactif - Pipeline alertes]]`
+- Mode Réactif : [[10_Domaines/HomeAssistant/Mode Réactif - Pipeline alertes|Mode Réactif — Pipeline alertes]]
 - Auto-memory clé : `feedback_notify_gmail_target.md`
 
 ---
 
-*Atome créé S44. Service unique d'envoi mail Jarvis depuis S27.*
+*Atome créé S44. Servi

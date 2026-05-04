@@ -87,25 +87,13 @@ Briques EN en **tags pondérés** qui marchent sur SDXL / SD 1.5 / FLUX.
 | Onirique | `dreamlike, ethereal, soft focus, surreal lighting` |
 | Joyeux | `bright cheerful mood, vibrant colors, sunny, uplifting` |
 
-## LoRA recommandés (à installer selon besoin)
+## Checkpoints communautaires hot 2026 (ajout S90 — patches P1-12, P2-6)
 
-| LoRA | Effet | Weight |
-|------|-------|--------|
-| `add_detail` | + détails fins | 0.5-0.8 |
-| `epi_noiseoffset` | + dynamic range | 0.6-1.0 |
-| `Hands_Helper` | mains correctes | 0.5-0.7 |
-| `style_LoRA` (variées) | imite un style/artiste | 0.6-1.0 |
-| `Detail Tweaker XL` | SDXL detail boost | 0.4-0.7 |
+### Anime / Cartoon / Illustration
 
-À utiliser : `<lora:name:weight>` dans le prompt.
-
----
-
-## Combos qui marchent (à enrichir)
-
-> *Vide pour l'instant. À documenter avec : checkpoint + prompt complet
-> + negative + paramètres + score + image obtenue.*
-
----
-
-*Version 1.0 — 2026-04-26 — base initiale*
+| Checkpoint | Architecture | Tags qualité spécifiques | Cas d'usage |
+|---|---|---|---|
+| **Pony Diffusion V6 XL** | SDXL fine-tune | `score_9, score_8_up, score_7_up, source_anime, rating_safe` | Anime, NSFW, fandom |
+| **Pony Diffusion V7** | **AuraFlow** (sortie oct 2025) | base différente — voir CivitAI doc | Anime nouvelle gen |
+| **Illustrious-XL v0.1 / v1.0** | SDXL fine-tune | `masterpiece, best quality, very aesthetic, absurdres` | Anime, alternative à Pony |
+| **NoobAI-XL** | SDXL fine-tune | tags Illu

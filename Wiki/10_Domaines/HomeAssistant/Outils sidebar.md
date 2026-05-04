@@ -1,7 +1,8 @@
 ---
 title: HA — Outils sidebar (barre latérale)
 created: 2026-04-25
-tags: [ha/inventaire, ha/ui]
+updated: 2026-04-25
+tags: [atome, ha/inventaire, ha/ui]
 status: actif
 ---
 

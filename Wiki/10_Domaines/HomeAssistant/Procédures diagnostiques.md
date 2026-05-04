@@ -1,7 +1,8 @@
 ---
 title: HA — Procédures diagnostiques
 created: 2026-04-25
-tags: [ha/diagnostic, ha/troubleshooting]
+updated: 2026-04-25
+tags: [atome, ha/diagnostic, ha/troubleshooting]
 status: actif
 ---
 

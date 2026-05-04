@@ -1,7 +1,8 @@
 ---
 title: Mode Réactif — Pipeline alertes (label Jarvis-Alert)
 created: 2026-04-25
-tags: [ha/mode-reactif, gmail/labels]
+updated: 2026-04-25
+tags: [atome, ha/mode-reactif, gmail/labels]
 status: actif
 ---
 

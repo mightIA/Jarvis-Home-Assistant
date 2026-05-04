@@ -1,7 +1,8 @@
 ---
 title: MCP ecosystem
 created: 2026-04-27
-tags: [veille, mcp, ecosystem, anthropic]
+updated: 2026-04-27
+tags: [atome, veille, mcp, ecosystem, anthropic]
 status: actif
 ---
 

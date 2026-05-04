@@ -1,6 +1,6 @@
 ---
 name: lovelace-edit
-description: Edition de la configuration Lovelace (dashboards HA) via l'API WebSocket hass.callWS. Ne modifie jamais les fichiers dashboard directement. Couvre la creation de cartes, sections, onglets, badges, custom:button-card. Propose toujours une sauvegarde de la config avant modification significative.
+description: Edition Lovelace via WebSocket `hass.callWS` (jamais editer fichiers dashboard directement). DECLENCHEURS : 'ajoute carte/section/badge', 'cree page Lovelace', 'modifie le dashboard', 'reorganise les cartes', 'corrige carte qui s'affiche pas', 'masonry/sections/stack', 'custom:button-card', 'theme dashboard', 'edite vue Y'. Couvre creation cartes, sections, onglets, badges, button-card, themes. Toujours proposer SAUVEGARDE config avant modification significative.
 ---
 
 # Skill : Edition Lovelace
@@ -84,6 +84,28 @@ Voir la skill `browser-mod` pour la creation de badges fonctionnels
   sont live via callWS.
 - Ne pas ecraser une vue sans avertissement.
 - Proposer un test visuel apres chaque modification.
+
+
+## Exemples d'invocation utilisateur
+
+- « Ajoute une carte Dyson sur la page Salon » → lire config via `lovelace/config`, modifier, ecrire via `lovelace/config/save`.
+- « Refais la page Lumieres en 3 colonnes » → modifier `views[N].sections` ou utiliser layout `sections` avec `max_columns:3`.
+- « La carte camera ne s'affiche pas » → diagnostic via console navigateur + verif entite source via `ha-status`.
+- « Sauvegarde le dashboard avant modif » → `hass.callWS({type:"lovelace/config", url_path:null})` puis copier-coller pour Mickael.
+
+## Quand NE PAS utiliser
+
+- Pour modifier une AUTOMATION ou un SCRIPT — utiliser `yaml-automation` ou `home-assistant-manager`.
+- Pour creer un NOUVEAU dashboard (pas une vue) — passer par UI HA `Settings > Dashboards > Create dashboard` (la callWS exige un dashboard deja existant).
+- Pour le theme global HA — utiliser `themes.yaml` + reload, pas Lovelace.
+
+## Pieges connus
+
+- **Lire AVANT d'ecrire** : toujours recuperer la config COMPLETE actuelle, modifier, re-ecrire. Ecrire un fragment ECRASE le reste.
+- **`url_path: null`** = dashboard principal. Pour un dashboard nomme : `url_path: "energy"` ou autre slug. Confondre les deux ECRASE le mauvais dashboard.
+- **Pas de rechargement HA** requis : Lovelace est live via callWS. Si Mickael propose `ha_reload_core` apres edit Lovelace, refuser (inutile).
+- **JSON vs YAML** : `hass.callWS` attend du JSON. Si Mickael fournit du YAML il faut convertir avant.
+- **Sauvegarde avant** : pour toute modification > 1 carte, proposer export config par 3-points > Raw editor > copier-coller (rollback humain).
 
 ## Reference longue
 

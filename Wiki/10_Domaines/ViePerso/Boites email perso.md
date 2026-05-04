@@ -1,7 +1,8 @@
 ---
 title: Boîtes email de Mickael — vue Vie perso
 created: 2026-04-25
-tags: [vieperso/email, email]
+updated: 2026-04-25
+tags: [atome, vieperso/email, email]
 parent: "[[_Index]]"
 status: actif
 ---

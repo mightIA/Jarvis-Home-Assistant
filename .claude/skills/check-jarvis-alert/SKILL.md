@@ -20,7 +20,7 @@ Le serveur MCP `gmail-mcp-local` est en transport **stdio** : il est **chargé u
 
 Conséquences pratiques :
 
-- Toute exécution se fait depuis `claude` CLI, dans `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`.
+- Toute exécution se fait depuis `claude` CLI, dans `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`.
 - Si je suis en Cowork quand Mickael demande un run manuel : pattern **brain(Cowork) + hands(CLI)** obligatoire (S19). Je prépare le prompt dans Cowork, Mickael lance `claude` CLI pour exécuter.
 - La Task Scheduler Windows lance `claude -p` headless avec `settings.local.json` allowlist.
 

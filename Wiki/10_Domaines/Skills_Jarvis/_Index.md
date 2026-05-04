@@ -1,6 +1,7 @@
 ---
 title: Skills Jarvis — Index
 created: 2026-04-27
+updated: 2026-05-02
 tags: [moc, skill, index]
 status: actif
 domaine: Skills_Jarvis
@@ -8,9 +9,11 @@ domaine: Skills_Jarvis
 
 # Skills Jarvis — MOC
 
-Catalogue navigable des **27 skills** Jarvis (`.claude/skills/`). Les skills sont déclenchées automatiquement par leur `description` dans le frontmatter, selon le contexte conversationnel.
+Catalogue navigable des **30 skills** Jarvis (`.claude/skills/`). Les skills sont déclenchées automatiquement par leur `description` dans le frontmatter, selon le contexte conversationnel.
 
 > **Important** : ce vault est un **index pointeur**, pas une copie. Le **détail exécutable** (procédures, commandes, fichiers de patterns, snippets YAML) reste dans `.claude/skills/<nom>/SKILL.md`. On ne duplique jamais le contenu — on documente seulement le « quand / pourquoi / dépendances ».
+
+> Détail enrichi : `memory/SKILLS_INDEX.md` (description + frontmatter de chaque skill, tenu à jour S71+).
 
 ## Navigation par catégorie
 
@@ -19,62 +22,78 @@ Catalogue navigable des **27 skills** Jarvis (`.claude/skills/`). Les skills son
 | Tri & rédaction email | 4 | [[Email_Tri_Auto]] |
 | Opérations Home Assistant | 11 | [[Home_Assistant_Operations]] |
 | Mode Réactif | 2 | [[Mode_Reactif]] |
-| Workflow & communication | 5 | [[Workflow_Communication]] |
+| Workflow & communication | 4 | [[Workflow_Communication]] |
 | Setup & installation | 3 | [[Setup_Install]] |
-| Hermès Agent (1) | 1 | voir [[Wiki/10_Domaines/Hermes_Agent/_Index]] |
+| Hermès Agent | 1 | (skill `hermes-agent` dans `.claude/skills/`) |
+| Sécurité / architecture (S72) | 2 | (à documenter) |
+| Lifecycle tâches (S71) | 3 | (à documenter) |
 | Wiki vault sub-agents (futur) | 0 (placeholder) | [[Wiki_Vault]] |
 
-## Skills actuelles (vue à plat)
+## Skills actuelles (vue à plat — 30 au 02/05/2026)
 
-| Nom | Catégorie | Trigger principal |
-|-----|-----------|-------------------|
-| `tri-email-gmail` | Email | Cron 5h/14h + demande explicite |
-| `tri-email-outlook` | Email | Cron 5h/14h + demande explicite |
-| `tri-email-outlook-priorites` | Email | Demande explicite (interactif) |
-| `redaction-email` | Email | Demande de rédaction |
-| `ha-status` | HA Operations | Question d'état d'un appareil |
-| `ha-scripts` | HA Operations | Demande d'exécution script HA |
-| `chaudiere-frisquet` | HA Operations | Question chaudière / chauffage |
-| `cameras-dahua` | HA Operations | Snapshot / record / PTZ |
-| `dyson-purifier` | HA Operations | Question Dyson / qualité air |
-| `debannissement-ip` | HA Operations | 2-3 erreurs 401/403 |
-| `browser-mod` | HA Operations | Refresh Lovelace, popup HA |
-| `home-assistant-best-practices` | HA Operations | Création/édition automation |
-| `home-assistant-manager` | HA Operations | Gestion config HA via SSH/scp |
-| `lovelace-edit` | HA Operations | Édition dashboard via callWS |
-| `yaml-automation` | HA Operations | Demande "je voudrais une automation" |
-| `check-jarvis-alert` | Mode Réactif | Cron 30 min (Task Scheduler) |
-| `rapport-journalier-reactif` | Mode Réactif | Cron 23h30 (Task Scheduler) |
-| `bascule-conversation` | Workflow | Limite images / "bascule" |
-| `guidage-photo-etape` | Workflow | Capture d'écran reçue |
-| `session-closure` | Workflow | Fin de session importante |
-| `traduction` | Workflow | "traduis", "translate", "übersetze" |
-| `decongestion-fichiers-vivants` | Workflow | Début session + "ça rame" |
-| `install-claude-code-windows` | Setup | "claude n'est pas reconnu" |
-| `ha-mcp-install` | Setup | Pairage MCP HA échoue |
-| `cloudflare-access-ha` | Setup | Exposition HA derrière CF |
-| `hermes-agent` | Hermès Agent | "Hermes Agent", "Phase 1bis-c/d" |
+### Email (4)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `tri-email-gmail` | Cron 5h/14h + demande explicite |
+| `tri-email-outlook` | Cron 5h/14h + demande explicite |
+| `tri-email-outlook-priorites` | Demande explicite (interactif) |
+| `redaction-email` | Demande de rédaction |
 
-## Convention de lecture
+### Home Assistant Operations (11)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `ha-status` | Question d'état d'un appareil |
+| `ha-scripts` | Demande d'exécution script HA |
+| `chaudiere-frisquet` | Question chaudière / chauffage |
+| `cameras-dahua` | Snapshot / record / PTZ |
+| `dyson-purifier` | Question Dyson / qualité air |
+| `debannissement-ip` | 2-3 erreurs 401/403 |
+| `browser-mod` | Refresh Lovelace, popup HA |
+| `home-assistant-best-practices` | Création/édition automation |
+| `home-assistant-manager` | Gestion config HA via SSH/scp |
+| `lovelace-edit` | Édition dashboard via callWS |
+| `yaml-automation` | Demande "je voudrais une automation" |
 
-Pour chaque skill, l'atome catégorie indique :
+### Mode Réactif (2)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `check-jarvis-alert` | Cron 30 min (Task Scheduler) |
+| `rapport-journalier-reactif` | Cron 23h30 (Task Scheduler) |
 
-- **Déclencheur** : ce qui fait charger la skill (mots-clés, événements, cron)
-- **Dépendances** : MCP requis, fichiers de patterns, scheduled tasks, autres skills
-- **Détail exécutable** : pointeur vers `.claude/skills/<nom>/SKILL.md`
-- **Liens vault** : ressources connexes (`[[Wiki/10_Domaines/...]]`)
+### Workflow & communication (4)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `session-closure` | Fin de session importante |
+| `traduction` | "traduis", "translate", "übersetze" |
+| `decongestion-fichiers-vivants` | Début session + "ça rame" |
+| `git-github-push` | Push repo Jarvis vers GitHub mightIA (S69) |
 
-## Pattern d'évolution
+> **Note S84 (2026-05-02)** : `bascule-conversation` et `guidage-photo-etape`
+> retirées (T#24 cancelled — obsolètes mode iPhone, mode PC permanent depuis S24).
 
-Toute nouvelle skill créée dans `.claude/skills/` doit :
+### Setup & installation (3)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `install-claude-code-windows` | "claude n'est pas reconnu" |
+| `ha-mcp-install` | Pairage MCP HA échoue |
+| `cloudflare-access-ha` | Exposition HA derrière CF |
 
-1. Être ajoutée à l'atome catégorie correspondant (ou créer une nouvelle catégorie + atome).
-2. Apparaître dans la table « Skills actuelles » ci-dessus.
-3. Conserver le frontmatter `name` + `description` clair (premier paragraphe = trigger).
+### Hermès Agent (1)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `hermes-agent` | "Hermes Agent", "Phase 1bis-c/d" |
 
-## Voir aussi
+### Sécurité / architecture — ajoutées S72 (2)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `hook-add-pattern` | Ajout d'un nouveau pattern de blocage au hook PreToolUse `check-secrets.sh` |
+| `audit-architecture-jarvis` | Audit méta trimestriel ou signal "ça rame / on a dérivé" |
 
-- `CLAUDE.md` § 5 — liste de référence des skills disponibles
-- `.claude/skills/` — sources exécutables
-- [[Wiki/10_Domaines/Email/_Index]] — domaine email
-- [[Wiki/10_Domaines/Hermes_Agent/_Index]] — domaine Hermès Agent
+### Lifecycle tâches — ajoutées S71 (3)
+| Nom | Trigger principal |
+|-----|-------------------|
+| `add-task` | "ajoute une tâche", "nouvelle tâche" |
+| `close-task` | Clôture d'une tâche, archivage trimestriel |
+| `regen-tasks-index` | "régénère l'index", "MAJ TASKS.md" |
+
+## 

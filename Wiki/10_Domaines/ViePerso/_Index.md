@@ -25,10 +25,21 @@ touche à la vie de Mickael en dehors du projet domotique strict.
 
 ## Atomes du domaine
 
-- `[[Prompt Vie perso]]` — prompt V2 validé S20 + plan en 4 phases V1→V4
-- `[[Macros clavier]]` — catalogue v1 (G915 + G502 + Tartarus V2) + méthodologie
-- `[[Boites email perso]]` — 4 boîtes Mickael + canal de tri actuel + multi-MCP
-- `[[Identites GitHub]]` — compte `mightIA` + procédure ajout autres comptes
+### Workflow personnel
+- [[Prompt Vie perso]] — prompt V2 validé S20 + plan en 4 phases V1→V4
+- [[Macros clavier]] — catalogue v1 (G915 + G502 + Tartarus V2) + méthodologie
+- [[Boites email perso]] — 4 boîtes Mickael + canal de tri actuel + multi-MCP
+- [[Identites GitHub]] — compte `mightIA` + procédure ajout autres comptes
+
+### Carnet d'adresses & événements
+- [[Contacts_Pro]] — contacts professionnels et prestataires
+- [[Medecins]] — coordonnées médicales (mutuelle, médecin traitant, spécialistes)
+- [[Anniversaires_Dates_Cles]] — anniversaires et dates clés à retenir
+
+### Finances & matériel personnel
+- [[Abonnements]] — abonnements actifs (LLM, streaming, cloud, télécom, énergie, assurances)
+- [[Garanties_Factures]] — suivi des garanties et factures importantes
+- [[Voiture]] — entretien, assurance, contrôle technique, kilométrage
 
 ## Règles transverses Vie perso
 

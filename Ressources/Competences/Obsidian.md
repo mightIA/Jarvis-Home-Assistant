@@ -45,7 +45,7 @@ C:\Users\Might\AppData\Local\Programs\Obsidian\Obsidian.exe
 ### Chemin du vault
 
 ```
-D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Wiki\
+D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Wiki\
 ```
 
 **Décision S41** : versionné dans le projet Jarvis, pas dans un dossier
@@ -215,7 +215,7 @@ Détail complet des sous-étapes : `TASKS.md` ligne #58.
 
 En attendant que le repo Git soit initialisé, le vault est backupé via :
 
-- **OneDrive** : si le dossier `D:\Might\IA\Projets Cowork\` est
+- **OneDrive** : si le dossier `D:\Documents\IA\Projets Cowork\` est
   synchronisé OneDrive (à vérifier côté Mickael), backup passif auto.
 - **Skill `Backup_Jarvis`** : `Ressources/Protocoles/Backup_Jarvis.md`
   (procédure manuelle session 17).

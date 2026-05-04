@@ -1,0 +1,304 @@
+#!/bin/bash
+# Hook PreToolUse — Garde-fou Règle 0 « Données sensibles » + actions destructives
+# Créé S72 (28/04/2026) — phase P2 audit architecture.
+# Étendu S108 (04/05/2026) — T#66 R2 — règles 8/9/10 (suppressions + git destructif + système).
+#
+# COMPORTEMENT :
+#   - Lit le JSON d'input PreToolUse depuis stdin.
+#   - Extrait tool_name + paths/args concernés.
+#   - Si un pattern sensible OU destructif est détecté → exit 2 avec message stderr
+#     (Claude lit le stderr et applique la Règle 0 ; l'outil ne s'exécute pas).
+#   - Sinon → exit 0 (l'outil continue normalement).
+#
+# CIBLES (Règle 0 — données sensibles, S72) :
+#   1. Credentials Gmail OAuth (~/.gmail-mcp/credentials.json,
+#      ~/.gmail-mcp/gcp-oauth.keys.json)
+#   2. Variables d'env contenant secrets (.env*, .env.local, etc.)
+#   3. Secrets HA / YAML (secrets.yaml, secrets.json)
+#   4. Clés SSH privées (~/.ssh/id_*, *_rsa, *_ed25519 — sauf .pub)
+#   5. Permissions Cowork local (.claude/settings.local.json)
+#   6. .mcp.json en Edit/Write seulement (Read autorisé pour bootstrap)
+#   7. Args Bash contenant patterns secrets (sk-or-v1-*, Bearer ya29.*,
+#      private_[A-Za-z0-9]{16,})
+#
+# CIBLES (actions destructives — T#66 R2, S108) :
+#   8. Suppressions Bash dangereuses (rm -rf, Remove-Item -Recurse/-Force,
+#      del /s/q/f, unlink) — formalise CLAUDE.md §4 « Jamais supprimer sans validation ».
+#   9. Commandes Git destructives (reset --hard, clean -fd, push --force,
+#      branch -D, checkout -- ., stash drop/clear) — protection work tree
+#      + historique.
+#   10. Commandes système destructives (Format-Volume, diskpart, shutdown,
+#       Stop-Computer, wsl --unregister, ollama rm, npm uninstall -g,
+#       docker prune/rm) — protection environnement Hermès/Ollama/ccusage.
+#
+# REFERENCES :
+#   - CLAUDE.md §0 (Règle prioritaire — Données sensibles)
+#   - CLAUDE.md §4 (Jamais supprimer sans validation)
+#   - Audit architecture S72, post claude-code-from-source ch12 (hooks)
+#   - T#66 R2 (S108) — Phase A améliorations Cowork
+
+set -euo pipefail
+
+# Lit l'input JSON depuis stdin (envoyé par Claude Code / Cowork)
+INPUT="$(cat)"
+
+# Si jq n'est pas dispo, on log et passe (fail-open pour ne pas casser sessions)
+if ! command -v jq >/dev/null 2>&1; then
+  echo "[check-secrets] WARNING: jq not found, hook bypassed" >&2
+  exit 0
+fi
+
+TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // ""')
+
+# Extrait file_path (Read/Edit/Write/MultiEdit/NotebookEdit) ou command (Bash)
+FILE_PATH=$(echo "$INPUT" | jq -r '.tool_input.file_path // .tool_input.path // ""')
+BASH_CMD=$(echo "$INPUT" | jq -r '.tool_input.command // ""')
+
+# ============================================================================
+# RÈGLE 1 — Fichiers credentials OAuth (toujours bloquer)
+# ============================================================================
+if [[ "$FILE_PATH" =~ \.gmail-mcp/(credentials|gcp-oauth\.keys)\.json$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+Ce fichier contient des credentials OAuth Gmail (token d'accès ou clés client
+Google). Son contenu est sensible au sens de CLAUDE.md §0.
+
+Procédure obligatoire (CLAUDE.md §0) :
+  1. Décrire ce qui serait vu/manipulé.
+  2. Proposer à Mickael de le faire lui-même.
+  3. Demander accord explicite si Claude doit y accéder.
+
+Si tu as un besoin légitime, demande à Mickael de bypasser ce hook
+temporairement OU de te lire le fichier lui-même.
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 2 — Variables d'environnement (.env*) — bloquer Read/Edit/Write
+# ============================================================================
+if [[ "$FILE_PATH" =~ /\.env(\.[a-z]+)?$ ]] || [[ "$FILE_PATH" =~ /\.env\.local$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+Les fichiers .env contiennent typiquement des API keys (OPENROUTER_API_KEY,
+MISTRAL_API_KEY, etc.). Ne pas accéder sans accord explicite (CLAUDE.md §0).
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 3 — Secrets YAML/JSON Home Assistant
+# ============================================================================
+if [[ "$FILE_PATH" =~ /secrets\.(yaml|yml|json)$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+Le fichier secrets.yaml/json HA contient des tokens et mots de passe
+d'intégrations. Procédure CLAUDE.md §0 obligatoire.
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 4 — Clés SSH privées (mais autoriser .pub)
+# ============================================================================
+if [[ "$FILE_PATH" =~ /\.ssh/(id_[a-z0-9]+|.*_rsa|.*_ed25519|.*_ecdsa)$ ]] \
+   && [[ ! "$FILE_PATH" =~ \.pub$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+Clé SSH privée détectée. Aucun accès sans accord explicite (CLAUDE.md §0).
+Note : les clés publiques (.pub) sont autorisées.
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 5 — Permissions Cowork locales (settings.local.json)
+# ============================================================================
+if [[ "$FILE_PATH" =~ /\.claude/settings\.local\.json$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+settings.local.json contient les permissions Cowork + tokens MCP résiduels.
+Modifier uniquement avec accord explicite Mickael (CLAUDE.md §0).
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 6 — .mcp.json en Edit/Write seulement (Read autorisé pour bootstrap)
+# ============================================================================
+if [[ "$FILE_PATH" =~ /\.mcp\.json$ ]] && [[ "$TOOL_NAME" =~ ^(Edit|Write|MultiEdit)$ ]]; then
+  cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Fichier : $FILE_PATH
+Outil   : $TOOL_NAME
+
+.mcp.json contient le secret_path ha-mcp (rotation S70). Toute modification
+doit faire l'objet d'une rotation propre validée par Mickael (skill
+"rotation-secret" + curl test obligatoire — voir
+memory/feedback_rotation_secret_curl_obligatoire.md).
+MSG
+  exit 2
+fi
+
+# ============================================================================
+# RÈGLE 7 — Patterns secrets dans args Bash
+# ============================================================================
+if [[ "$TOOL_NAME" == "Bash" ]] && [[ -n "$BASH_CMD" ]]; then
+  if [[ "$BASH_CMD" =~ sk-or-v1-[A-Za-z0-9]{32,} ]] \
+     || [[ "$BASH_CMD" =~ Bearer\ ya29\.[A-Za-z0-9_-]{10,} ]] \
+     || [[ "$BASH_CMD" =~ private_[A-Za-z0-9]{16,} ]] \
+     || [[ "$BASH_CMD" =~ AKIA[0-9A-Z]{16} ]] \
+     || [[ "$BASH_CMD" =~ ghp_[A-Za-z0-9]{36} ]]; then
+    cat >&2 <<MSG
+[Règle 0 — Données sensibles] BLOQUÉ par hook check-secrets.sh
+
+Outil  : Bash
+Motif  : commande contient un pattern de secret littéral
+         (OpenRouter sk-or-v1-*, Google ya29.*, ha-mcp private_*,
+          AWS AKIA*, GitHub ghp_*).
+
+Ne JAMAIS coller un secret en clair dans une commande shell. Utiliser une
+variable d'environnement OU demander à Mickael de l'exécuter lui-même.
+MSG
+    exit 2
+  fi
+fi
+
+# ============================================================================
+# RÈGLE 8 — Suppressions Bash dangereuses (T#66 R2, S108)
+# ============================================================================
+# Formalise CLAUDE.md §4 « JAMAIS supprimer sans validation explicite ».
+# Détecte rm -rf/-r/-f, Remove-Item -Recurse/-Force, del /s/q/f, unlink.
+if [[ "$TOOL_NAME" == "Bash" ]] && [[ -n "$BASH_CMD" ]]; then
+  if [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])rm[[:space:]]+(-[a-zA-Z]*[rRf][a-zA-Z]*[[:space:]]|-r[[:space:]]|-R[[:space:]]|-f[[:space:]]|--recursive|--force) ]] \
+     || [[ "$BASH_CMD" =~ Remove-Item.*(-Recurse|-Force) ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])del[[:space:]]+.*[/]([sqfSQF]([[:space:]]|$)) ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])unlink[[:space:]] ]]; then
+    cat >&2 <<MSG
+[Règle suppression — CLAUDE.md §4] BLOQUÉ par hook check-secrets.sh
+
+Outil  : Bash
+Motif  : commande de suppression dangereuse détectée
+         (rm -rf/-r/-f, Remove-Item -Recurse/-Force, del /s/q/f, unlink).
+
+Commande : $BASH_CMD
+
+Procédure obligatoire (CLAUDE.md §4 « JAMAIS supprimer sans validation
+explicite de Mickael ») :
+  1. Décrire précisément ce qui serait supprimé (chemin exact, taille, contenu).
+  2. Demander accord explicite avant exécution.
+  3. Privilégier Move-Item / mv vers une corbeille temporaire si possible
+     (action réversible).
+
+Exception : tâches automatiques explicitement déclarées (tri email, vidage
+spam) ne déclenchent pas ce hook car elles passent par les MCP, pas par Bash.
+MSG
+    exit 2
+  fi
+fi
+
+# ============================================================================
+# RÈGLE 9 — Commandes Git destructives (T#66 R2, S108)
+# ============================================================================
+# Détecte git reset --hard, git clean -fd, git push --force, git branch -D,
+# git checkout -- ., git stash drop/clear.
+# Protection work tree + historique distant.
+if [[ "$TOOL_NAME" == "Bash" ]] && [[ -n "$BASH_CMD" ]]; then
+  if [[ "$BASH_CMD" =~ git[[:space:]]+reset[[:space:]]+(.+[[:space:]])?(--hard|--mixed[[:space:]]+--hard) ]] \
+     || [[ "$BASH_CMD" =~ git[[:space:]]+clean[[:space:]]+(.+[[:space:]])?-[a-zA-Z]*[fF] ]] \
+     || [[ "$BASH_CMD" =~ git[[:space:]]+push[[:space:]]+(.+[[:space:]])?(--force|--force-with-lease|-f([[:space:]]|$)) ]] \
+     || [[ "$BASH_CMD" =~ git[[:space:]]+branch[[:space:]]+(.+[[:space:]])?-D[[:space:]] ]] \
+     || [[ "$BASH_CMD" =~ git[[:space:]]+checkout[[:space:]]+--[[:space:]]+\. ]] \
+     || [[ "$BASH_CMD" =~ git[[:space:]]+stash[[:space:]]+(drop|clear) ]]; then
+    cat >&2 <<MSG
+[Règle Git destructif — CLAUDE.md §4] BLOQUÉ par hook check-secrets.sh
+
+Outil  : Bash
+Motif  : commande Git destructive détectée
+         (reset --hard, clean -f/-fd, push --force, branch -D,
+          checkout -- ., stash drop/clear).
+
+Commande : $BASH_CMD
+
+⚠ Risque concret S108 : ton repo Jarvis a actuellement ~150 fichiers
+untracked/non-committés (T#96, nouvelles skills, sub-agents, hook lui-même).
+Un git clean -fd détruirait TOUT ce travail.
+
+Procédure obligatoire :
+  1. Décrire précisément ce qui serait perdu (commits, work tree, untracked).
+  2. Demander accord explicite à Mickael avant exécution.
+  3. Privilégier git stash push (réversible) plutôt que reset --hard.
+  4. Privilégier --force-with-lease plutôt que --force pour push.
+MSG
+    exit 2
+  fi
+fi
+
+# ============================================================================
+# RÈGLE 10 — Commandes système destructives (T#66 R2, S108)
+# ============================================================================
+# Protection environnement (format disque, shutdown, WSL unregister,
+# Ollama rm, npm uninstall -g, docker prune/rm).
+# Spécifiquement : préserver Hermès Agent (~/.hermes/, modèles Ollama custom)
+# et installations CLI globales (ccusage, etc.).
+if [[ "$TOOL_NAME" == "Bash" ]] && [[ -n "$BASH_CMD" ]]; then
+  if [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])(Format-Volume|diskpart|mkfs\.|fdisk[[:space:]]) ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])format[[:space:]]+[A-Za-z]: ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])(Stop-Computer|Restart-Computer) ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])shutdown[[:space:]]+(/s|/r|-h|-r[[:space:]]) ]] \
+     || [[ "$BASH_CMD" =~ wsl[[:space:]]+(--unregister|-u[[:space:]]) ]] \
+     || [[ "$BASH_CMD" =~ (^|[[:space:]\;\|\&])ollama[[:space:]]+rm[[:space:]] ]] \
+     || [[ "$BASH_CMD" =~ npm[[:space:]]+uninstall[[:space:]]+(.+[[:space:]])?(-g|--global) ]] \
+     || [[ "$BASH_CMD" =~ docker[[:space:]]+(system[[:space:]]+prune|volume[[:space:]]+rm|rm[[:space:]]+(.+[[:space:]])?-f) ]]; then
+    cat >&2 <<MSG
+[Règle Système destructif — CLAUDE.md §4] BLOQUÉ par hook check-secrets.sh
+
+Outil  : Bash
+Motif  : commande système destructive détectée
+         (Format/diskpart, shutdown, wsl --unregister, ollama rm,
+          npm uninstall -g, docker prune/rm).
+
+Commande : $BASH_CMD
+
+⚠ Risques concrets S108 :
+  - wsl --unregister Ubuntu = perte TOTALE Hermès Agent (~/.hermes/config.yaml,
+    secrets CF Access, modèles personnalisés). Backup T#96 obligatoire avant.
+  - ollama rm = perte Modelfile custom (qwen35-agent et autres tunés S57-S98).
+  - npm uninstall -g ccusage = perte status bar Claude CLI installée S108.
+  - Format/shutdown = catastrophes irréversibles ou perte session.
+
+Procédure obligatoire :
+  1. Décrire précisément l'impact attendu.
+  2. Vérifier qu'un backup récent existe (T#96 protocole).
+  3. Demander accord explicite à Mickael.
+  4. Privilégier wsl --shutdown (sans --terminate) qui ne détruit pas la distrib.
+MSG
+    exit 2
+  fi
+fi
+
+# ============================================================================
+# Aucun match → autoriser
+# ============================================================================
+exit 0

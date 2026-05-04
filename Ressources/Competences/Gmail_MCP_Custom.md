@@ -43,7 +43,7 @@ obtenu).
 
 Depuis PowerShell :
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 claude
 ```
 Au premier lancement, Claude Code demande à autoriser `gmail-mcp-local` :
@@ -131,7 +131,7 @@ tant que :
 
 Si le token expire / est révoqué, relancer :
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Runtime\Gmail-MCP-Server"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Runtime\Gmail-MCP-Server"
 npm run auth
 ```
 
@@ -206,7 +206,7 @@ En cas de corruption / format / migration PC :
 
 ```powershell
 # 1. Cloner le repo au SHA auditable
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\Projets"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\Projets"
 git clone https://github.com/GongRzhe/Gmail-MCP-Server.git
 cd .\Gmail-MCP-Server
 git checkout a890d19189bbc1325b8728fab830fc278cfd8804
@@ -288,7 +288,7 @@ En cas d'échec du pré-filtre : tentative d'envoi alerte via webhook HA `jarvis
 
 - Nom : `Jarvis-TriGmail-Quotidien`
 - Triggers : 05:00 et 14:00 tous les jours (heure locale)
-- Action : `PowerShell.exe -ExecutionPolicy Bypass -File "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\scripts\tri-gmail-launcher.ps1"`
+- Action : `PowerShell.exe -ExecutionPolicy Bypass -File "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\scripts\tri-gmail-launcher.ps1"`
 - Compte : utilisateur Mickael (pour accéder à `$env:USERPROFILE\.gmail-mcp\`)
 - Conditions : démarrer même si le PC est sur batterie (PC allumé 24h/24)
 

@@ -1,7 +1,8 @@
 ---
 title: Tri Outlook
 created: 2026-04-25
-tags: [email, email/outlook, email/tri, domaine/email]
+updated: 2026-04-25
+tags: [atome, email, email/outlook, email/tri, domaine/email]
 status: actif
 parent: "[[_Index]]"
 source_skills:

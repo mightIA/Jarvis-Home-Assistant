@@ -1,8 +1,9 @@
 ---
 title: Inventaire — Réseau maison
 created: 2026-04-27
-tags: [inventaire, reseau, transverse]
-status: coquille
+updated: 2026-04-27
+tags: [atome, inventaire, reseau, transverse]
+status: stub
 domaine: Inventaire
 remplissage_attendu: Mickael
 ---

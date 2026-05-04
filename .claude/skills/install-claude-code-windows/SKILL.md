@@ -10,7 +10,7 @@ description: >
 
 # Installation environnement dev Claude Code sur Windows — Procédure Jarvis
 
-Contexte : Windows 11 PowerShell. Dossier cible : `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant`.
+Contexte : Windows 11 PowerShell. Dossier cible : `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant`.
 
 ## Vue d'ensemble — ordre d'installation
 
@@ -149,7 +149,7 @@ Requis notamment par le plugin **ESJavadex/homeassistant-config** (scripts valid
 ## Lancement de Claude Code
 
 ```powershell
-cd "D:\Might\IA\Projets Cowork\Jarvis - Home Assistant"
+cd "D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant"
 claude
 ```
 

@@ -10,7 +10,7 @@ date: 2026-04-25
 
 ## Init S42
 
-- Repo : `D:\Might\IA\Projets Cowork\Jarvis - Home Assistant\.git\`
+- Repo : `D:\Documents\IA\Projets Cowork\Jarvis - Home Assistant\.git\`
 - Branche par défaut : `main` (pas `master`)
 - User config : `Mickael` / `might57290@gmail.com`
 - Premier commit : `3a63421` — 130 fichiers, 40 230 lignes

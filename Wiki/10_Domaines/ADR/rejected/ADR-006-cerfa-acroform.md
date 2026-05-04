@@ -1,6 +1,7 @@
 ---
 title: ADR-006 — CERFA AcroForm pour test pdf-toolkit
 created: 2026-04-27
+updated: 2026-04-27
 tags: [adr, rejected, pdf, cerfa, mistral]
 status: rejected
 session_origine: S46

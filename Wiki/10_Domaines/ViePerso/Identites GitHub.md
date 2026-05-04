@@ -1,7 +1,8 @@
 ---
 title: Identités GitHub Mickael
 created: 2026-04-25
-tags: [vieperso/github, identite]
+updated: 2026-04-25
+tags: [atome, vieperso/github, identite]
 parent: "[[_Index]]"
 status: actif
 ---

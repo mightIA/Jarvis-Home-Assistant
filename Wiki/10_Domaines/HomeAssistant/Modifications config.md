@@ -1,7 +1,8 @@
 ---
 title: HA — Modifications config (recharger vs redémarrer)
 created: 2026-04-25
-tags: [ha/config, ha/yaml]
+updated: 2026-04-25
+tags: [atome, ha/config, ha/yaml]
 status: actif
 ---
 
