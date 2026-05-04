@@ -37,6 +37,9 @@ Ce fichier indexe les auto-memories CLI local (versionnées Git, scope `memory/`
 - [Pièges pandoc + LaTeX custom](feedback_pandoc_template_pieges.md) — 4 pièges XeLaTeX (babel→polyglossia, `$`, MakeUppercase, DejaVu).
 - [Préférence "Ubuntu" vs "WSL2"](feedback_terminologie_ubuntu.md) — S70 : dans blocs à coller, dire "Ubuntu (bash)".
 - [Set-Content -Encoding UTF8 = BOM en PS 5.1](feedback_set_content_utf8_bom_ps51.md) — S108 : éviter dans Git commit messages / JSON / YAML, utiliser `[System.IO.File]::WriteAllText(... UTF8Encoding($false))`.
+- [Get-Content sans -Encoding UTF8 = double-encodage](feedback_get_content_utf8_explicit.md) — S112 : `Get-Content -Raw` lit en CP1252 par défaut Windows FR, ré-écriture UTF-8 double-encode non-ASCII. Toujours `-Encoding UTF8` explicite.
+- [wsl bash -c sans login shell = PATH user invisible](feedback_wsl_bash_login_shell.md) — S112 : `wsl bash -c` ne charge pas `.profile`, hermes/npm globals introuvables. Utiliser `wsl bash -lc` (login shell) pour binaires user.
+- [Select-String -SimpleMatch désactive le regex](feedback_powershell_simplematch_disables_regex.md) — S112 : pattern OR `a|b|c` cherché littéralement (5 chars pipe inclus) avec `-SimpleMatch`. Retirer le flag pour OR regex.
 
 ### Tri email — pièges UI
 
@@ -66,6 +69,8 @@ Ce fichier indexe les auto-memories CLI local (versionnées Git, scope `memory/`
 
 - [Hook PreToolUse check-secrets — Renfort Règle 0](reference_hooks_securite_p2.md) — S72 (P2) : `.claude/hooks/check-secrets.sh` exit 2 sur credentials/secrets/SSH/.env/.mcp.json. 7 règles, 14/14 tests OK.
 - [Bug hook check-secrets sur chemins Windows espacés (T#93)](feedback_check_secrets_hook_chemins_windows.md) — S95 : erreur `bash: /d/Might/IA/Projets: No such file or directory` à chaque action Bash claude CLI dans projet Jarvis (chemin avec espaces). Non-bloquant. Cause : variables path non quotées. Fix prévu T#93.
+- [Troncature silencieuse `tasks/*.md`](feedback_troncature_silencieuse_task_files.md) — S109 : `task_076.md` retrouvé tronqué à 34 lignes (corps coupé en plein header tableau Phase 1, frontmatter intact). `regen-tasks-index` ne détecte rien. Cause probable : hook destructif S108 ou Edit interrompu. Reconstruit S109 depuis archive S98 + results.csv. Anti-récidive : ajouter check `< 500 bytes` au script.
+- [CLI claude n'interpole PAS `${env:VAR}` dans headers HTTP MCP](feedback_cli_claude_env_var_pas_interpolee_headers.md) — S109 : limitation/bug Anthropic v2.1.126. Pairing CLI claude home-assistant via Service Token CF Access n'a jamais fonctionné depuis S102 (T#60 acquis seulement Cowork + Hermès). Workaround scope local OK mais secrets en clair `~/.claude.json` + piège leak `claude mcp get`. Solutions : attendre fix Anthropic, ne pas dépendre du MCP CLI (REST suffit), ou T#95 proxy local.
 
 ### Cowork desktop — limites techniques
 

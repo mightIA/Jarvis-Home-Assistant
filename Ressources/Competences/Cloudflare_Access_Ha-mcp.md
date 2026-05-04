@@ -45,7 +45,7 @@ Le détail exhaustif vit dans deux endroits qui peuvent évoluer indépendamment
 ## Spécificités Jarvis (vs procédure générique)
 
 ### Endpoint cible
-- URL : `https://mcp.might.ovh/private_6G36IXICr8K4HJv02SXU9OlE` (path-token conservé S102, à nettoyer T#94 vers `https://mcp.might.ovh/jarvis-mcp` ou nu).
+- URL : `https://mcp.might.ovh/jarvis-mcp` (path-token nettoyé S112 via T#94 sous-objectif 1bis — voir [task_094.md](../../tasks/task_094.md) section "Avancement S112").
 - Add-on backend : `homeassistant-ai/ha-mcp` v7.3.0 sur HA Pi5 port 9583.
 - Tunnel CF : add-on `Cloudflared` sur HA, additional_host `mcp.might.ovh` → `http://192.168.1.11:9583`.
 
