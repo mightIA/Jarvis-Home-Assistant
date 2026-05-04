@@ -36,6 +36,7 @@ Ce fichier indexe les auto-memories CLI local (versionnées Git, scope `memory/`
 - [notify gmail target requis](feedback_notify_gmail_target.md) — `data.target=["..."]` obligatoire sinon HTTP 500.
 - [Pièges pandoc + LaTeX custom](feedback_pandoc_template_pieges.md) — 4 pièges XeLaTeX (babel→polyglossia, `$`, MakeUppercase, DejaVu).
 - [Préférence "Ubuntu" vs "WSL2"](feedback_terminologie_ubuntu.md) — S70 : dans blocs à coller, dire "Ubuntu (bash)".
+- [Set-Content -Encoding UTF8 = BOM en PS 5.1](feedback_set_content_utf8_bom_ps51.md) — S108 : éviter dans Git commit messages / JSON / YAML, utiliser `[System.IO.File]::WriteAllText(... UTF8Encoding($false))`.
 
 ### Tri email — pièges UI
 
