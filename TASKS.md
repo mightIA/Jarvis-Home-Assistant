@@ -1,17 +1,17 @@
 ---
 title: Jarvis — Index des tâches
-last_update: 2026-05-04 22:00 (édit manuel S111 — clôture T#100 Phases 6+7, à régénérer via skill regen-tasks-index)
+last_update: 2026-05-04 22:30 (édit manuel S111 — clôture T#100 + T#101 + promotion T#99 P1, à régénérer via skill regen-tasks-index)
 version: 3.0
 auto_generated: true
 ---
 
 <!-- ⚠ AUTO-GENERATED par la skill `regen-tasks-index` — ne pas éditer à la main. -->
 <!-- Pour modifier : éditer tasks/task_NNN.md puis lancer la skill. -->
-<!-- S111 édit manuel : clôture T#100 (passage open → done + déplacement archive) — à régénérer proprement via skill CLI. -->
+<!-- S111 édit manuel : clôture T#100 + T#101 (passage open → done + déplacement archive) + promotion T#99 P2→P1 — à régénérer proprement via skill CLI. -->
 
 # TASKS — Index
 
-**35 tâches ouvertes** + **63 archivées (Q2 2026)**.
+**34 tâches ouvertes** + **64 archivées (Q2 2026)**.
 
 Détail de chaque tâche : `tasks/task_NNN.md`. Régénération : skill `regen-tasks-index`.
 
@@ -25,7 +25,7 @@ _(aucune tâche P0 ouverte — T#100 clôturée S111)_
 
 | # | Statut | Titre | Tags | Fichier |
 |---|--------|-------|------|---------|
-| **T#101** | 🟢 `open` | Purge historique ~/.claude.json (résidus Service Tokens ancien en clair S109) — bloqué par T#100 Phase 7 | security, cleanup, claude-cli, leak, post-rotation, anti-recidive | [→](tasks/task_101.md) |
+| **T#99** | 🟢 `open` | Système meta-skills manuel-* (9 apps + INDEX) — pattern standardisé... (promu P2→P1 S111 après 3 errances CF UI) | skills, meta, manuel, navigation, +5 | [→](tasks/task_099.md) |
 
 ### 🟡 P2 — Moyenne
 
@@ -34,7 +34,6 @@ _(aucune tâche P0 ouverte — T#100 clôturée S111)_
 | **T#66** | 🟢 `open` | Liste consolidée d'améliorations identifiées via recherche web S53 ... | hermes, gmail, email, openrouter, +5 | [→](tasks/task_066.md) |
 | **T#96** | 🟢 `open` | Script backup global PC pour migration nouveau hardware (configs ho... | backup, migration, pc-hardware, claude-cli, +4 | [→](tasks/task_096.md) |
 | **T#98** | 🟢 `open` | Audit add-ons + connecteurs Hermès/Cowork + enrichissement TUI Herm... | hermes, cowork, audit, mcp, +3 | [→](tasks/task_098.md) |
-| **T#99** | 🟢 `open` | Système meta-skills manuel-* (9 apps + INDEX) — pattern standardisé... | skills, meta, manuel, navigation, +5 | [→](tasks/task_099.md) |
 | **T#60** | 🧪 `testing` | L'endpoint `https://mcp | ha-mcp, hermes, cloudflare, mcp, +1 | [→](tasks/task_060.md) |
 | **T#74** | 🧪 `testing` | Framework de génération de prompts optimisés pour 3 IA d'images (Mi... | pdf | [→](tasks/task_074.md) |
 | **T#9** | ⏸️ `pending` | Créer compte `MightTab` dédié (non-admin, 2FA, groupe `tablette_mob... | security | [→](tasks/task_009.md) |
@@ -140,6 +139,7 @@ _(aucune tâche P0 ouverte — T#100 clôturée S111)_
 | T#84 | ✅ | Vérifier puis supprimer .claude/hooks.json annoté OBSOLET... | S77 | [→](tasks/archive_2026-Q2/task_084.md) |
 | T#48 | ❌ | Rechercher et installer un MCP pour la boite Outlook (Mic... | S92 | [→](tasks/archive_2026-Q2/task_048.md) |
 | T#100 | ✅ | Rotation Service Tokens CF Access suite leak chat S109 | S111 | [→](tasks/archive_2026-Q2/task_100.md) |
+| T#101 | ✅ | Purge historique ~/.claude.json (résidus Service Tokens ancien en clair S109) | S111 | [→](tasks/archive_2026-Q2/task_101.md) |
 
 </details>
 
